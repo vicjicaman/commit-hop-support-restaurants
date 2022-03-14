@@ -41,7 +41,7 @@ const schema = [
 
 const resolvers = {
   RestaurantQueries: {
-    list: () => [],
+    list: (): any[] => [],
   },
   RestaurantMutations: {
     create: () => ({}),
