@@ -6,9 +6,8 @@ services:
     ports:
       - '5432:5432'
     environment:
-      ALLOW_EMPTY_PASSWORD: 'no'
+      ALLOW_EMPTY_PASSWORD: 'yes'
       POSTGRES_USER: user
-      POSTGRES_PASSWORD: ;L;m8-L+B^8V4A}n
       POSTGRES_DB: prod-data
     volumes:
       - './data:/bitnami/postgresql'

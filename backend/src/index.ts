@@ -7,6 +7,7 @@ const { makeExecutableSchema } = require("graphql-tools");
 const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
 
+import pg from "utils/db";
 import { schema, resolvers } from "./service";
 
 const PORT_SERVICE = 4000;
@@ -64,7 +65,7 @@ try {
     });
 
     console.log("Listen port " + PORT_SERVICE);
-    app.listen({ port: PORT_SERVICE }, () => console.log("Node running"));
+    app.listen({ port: PORT_SERVICE }, () => console.log("Node running."));
   })();
 } catch (e) {
   console.error("service.error: " + e.toString());

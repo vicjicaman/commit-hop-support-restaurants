@@ -1,3 +1,5 @@
+import * as RestaurantModel from "model/restaurants";
+
 const schema = [
   `
 
@@ -41,7 +43,7 @@ const schema = [
 
 const resolvers = {
   RestaurantQueries: {
-    list: (): any[] => [],
+    list: async (): any[] => await RestaurantModel.list(),
   },
   RestaurantMutations: {
     create: () => ({}),
