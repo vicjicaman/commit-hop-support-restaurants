@@ -6,6 +6,8 @@ export const RestaurantFragment = gql`
     name
 
     images
+    longitude
+    latitude
 
     createdAt
     updatedAt

@@ -5,6 +5,7 @@ import { useQuery } from "@apollo/client";
 
 import {
   MapContainer,
+  Tooltip,
   Marker,
   Popup,
   TileLayer,
@@ -12,8 +13,7 @@ import {
 } from "react-leaflet";
 import { LatLngTuple, LatLng } from "leaflet";
 
-function LocationMarker() {
-  const [position, setPosition] = useState<LatLng | null>(null);
+function LocationMarker({ setPosition, position }: any) {
   const map = useMapEvents({
     click(e) {
       //console.log(e.latlng);
@@ -29,30 +29,61 @@ function LocationMarker() {
   );
 }
 
-export const Component = () => {
-  const { loading, error, data } = useQuery(RESTAURANT_FIND);
+const Markers = ({ position }: any) => {
+  const { loading, error, data } = useQuery(RESTAURANT_FIND, {
+    variables: {
+      latitude: position ? position.lat : 52.012551077226085,
+      longitude: position ? position.lng : 22.926438847190745,
+    },
+  });
 
-  if (loading) return <p>Loading...</p>;
+  //if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  const {
-    viewer: {
-      account: {
-        restaurants: { list },
-      },
-    },
-  } = data;
+  return (
+    <>
+      {!loading &&
+        data.viewer.account.restaurants.find.map(
+          ({ id, name, latitude, longitude, images }: any) => (
+            <Marker key={id} position={[latitude, longitude]}>
+              <Tooltip>
+                <b>{name}</b>
+                <img
+                  style={{ width: "200px", display: "block" }}
+                  src={images[0]}
+                />
+              </Tooltip>
+            </Marker>
+          )
+        )}
+    </>
+  );
+};
 
-  const position: LatLngTuple = [52.012551077226085, 22.926438847190745];
+export const Component = () => {
+  const initPosition: LatLngTuple = [50.012551077226085, 22.926438847190745];
+
+  const [position, setPosition] = useState<LatLng | null>(null);
 
   return (
-    <MapContainer style={{ height: "800px" }} center={position} zoom={10}>
+    <MapContainer style={{ height: "800px" }} center={initPosition} zoom={8}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <LocationMarker />
+      <LocationMarker position={position} setPosition={setPosition} />
+
+      {position && <Markers position={position} />}
     </MapContainer>
   );
 };
+/*
+const {
+  viewer: {
+    account: {
+      restaurants: { find },
+    },
+  },
+} = data;
+*/

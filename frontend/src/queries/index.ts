@@ -20,14 +20,14 @@ export const RESTAURANT_LIST = gql`
 `;
 
 export const RESTAURANT_FIND = gql`
-  query GetRestaurantFind {
+  query GetRestaurantFind($latitude: Float!, $longitude: Float!) {
     viewer {
       id
       account {
         id
         restaurants {
           id
-          find(longitude: Float, latitude: Float) {
+          find(longitude: $longitude, latitude: $latitude) {
             ...RestaurantFragment
           }
         }

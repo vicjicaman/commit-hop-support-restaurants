@@ -1,4 +1,4 @@
-import * as RestaurantModel from "model/restaurants";
+import * as RestaurantModel from "entities/restaurants";
 
 const schema = [
   `
@@ -20,7 +20,7 @@ const schema = [
     latitude: Float!
     longitude: Float!
 
-    owner: Owner!
+    owner: Owner
 
     images: [String]!
 
@@ -31,6 +31,7 @@ const schema = [
   type RestaurantQueries {
     id: ID
     list: [Restaurant]!
+    find(latitude: Float!, longitude: Float!): [Restaurant]!
     get(id: ID!): Restaurant
   }
 
@@ -43,6 +44,10 @@ const schema = [
 const resolvers = {
   RestaurantQueries: {
     list: async (): Promise<any[]> => await RestaurantModel.list(),
+    find: async (parent: any, { latitude, longitude }: any): Promise<any[]> =>
+      await RestaurantModel.find({ latitude, longitude }),
+    get: async (parent: any, { id }: any): Promise<any> =>
+      await RestaurantModel.get(id),
   },
   RestaurantMutations: {
     create: () => ({}),
