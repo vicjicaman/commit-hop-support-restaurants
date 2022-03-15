@@ -13,76 +13,28 @@ images,
 "createdAt",
 "updatedAt"`;
 
-export type Owner = {
-  name: string;
-  image: string;
-};
-
-export type Restaurant = {
-  id: number;
-  name: string;
-  description: string;
-  latitude: number;
-  longitude: number;
-  images: string[];
-  owner: Owner;
-  supportedEmployees: number;
-  preparedMeals: number;
-  receivedDonations: number;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-const constructor = ({
-  id,
-  name,
-  description,
-  latitude,
-  longitude,
-  owner,
-  images,
-  supportedEmployees,
-  preparedMeals,
-  receivedDonations,
-  createdAt,
-  updatedAt,
-}: any): Restaurant => ({
-  id,
-  name,
-  description,
-  latitude,
-  longitude,
-  owner,
-  images,
-  supportedEmployees,
-  preparedMeals,
-  receivedDonations: receivedDonations / 100,
-  createdAt,
-  updatedAt,
-});
-
-export const list = async (): Promise<Restaurant[]> => {
+export const list = async (): Promise<any[]> => {
   const res = await pg.query(`SELECT ${FragmentFull} from restaurants`);
-  return res.rows.map(constructor);
+  return res.rows;
 };
 
 export const find = async ({
   latitude,
   longitude,
-}: any): Promise<Restaurant[]> => {
+}: any): Promise<any[]> => {
   const res = await pg.query(
     `SELECT ${FragmentFull} from restaurants ORDER BY ST_Distance(restaurants.location,  ST_SetSRID(ST_POINT($1, $2), 4326) ) asc limit 3 `,
     [longitude, latitude]
   );
-  return res.rows.map(constructor);
+  return res.rows;
 };
 
-export const get = async (id: number): Promise<Restaurant> => {
+export const get = async (id: number): Promise<any> => {
   const res = await pg.query(
     `SELECT ${FragmentFull} from restaurants where id = $1`,
     [id]
   );
-  return res.rows.map(constructor)[0] || null;
+  return res.rows[0] || null;
 };
 
 export const create = async (inp: any) => {
@@ -104,7 +56,7 @@ export const create = async (inp: any) => {
 
   try {
     const res = await pg.query(text, values);
-    return res.rows.map(constructor)[0] || null;
+    return res.rows[0] || null;
   } catch (err) {
     console.log(err.stack);
     throw err;
