@@ -66,8 +66,14 @@ export const list = async (): Promise<Restaurant[]> => {
   return res.rows.map(constructor);
 };
 
-export const find = async ({ latitude, longitude }: any): Promise<Restaurant[]> => {
-  const res = await pg.query(`SELECT ${FragmentFull} from restaurants`);
+export const find = async ({
+  latitude,
+  longitude,
+}: any): Promise<Restaurant[]> => {
+  const res = await pg.query(
+    `SELECT ${FragmentFull} from restaurants ORDER BY ST_Distance(restaurants.location,  ST_SetSRID(ST_POINT($1, $2), 4326) ) asc limit 3 `,
+    [longitude, latitude]
+  );
   return res.rows.map(constructor);
 };
 

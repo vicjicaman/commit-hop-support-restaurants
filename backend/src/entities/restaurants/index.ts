@@ -1,5 +1,6 @@
 import * as RestaurantData from "data/restaurants";
 import { Restaurant } from "data/restaurants";
+import _ from "lodash";
 
 export const list = async (): Promise<Restaurant[]> => {
   return await RestaurantData.list();
