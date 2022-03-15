@@ -41,7 +41,7 @@ export const prepare = (schema: any, resolvers: any) =>
       JSON: GraphQLToolsTypes.JSON({ name: "JSON" }),
       UUID: GraphQLToolsTypes.JSON({ name: "UUID" }),
       Query: {
-        viewer: () => ({}),
+        viewer: () => ({ id: "viewer" }),
       },
       Mutation: {
         viewer: () => ({}),

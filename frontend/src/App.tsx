@@ -1,26 +1,74 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText,
+} from "reactstrap";
+import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
+
+import { Component as SectionComponent } from "./sections";
 
 function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">reactstrap</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <Link className="nav-link" to="/">
+                Map
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/listing">
+                Listing
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/admin">
+                Admin
+              </Link>
+            </NavItem>
+          </Nav>
+          <NavbarText>Simple Text</NavbarText>
+        </Collapse>
+      </Navbar>
+
+      <SectionComponent />
     </div>
   );
 }
 
 export default App;
+
+/*
+<UncontrolledDropdown nav inNavbar>
+  <DropdownToggle nav caret>
+    Options
+  </DropdownToggle>
+  <DropdownMenu right>
+    <DropdownItem>Option 1</DropdownItem>
+    <DropdownItem>Option 2</DropdownItem>
+    <DropdownItem divider />
+    <DropdownItem>Reset</DropdownItem>
+  </DropdownMenu>
+</UncontrolledDropdown>
+*/

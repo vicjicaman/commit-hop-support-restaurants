@@ -4,6 +4,7 @@ const schema = [
   ...RestaurantSchema.schema,
   `
   type Viewer {
+    id: ID!
     account: Account
   }
 
@@ -12,12 +13,11 @@ const schema = [
   }
 
   type Account {
-    id: String
+    id: ID
     restaurants: RestaurantQueries!
   }
 
   type AccountMutations {
-    id: String
     restaurants: RestaurantMutations!
   }
 `,
@@ -29,7 +29,13 @@ const resolvers = {
     account: () => ({ id: "vicjicama" }),
   },
   ViewerMutations: {
-    account: () => ({}),
+    account: () => ({ id: "vicjicama" }),
+  },
+  Account: {
+    restaurants: () => ({ id: "restaurants" }),
+  },
+  AccountMutations: {
+    restaurants: () => ({ id: "restaurants" }),
   },
 };
 

@@ -4,7 +4,6 @@ const schema = [
   `
 
   type Owner {
-    id: ID!
     name: String!
     image: String
   }
@@ -30,7 +29,7 @@ const schema = [
   }
 
   type RestaurantQueries {
-    id: String
+    id: ID
     list: [Restaurant]!
     get(id: ID!): Restaurant
   }
@@ -43,7 +42,7 @@ const schema = [
 
 const resolvers = {
   RestaurantQueries: {
-    list: async (): any[] => await RestaurantModel.list(),
+    list: async (): Promise<any[]> => await RestaurantModel.list(),
   },
   RestaurantMutations: {
     create: () => ({}),
