@@ -4,10 +4,12 @@ export const RestaurantFragment = gql`
   fragment RestaurantFragment on Restaurant {
     id
     name
+    description
 
     images
     longitude
     latitude
+    receivedDonations
 
     createdAt
     updatedAt

@@ -19,10 +19,14 @@ export const Component = () => {
 
   return (
     <Container>
-      {list.map(({ id, name }: any) => (
-        <Row key={id}>
+      {list.map(({ id, name, images, description }: any) => (
+        <Row key={id} className="m-4">
           <Col>
-            <p>{name}</p>
+            <img className="w-50" src={images[0]} />
+          </Col>
+          <Col>
+            <b>{name}</b>
+            <p>{description}</p>
           </Col>
         </Row>
       ))}
