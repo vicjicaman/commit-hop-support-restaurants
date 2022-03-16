@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { RESTAURANT_FIND } from "../../queries";
 import { useQuery } from "@apollo/client";
+import { useWindowSize } from "../../components/useWindowSize";
 
 import {
   MapContainer,
@@ -61,12 +62,21 @@ const Markers = ({ position }: any) => {
 };
 
 export const Component = () => {
+  const [width, height] = useWindowSize();
   const initPosition: LatLngTuple = [50.012551077226085, 22.926438847190745];
 
   const [position, setPosition] = useState<LatLng | null>(null);
 
+  if (height === 0) {
+    return null;
+  }
+
   return (
-    <MapContainer style={{ height: "800px" }} center={initPosition} zoom={8}>
+    <MapContainer
+      style={{ height: height + "px" }}
+      center={initPosition}
+      zoom={8}
+    >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
