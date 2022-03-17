@@ -49,6 +49,11 @@ function App() {
               </Link>
             </NavItem>
             <NavItem>
+              <Link className="nav-link" to="/search">
+                Search
+              </Link>
+            </NavItem>
+            <NavItem>
               <Link className="nav-link" to="/listing">
                 Listing
               </Link>

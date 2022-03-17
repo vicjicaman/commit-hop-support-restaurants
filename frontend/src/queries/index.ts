@@ -36,3 +36,23 @@ export const RESTAURANT_FIND = gql`
   }
   ${RestaurantFragment}
 `;
+
+
+
+export const RESTAURANT_SEARCH = gql`
+  query GetRestaurantSearch($term: String!) {
+    viewer {
+      id
+      account {
+        id
+        restaurants {
+          id
+          search(term: $term) {
+            ...RestaurantFragment
+          }
+        }
+      }
+    }
+  }
+  ${RestaurantFragment}
+`;
