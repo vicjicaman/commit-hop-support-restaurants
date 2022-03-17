@@ -8,6 +8,7 @@ const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
 
 import pg from "utils/db";
+import search from "utils/search";
 import { schema, resolvers } from "./service";
 
 const PORT_SERVICE = 4000;
@@ -62,6 +63,48 @@ try {
 
     app.get("/backend/health", function (req: any, res: any) {
       res.send("ok");
+    });
+
+    app.get("/backend/test", async function (req: any, res: any) {
+      const index_name = "restaurants";
+
+      const resOps = [];
+      try {
+        var settings = {
+          settings: {
+            index: {
+              number_of_shards: 4,
+              number_of_replicas: 1,
+            },
+          },
+        };
+
+        var response = await search.indices.create({
+          index: index_name,
+          body: settings,
+        });
+
+        resOps.push(response.body);
+      } catch (e) {
+        resOps.push(e.toString());
+      }
+
+      const data = [];
+
+      for (const rs of data) {
+        const { id, name, description, latitude, longitude } = rs;
+
+        var response = await search.index({
+          id,
+          index: index_name,
+          body: { name, description, latitude, longitude },
+          refresh: true,
+        });
+
+        resOps.push(response.body);
+      }
+
+      res.send(JSON.stringify(resOps));
     });
 
     console.log("Listen port " + PORT_SERVICE);

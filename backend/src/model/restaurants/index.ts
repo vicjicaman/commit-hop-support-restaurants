@@ -1,4 +1,5 @@
-import * as RestaurantData from "data/restaurants";
+import * as RestaurantDB from "data/db/restaurants";
+import * as RestaurantSearch from "data/search/restaurants";
 
 export type Owner = {
   name: string;
@@ -57,7 +58,7 @@ const constructor = (inp: any): Restaurant => {
 };
 
 export const list = async (): Promise<Restaurant[]> => {
-  const res = await RestaurantData.list();
+  const res = await RestaurantDB.list();
   return res.map(constructor);
 };
 
@@ -65,24 +66,31 @@ export const find = async ({
   latitude,
   longitude,
 }: any): Promise<Restaurant[]> => {
-  const res = await RestaurantData.find({
+  const res = await RestaurantDB.find({
     latitude,
     longitude,
   });
   return res.map(constructor);
 };
 
+export const search = async (term: string): Promise<Restaurant[]> => {
+  const hits = await RestaurantSearch.search(term);
+
+  const res = [];
+  return res.map(constructor);
+};
+
 export const get = async (id: number): Promise<Restaurant> => {
-  const res = await RestaurantData.get(id);
+  const res = await RestaurantDB.get(id);
   return constructor(res);
 };
 
 export const create = async (inp: any) => {
-  const res = await RestaurantData.create(inp);
+  const res = await RestaurantDB.create(inp);
   return constructor(res);
 };
 
 export const remove = async (id: number) => {
-  const res = await RestaurantData.remove(id);
+  const res = await RestaurantDB.remove(id);
   return res;
 };

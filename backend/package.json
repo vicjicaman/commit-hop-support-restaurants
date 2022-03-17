@@ -8,6 +8,7 @@
   "dependencies": {
     "@babel/runtime": "^7.6.0",
     "@babel/runtime-corejs3": "^7.6.0",
+    "@opensearch-project/opensearch": "^1.0.2",
     "@types/pg": "^8.6.5",
     "apollo-server-express": "^3.6.4",
     "bcryptjs": "^2.4.3",

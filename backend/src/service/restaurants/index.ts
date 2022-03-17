@@ -32,6 +32,7 @@ const schema = [
     id: ID
     list: [Restaurant]!
     find(latitude: Float!, longitude: Float!): [Restaurant]!
+    search(term: String!): [Restaurant]!
     get(id: ID!): Restaurant
   }
 
@@ -46,6 +47,8 @@ const resolvers = {
     list: async (): Promise<any[]> => await RestaurantModel.list(),
     find: async (parent: any, { latitude, longitude }: any): Promise<any[]> =>
       await RestaurantModel.find({ latitude, longitude }),
+    search: async (parent: any, { term }: any): Promise<any[]> =>
+      await RestaurantModel.search(term),
     get: async (parent: any, { id }: any): Promise<any> =>
       await RestaurantModel.get(id),
   },

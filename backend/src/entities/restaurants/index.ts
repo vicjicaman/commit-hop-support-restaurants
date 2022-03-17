@@ -16,3 +16,7 @@ export const find = async ({
 }: any): Promise<Restaurant[]> => {
   return await RestaurantModel.find({ latitude, longitude });
 };
+
+export const search = async (term: string): Promise<Restaurant[]> => {
+  return await RestaurantModel.search(term);
+};
