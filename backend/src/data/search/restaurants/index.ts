@@ -19,5 +19,5 @@ export const search = async (term: string): Promise<any[]> => {
     body: query,
   });
 
-  return response.body.hits;
+  return response.body.hits.hits.map(({ _source }) => _source);
 };

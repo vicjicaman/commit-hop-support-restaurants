@@ -75,9 +75,7 @@ export const find = async ({
 
 export const search = async (term: string): Promise<Restaurant[]> => {
   const hits = await RestaurantSearch.search(term);
-
-  const res = [];
-  return res.map(constructor);
+  return hits.map(constructor);
 };
 
 export const get = async (id: number): Promise<Restaurant> => {

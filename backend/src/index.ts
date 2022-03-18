@@ -92,12 +92,12 @@ try {
       const data = [];
 
       for (const rs of data) {
-        const { id, name, description, latitude, longitude } = rs;
+        const { id, name, description, latitude, longitude, images } = rs;
 
         var response = await search.index({
           id,
           index: index_name,
-          body: { name, description, latitude, longitude },
+          body: { id, name, description, latitude, longitude, images },
           refresh: true,
         });
 

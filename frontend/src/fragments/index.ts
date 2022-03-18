@@ -16,6 +16,15 @@ export const RestaurantFragment = gql`
   }
 `;
 
+export const RestaurantSearchFragment = gql`
+  fragment RestaurantSearchFragment on Restaurant {
+    id
+    name
+    description
+    images
+  }
+`;
+
 export const RestaurantFullFragment = gql`
   fragment RestaurantFullFragment on Restaurant {
     id

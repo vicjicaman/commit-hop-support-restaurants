@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { RestaurantFragment } from "../fragments";
+import { RestaurantFragment, RestaurantSearchFragment, RestaurantFullFragment } from "../fragments";
 
 export const RESTAURANT_LIST = gql`
   query GetRestaurantList {
@@ -48,11 +48,11 @@ export const RESTAURANT_SEARCH = gql`
         restaurants {
           id
           search(term: $term) {
-            ...RestaurantFragment
+            ...RestaurantSearchFragment
           }
         }
       }
     }
   }
-  ${RestaurantFragment}
+  ${RestaurantSearchFragment}
 `;
