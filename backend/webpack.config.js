@@ -26,6 +26,7 @@ module.exports = {
   },
   resolve: {
     alias: {
+      drivers: path.resolve(__dirname, "src/drivers"),
       utils: path.resolve(__dirname, "src/utils"),
       data: path.resolve(__dirname, "src/data"),
       model: path.resolve(__dirname, "src/model"),

@@ -7,13 +7,31 @@ const { makeExecutableSchema } = require("graphql-tools");
 const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
 
+const awilix = require("awilix");
+
 import pg from "utils/db";
 import search from "utils/search";
 import { schema, resolvers } from "./service";
 
+import Database from "drivers/db";
+import RestaurantController from "controllers/restaurants";
+import makeUserService from "services/restaurants";
+
 const PORT_SERVICE = 4000;
 
 const cxt: any = {};
+
+const container = awilix.createContainer({
+  injectionMode: awilix.InjectionMode.PROXY,
+});
+
+container.register({
+  restaurantController: awilix.asClass(RestaurantController),
+  restaurantService: awilix.asFunction(makeUserService),
+  db: awilix.asClass(Database).classic(),
+  connectionString: awilix.asValue(process.env.DATABASE_URL),
+  timeout: awilix.asValue(1000),
+});
 
 export const prepare = (schema: any, resolvers: any) =>
   makeExecutableSchema({
@@ -45,14 +63,17 @@ export const prepare = (schema: any, resolvers: any) =>
         viewer: () => ({ id: "viewer" }),
       },
       Mutation: {
-        viewer: () => ({}),
+        viewer: () => ({ id: "viewer" }),
       },
     },
   });
 
 try {
   (async () => {
-    const server = new ApolloServer({ schema: prepare(schema, resolvers) });
+    const server = new ApolloServer({
+      schema: prepare(schema, resolvers),
+      context: { container },
+    });
     await server.start();
 
     const app: any = express();
@@ -89,7 +110,7 @@ try {
         resOps.push(e.toString());
       }
 
-      const data = [];
+      const data: any[] = [];
 
       for (const rs of data) {
         const { id, name, description, latitude, longitude, images } = rs;
