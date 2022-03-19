@@ -44,7 +44,7 @@ const schema = [
 
 const resolvers = {
   RestaurantQueries: {
-    list: async (root: any, args: any, cxt: any): Promise<any[]> => {
+    list: (root: any, args: any, cxt: any): Promise<any[]> => {
       return cxt.container.resolve("restaurantController").list(root, args);
       //await RestaurantModel.list(),
     },

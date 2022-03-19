@@ -1,13 +1,14 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
 
-function Database({ connectionString, timeout }: any) {
-  this.conn = new Client({
+function Database(connectionString: any, timeout: any) {
+  this.conn = new Pool({
     connectionString,
   });
 }
 
-Database.prototype.query = function (sql: string): any[] {
-  return this.conn.query(sql);
+Database.prototype.query = async function (sql: string): any[] {
+  const res = await this.conn.query(sql);
+  return res.rows;
 };
 
 export default Database;

@@ -9,7 +9,6 @@ import GraphQLToolsTypes from "graphql-tools-types";
 
 const awilix = require("awilix");
 
-import pg from "utils/db";
 import search from "utils/search";
 import { schema, resolvers } from "./service";
 
@@ -25,11 +24,13 @@ const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY,
 });
 
+const DATABASE_URL = process.env.DATABASE_URL;
+
 container.register({
   restaurantController: awilix.asClass(RestaurantController),
   restaurantService: awilix.asFunction(makeUserService),
   db: awilix.asClass(Database).classic(),
-  connectionString: awilix.asValue(process.env.DATABASE_URL),
+  connectionString: awilix.asValue(DATABASE_URL),
   timeout: awilix.asValue(1000),
 });
 
