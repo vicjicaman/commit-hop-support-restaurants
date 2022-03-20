@@ -1,5 +1,9 @@
 import { gql } from "@apollo/client";
-import { RestaurantFragment, RestaurantSearchFragment, RestaurantFullFragment } from "../fragments";
+import {
+  RestaurantFragment,
+  RestaurantFullFragment,
+  RestaurantSearchFragment,
+} from "../../fragments";
 
 export const RESTAURANT_LIST = gql`
   query GetRestaurantList {
@@ -19,6 +23,24 @@ export const RESTAURANT_LIST = gql`
   ${RestaurantFragment}
 `;
 
+export const RESTAURANT_GET = gql`
+  query GetRestaurantGet($id: ID!) {
+    viewer {
+      id
+      account {
+        id
+        restaurants {
+          id
+          get(id: $id) {
+            ...RestaurantFullFragment
+          }
+        }
+      }
+    }
+  }
+  ${RestaurantFullFragment}
+`;
+
 export const RESTAURANT_FIND = gql`
   query GetRestaurantFind($latitude: Float!, $longitude: Float!) {
     viewer {
@@ -36,8 +58,6 @@ export const RESTAURANT_FIND = gql`
   }
   ${RestaurantFragment}
 `;
-
-
 
 export const RESTAURANT_SEARCH = gql`
   query GetRestaurantSearch($term: String!) {

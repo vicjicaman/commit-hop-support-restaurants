@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { RESTAURANT_SEARCH } from "../../queries";
+import { RESTAURANT_SEARCH } from "../../queries/restaurant";
 import { useQuery } from "@apollo/client";
 
 export const Component = () => {

@@ -28,7 +28,6 @@ export const RestaurantSearchFragment = gql`
 export const RestaurantFullFragment = gql`
   fragment RestaurantFullFragment on Restaurant {
     id
-    siteid
     name
 
     description

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { RESTAURANT_FIND } from "../../queries";
+import { RESTAURANT_FIND } from "../../queries/restaurant";
 import { useQuery } from "@apollo/client";
 import { useWindowSize } from "../../components/useWindowSize";
 
@@ -71,8 +71,12 @@ export const Component = () => {
     return null;
   }
 
+  /*TODO*/
+  /*Add debounce to height changes*/
+  /*Get top of map and substract it from the total height*/
   return (
     <MapContainer
+      key={height}
       style={{ height: height + "px" }}
       center={initPosition}
       zoom={8}
