@@ -26,6 +26,11 @@ class RestaurantUseCases {
   async search(term: string): Promise<IRestaurant[]> {
     return await this.RestaurantData.search(term);
   }
+
+  async update(restaurant: IRestaurant, input: any) {
+    const { id } = restaurant;
+    return await this.RestaurantData.update(id, input);
+  }
 }
 
 export default RestaurantUseCases;

@@ -1,3 +1,9 @@
+import {
+  IRestaurant,
+  IRestaurantCreateInput,
+  IRestaurantUpdateInput,
+} from "interfaces/restaurants";
+
 class RestaurantController {
   RestaurantUsecase: any;
 
@@ -18,6 +24,10 @@ class RestaurantController {
 
   async search(term: string) {
     return this.RestaurantUsecase.search(term);
+  }
+
+  async update(restaurant: IRestaurant, input: any) {
+    return await this.RestaurantUsecase.update(restaurant, input);
   }
 }
 

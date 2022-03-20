@@ -7,6 +7,20 @@ import {
 const schema = [
   `
 
+  input RestaurantInput {
+    name: String!
+    description: String
+
+    supportedEmployees: Int!
+    preparedMeals: Int!
+    receivedDonations: Float!
+
+    latitude: Float!
+    longitude: Float!
+
+    images: [String]!
+  }
+
   type Owner {
     name: String!
     image: String
@@ -41,7 +55,12 @@ const schema = [
   }
 
   type RestaurantMutations {
-    create: RestaurantQueries!
+    create(input: RestaurantInput!): RestaurantQueries!
+    get(id: ID!): RestaurantEntityMutations!
+  }
+
+  type RestaurantEntityMutations {
+    update(input: RestaurantInput!): RestaurantQueries!
   }
 `,
 ];
@@ -70,6 +89,15 @@ const resolvers = {
   },
   RestaurantMutations: {
     create: () => ({}),
+    get: async (parent: any, { id }: any, cxt: any): Promise<IRestaurant> => {
+      return await cxt.container.cradle.RestaurantController.get(id);
+    },
+  },
+  RestaurantEntityMutations: {
+    update: async (current: IRestaurant, { input }: any, cxt: any) => {
+      await cxt.container.cradle.RestaurantController.update(current, input);
+      return { id: "restaurants" };
+    },
   },
 };
 

@@ -16,6 +16,15 @@ class SeachEngine {
 
     return response.body.hits.hits.map(({ _source }: any) => _source);
   }
+
+  async index(index: string, id: number, payload: any) {
+    await client.index({
+      id,
+      index,
+      body: payload,
+      refresh: true,
+    });
+  }
 }
 
 export default SeachEngine;
