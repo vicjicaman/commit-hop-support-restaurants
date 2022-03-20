@@ -9,12 +9,15 @@ import GraphQLToolsTypes from "graphql-tools-types";
 
 const awilix = require("awilix");
 
-import search from "utils/search";
-import { schema, resolvers } from "./service";
+//import search from "utils/search";
+import { schema, resolvers } from "./gateway";
 
-import Database from "drivers/db";
+import DatabaseDriver from "drivers/db";
+import SearchDriver from "drivers/search";
 import RestaurantController from "controllers/restaurants";
-import makeUserService from "services/restaurants";
+import RestaurantUsecase from "usecases/restaurants";
+import RestaurantData from "data/restaurants";
+import RestaurantFactory from "factories/restaurants";
 
 const PORT_SERVICE = 4000;
 
@@ -24,14 +27,13 @@ const container = awilix.createContainer({
   injectionMode: awilix.InjectionMode.PROXY,
 });
 
-const DATABASE_URL = process.env.DATABASE_URL;
-
 container.register({
-  restaurantController: awilix.asClass(RestaurantController),
-  restaurantService: awilix.asFunction(makeUserService),
-  db: awilix.asClass(Database).classic(),
-  connectionString: awilix.asValue(DATABASE_URL),
-  timeout: awilix.asValue(1000),
+  db: awilix.asClass(DatabaseDriver),
+  search: awilix.asClass(SearchDriver),
+  RestaurantController: awilix.asClass(RestaurantController),
+  RestaurantData: awilix.asClass(RestaurantData),
+  RestaurantFactory: awilix.asClass(RestaurantFactory),
+  RestaurantUsecase: awilix.asClass(RestaurantUsecase),
 });
 
 export const prepare = (schema: any, resolvers: any) =>
@@ -87,7 +89,7 @@ try {
       res.send("ok");
     });
 
-    app.get("/backend/test", async function (req: any, res: any) {
+    /*app.get("/backend/test", async function (req: any, res: any) {
       const index_name = "restaurants";
 
       const resOps = [];
@@ -127,7 +129,7 @@ try {
       }
 
       res.send(JSON.stringify(resOps));
-    });
+    });*/
 
     console.log("Listen port " + PORT_SERVICE);
     app.listen({ port: PORT_SERVICE }, () => console.log("Node running."));
@@ -135,3 +137,27 @@ try {
 } catch (e) {
   console.error("service.error: " + e.toString());
 }
+
+/*
+const formatName = (name: string, descriptor: any): any => {
+  const splat = descriptor.path.split("/");
+
+  console.log(splat);
+  const namespace = splat[splat.length - 2]; // `repository` or `service`
+  const upperNamespace =
+    namespace.charAt(0).toUpperCase() + namespace.substring(1);
+  return name + upperNamespace;
+};
+
+container.loadModules(
+  [
+
+  ],
+
+  {
+    formatName,
+    resolverOptions: {
+      register: awilix.asClass,
+    },
+  }
+);*/

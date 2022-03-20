@@ -1,14 +1,23 @@
 class RestaurantController {
-  restaurantService: any;
-  // We are using constructor injection.
+  RestaurantUsecase: any;
+
   constructor(opts: any) {
-    // Save a reference to our dependency.
-    this.restaurantService = opts.restaurantService;
+    this.RestaurantUsecase = opts.RestaurantUsecase;
+  }
+  async list() {
+    return await this.RestaurantUsecase.list();
   }
 
-  // imagine ctx is our HTTP request context...
-  list(cxt: any) {
-    return this.restaurantService.list(cxt);
+  async get(id: number) {
+    return await this.RestaurantUsecase.get(id);
+  }
+
+  async find({ latitude, longitude }: any) {
+    return this.RestaurantUsecase.find({ latitude, longitude });
+  }
+
+  async search(term: string) {
+    return this.RestaurantUsecase.search(term);
   }
 }
 

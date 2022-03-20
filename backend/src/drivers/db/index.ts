@@ -1,14 +1,16 @@
-const { Pool } = require("pg");
+require("dotenv").config();
+const { Pool, Client } = require("pg");
 
-function Database(connectionString: any, timeout: any) {
-  this.conn = new Pool({
-    connectionString,
-  });
+const pool = new Pool({
+  connectionString: process.env["DATABASE_URL"],
+});
+
+class Database {
+  constructor() {}
+
+  async query(sql: string, values: any[]): Promise<any[]> {
+    return await pool.query(sql, values);
+  }
 }
-
-Database.prototype.query = async function (sql: string): any[] {
-  const res = await this.conn.query(sql);
-  return res.rows;
-};
 
 export default Database;

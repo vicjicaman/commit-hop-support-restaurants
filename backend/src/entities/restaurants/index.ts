@@ -1,22 +1,53 @@
-import * as RestaurantModel from "model/restaurants";
-import { Restaurant } from "model/restaurants";
-import _ from "lodash";
+import { IRestaurant } from "interfaces/restaurants";
 
-export const list = async (): Promise<Restaurant[]> => {
-  return await RestaurantModel.list();
+type Owner = {
+  name: string;
+  image: string;
 };
 
-export const get = async (id: number): Promise<Restaurant> => {
-  return await RestaurantModel.get(id);
-};
+export class Restaurant implements IRestaurant {
+  id: number;
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  images: string[];
+  owner: Owner;
+  supportedEmployees: number;
+  preparedMeals: number;
+  receivedDonations: number;
+  createdAt: Date;
+  updatedAt: Date;
 
-export const find = async ({
-  latitude,
-  longitude,
-}: any): Promise<Restaurant[]> => {
-  return await RestaurantModel.find({ latitude, longitude });
-};
+  constructor(inp: IRestaurant) {
+    const {
+      id,
+      name,
+      description,
+      latitude,
+      longitude,
+      owner,
+      images,
+      supportedEmployees,
+      preparedMeals,
+      receivedDonations,
+      createdAt,
+      updatedAt,
+    } = inp;
 
-export const search = async (term: string): Promise<Restaurant[]> => {
-  return await RestaurantModel.search(term);
-};
+    this.id = id;
+    this.name = name;
+    this.description = description;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.images = images;
+    this.owner = owner;
+    this.supportedEmployees = supportedEmployees;
+    this.preparedMeals = preparedMeals;
+    this.receivedDonations = receivedDonations;
+    this.createdAt = createdAt;
+    this.updatedAt = updatedAt;
+  }
+}
+
+export default Restaurant;
