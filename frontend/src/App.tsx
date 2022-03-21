@@ -16,10 +16,11 @@ import {
   NavbarText,
 } from "reactstrap";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import L from "leaflet";
 
 import { Component as SectionComponent } from "./sections";
+import * as Lang from "./components/lang";
 
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
@@ -32,6 +33,8 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function App() {
+  const params = useParams();
+  const { lang } = params;
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -44,30 +47,32 @@ function App() {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <Link className="nav-link" to="/">
+              <Link className="nav-link" to={`/${lang}`}>
                 Map
               </Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/search">
+              <Link className="nav-link" to={`/${lang}/search`}>
                 Search
               </Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/listing">
+              <Link className="nav-link" to={`/listing/${lang}`}>
                 Listing
               </Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/admin">
+              <Link className="nav-link" to={`/${lang}/admin`}>
                 Admin
               </Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-link" to="/donations">
+              <Link className="nav-link" to={`/${lang}/donations`}>
                 Donations
               </Link>
             </NavItem>
+
+            <Lang.Selector />
           </Nav>
         </Collapse>
       </Navbar>

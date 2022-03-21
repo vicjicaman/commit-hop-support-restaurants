@@ -15,7 +15,7 @@ import {
   NavbarText,
 } from "reactstrap";
 
-export default () => {
+export default ({ lang }) => {
   return (
     <Navbar color="light" light expand="md">
       <NavbarBrand href="/">Supporting restaurants</NavbarBrand>
@@ -23,19 +23,19 @@ export default () => {
       <Collapse isOpen={true} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavLink href="/">Map</NavLink>
+            <NavLink href={`/${lang}`}>Map</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/search">Search</NavLink>
+            <NavLink href={`/${lang}/search`}>Search</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/listing">Listing</NavLink>
+            <NavLink href={`/listing/${lang}`}>Listing</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/admin">Admin</NavLink>
+            <NavLink href={`/${lang}/admin`}>Admin</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="/donations">Donations</NavLink>
+            <NavLink href={`/${lang}/donations`}>Donations</NavLink>
           </NavItem>
         </Nav>
       </Collapse>

@@ -5,8 +5,10 @@ import "bootstrap/dist/css/bootstrap.css";
 import "leaflet/dist/leaflet.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import * as Lang from "./components/lang";
+import { Component as ListingSection } from "./sections/listing";
 
 const client = new ApolloClient({
   uri: "http://www.commit-hop.dev/backend/graphql",
@@ -17,7 +19,10 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ApolloProvider client={client}>
-        <App />
+        <Routes>
+          <Route path={"/:lang/*"} element={<App />}></Route>
+          <Route path={`/listing/*`} element={<ListingSection />} />
+        </Routes>
       </ApolloProvider>
     </BrowserRouter>
   </React.StrictMode>,

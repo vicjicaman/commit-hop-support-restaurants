@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -85,6 +86,14 @@ try {
     app.use(bodyParser());
     app.use(cors());
 
+    app.use((req, res, next) => {
+      next();
+    });
+
+    app.use(
+      "/backend/static",
+      express.static(path.join(__dirname, "app", "static"))
+    );
     app.get("/backend/health", function (req: any, res: any) {
       res.send("ok");
     });
