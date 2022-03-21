@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Container, Row, Col, Badge } from "reactstrap";
 import { RESTAURANT_LIST } from "../../../queries/restaurant";
 import { useQuery } from "@apollo/client";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const Component = () => {
+  const params = useParams();
   const { loading, error, data } = useQuery(RESTAURANT_LIST);
 
   if (loading) return <p>Loading...</p>;
@@ -40,7 +41,7 @@ export const Component = () => {
             </div>
           </Col>
           <Col>
-            <Link to={`/admin/view/${id}`}>Admin</Link>
+            <Link to={`/${params.lang}/admin/view/${id}`}>Admin</Link>
           </Col>
         </Row>
       ))}

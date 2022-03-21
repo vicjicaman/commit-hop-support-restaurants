@@ -23,13 +23,17 @@ export const Component = () => {
   const queryRes = useQuery(RESTAURANT_GET, {
     variables: { id: params.id },
   });
-  const [mutate, mutationRes] = useMutation(RESTAURANT_EDIT);
+  const [mutate, mutationRes] = useMutation(RESTAURANT_EDIT, {
+    onCompleted: () => {
+      navegate(`/${params.lang}/admin/view/${id}`);
+    },
+  });
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (mutationRes.data) {
-      navegate(`/admin/view/${id}`);
+
     }
-  }, [mutationRes.data]);
+  }, [mutationRes.data]);*/
 
   if (queryRes.loading) return <p>Loading...</p>;
   if (queryRes.error) return <p>Error :(</p>;
@@ -235,7 +239,7 @@ export const Component = () => {
                   color="secondary"
                   type="button"
                   onClick={() => {
-                    navegate(`/admin/view/${id}`);
+                    navegate(`/${params.lang}/admin/view/${id}`);
                   }}
                 >
                   Cancel

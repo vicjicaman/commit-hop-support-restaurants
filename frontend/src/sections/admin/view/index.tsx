@@ -32,7 +32,7 @@ export const Component = () => {
         <Col>
           <b>{name}</b>
           <p>{description}</p>
-          <Link to={`/admin/edit/${id}`}>Edit</Link>
+          <Link to={`/${params.lang}/admin/edit/${id}`}>Edit</Link>
         </Col>
       </Row>
     </Container>
