@@ -19,7 +19,7 @@ images,
 "createdAt",
 "updatedAt"`;
 
-const serialize = (inp: any): IRestaurant => {
+const serialize = (inp: any): any => {
   const {
     id,
     name,
@@ -45,7 +45,7 @@ const serialize = (inp: any): IRestaurant => {
     images: JSON.stringify(images),
     supportedEmployees,
     preparedMeals,
-    receivedDonations: parseInt(receivedDonations * 100),
+    receivedDonations: parseInt(receivedDonations) * 100,
     createdAt,
     updatedAt,
   };
@@ -100,7 +100,7 @@ class RestaurantData {
 
   async list(): Promise<IRestaurant[]> {
     const res = await this.dataDriver.query(
-      `SELECT ${FragmentFull} from restaurants`
+      `SELECT ${FragmentFull} from restaurants order by "receivedDonations" asc`
     );
     return res.rows.map((row: any) =>
       this.RestaurantFactory.create(deserialize(row))
