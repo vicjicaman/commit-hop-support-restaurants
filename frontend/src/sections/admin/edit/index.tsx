@@ -29,12 +29,6 @@ export const Component = () => {
     },
   });
 
-  /*useEffect(() => {
-    if (mutationRes.data) {
-
-    }
-  }, [mutationRes.data]);*/
-
   if (queryRes.loading) return <p>Loading...</p>;
   if (queryRes.error) return <p>Error :(</p>;
 
