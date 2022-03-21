@@ -72,6 +72,9 @@ export const Component = () => {
                 <b>{name}</b>
                 <p>{description}</p>
               </Col>
+              <Col>
+                <a href={`/listing/view/${id}`}>View</a>
+              </Col>
             </Row>
           ))
         ) : (

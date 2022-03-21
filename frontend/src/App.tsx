@@ -37,7 +37,7 @@ function App() {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">Supporting restaurants</NavbarBrand>
         <NavbarToggler onClick={toggle} />
@@ -63,13 +63,17 @@ function App() {
                 Admin
               </Link>
             </NavItem>
+            <NavItem>
+              <Link className="nav-link" to="/donations">
+                Donations
+              </Link>
+            </NavItem>
           </Nav>
-          <NavbarText>Simple Text</NavbarText>
         </Collapse>
       </Navbar>
 
       <SectionComponent />
-    </div>
+    </>
   );
 }
 
