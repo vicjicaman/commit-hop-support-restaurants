@@ -83,7 +83,7 @@ export const Handler = ({ values }: any) => {
 
       <FormGroup>
         <Label for="latitude">Latitude</Label>
-        <Field name="latitude" type="text" className="form-control" />
+        <Field name="latitude" type="number" className="form-control" />
         <ErrorMessage
           name="latitude"
           className="d-block invalid-feedback"
@@ -93,7 +93,7 @@ export const Handler = ({ values }: any) => {
 
       <FormGroup>
         <Label for="longitude">Longitude</Label>
-        <Field name="longitude" type="text" className="form-control" />
+        <Field name="longitude" type="number" className="form-control" />
         <ErrorMessage
           name="longitude"
           className="d-block invalid-feedback"
