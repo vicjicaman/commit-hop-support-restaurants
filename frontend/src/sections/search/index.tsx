@@ -3,8 +3,10 @@ import { Container, Row, Col } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { RESTAURANT_SEARCH } from "../../queries/restaurant";
 import { useQuery } from "@apollo/client";
+import { Link, useParams } from "react-router-dom";
 
 export const Component = () => {
+  const params = useParams();
   const [value, setValue] = useState<string>("");
   const [term, setTerm] = useState<string>("");
   const [trigger, setTrigger] = useState<number>(1);
@@ -73,7 +75,7 @@ export const Component = () => {
                 <p>{description}</p>
               </Col>
               <Col>
-                <a href={`/listing/view/${id}`}>View</a>
+                <a href={`/listing/${params.lang}/view/${id}`}>View</a>
               </Col>
             </Row>
           ))

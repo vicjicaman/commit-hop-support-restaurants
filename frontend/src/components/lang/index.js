@@ -18,17 +18,24 @@ import { useParams, useNavigate } from "react-router-dom";
 
 const flagStyle = { width: "2em", border: 0 };
 const options = [
-  { code: "us", label: "English" },
-  { code: "pl", label: "Polish" },
-  { code: "ua", label: "Ukrainian" },
-  { code: "ro", label: "Romanian" },
+  { lang: "en", flag: "us", label: "English" },
+  { lang: "pl", flag: "pl", label: "Polish" },
+  { lang: "fr", flag: "fr", label: "French" },
+  { lang: "ua", flag: "ua", label: "Ukrainian" },
+  { lang: "ro", flag: "ro", label: "Romanian" },
 ];
-const flagUrl = (code) => `/backend/static/flags/${code}.png`;
+const flagUrl = (flag) => `/backend/static/flags/${flag}.png`;
 
 export const Selector = ({}) => {
   const navegate = useNavigate();
   const params = useParams();
   const { lang: current } = params;
+
+  const currFlag = _.find(options, { lang: current });
+
+  if (!currFlag) {
+    return null;
+  }
 
   const opts = _.map(options, (key, i) => (
     <DropdownItem
@@ -37,19 +44,19 @@ export const Selector = ({}) => {
       href="#"
       onClick={(e) => {
         e.preventDefault();
-        const ck = key.code;
+        const ck = key.lang;
         //setLang(ck);
         navegate(`/${ck}`);
       }}
     >
-      <img style={flagStyle} key={key} src={flagUrl(key.code)} /> {key.label}
+      <img style={flagStyle} key={key} src={flagUrl(key.flag)} /> {key.label}
     </DropdownItem>
   ));
 
   return (
     <UncontrolledDropdown setActiveFromChild>
       <DropdownToggle tag={"a"} className="nav-link" caret>
-        <img style={flagStyle} src={flagUrl(current)} />
+        <img style={flagStyle} src={flagUrl(currFlag.flag)} />
       </DropdownToggle>
       <DropdownMenu>{opts}</DropdownMenu>
     </UncontrolledDropdown>

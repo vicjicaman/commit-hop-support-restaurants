@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "leaflet/dist/leaflet.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import * as Lang from "./components/lang";
 import { Component as ListingSection } from "./sections/listing";
@@ -20,6 +20,7 @@ ReactDOM.render(
     <BrowserRouter>
       <ApolloProvider client={client}>
         <Routes>
+          <Route path={"/"} element={<Navigate to="/en" replace />}></Route>
           <Route path={"/:lang/*"} element={<App />}></Route>
           <Route path={`/listing/*`} element={<ListingSection />} />
         </Routes>
