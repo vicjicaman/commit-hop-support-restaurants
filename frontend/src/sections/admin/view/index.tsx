@@ -4,6 +4,8 @@ import { RESTAURANT_GET } from "../../../queries/restaurant";
 import { useQuery } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
 
+import Remove from "./remove";
+
 export const Component = () => {
   const params = useParams();
   const { loading, error, data } = useQuery(RESTAURANT_GET, {
@@ -33,6 +35,7 @@ export const Component = () => {
           <b>{name}</b>
           <p>{description}</p>
           <Link to={`/${params.lang}/admin/edit/${id}`}>Edit</Link>
+          <Remove restaurant={get} />
         </Col>
       </Row>
     </Container>

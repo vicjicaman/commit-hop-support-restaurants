@@ -61,6 +61,7 @@ const schema = [
 
   type RestaurantEntityMutations {
     update(input: RestaurantInput!): RestaurantQueries!
+    remove: RestaurantQueries!
   }
 `,
 ];
@@ -88,7 +89,10 @@ const resolvers = {
     },
   },
   RestaurantMutations: {
-    create: () => ({}),
+    create: async (current: IRestaurant, { input }: any, cxt: any) => {
+      await cxt.container.cradle.RestaurantController.create(input);
+      return { id: "restaurants" };
+    },
     get: async (parent: any, { id }: any, cxt: any): Promise<IRestaurant> => {
       return await cxt.container.cradle.RestaurantController.get(id);
     },
@@ -96,6 +100,10 @@ const resolvers = {
   RestaurantEntityMutations: {
     update: async (current: IRestaurant, { input }: any, cxt: any) => {
       await cxt.container.cradle.RestaurantController.update(current, input);
+      return { id: "restaurants" };
+    },
+    remove: async (current: IRestaurant, args: any, cxt: any) => {
+      await cxt.container.cradle.RestaurantController.remove(current);
       return { id: "restaurants" };
     },
   },

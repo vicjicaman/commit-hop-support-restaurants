@@ -27,9 +27,21 @@ class RestaurantUseCases {
     return await this.RestaurantData.search(term);
   }
 
+  async create(input: any) {
+    return await this.RestaurantData.create({
+      ...input,
+      owner: { name: "", image: "" },
+    });
+  }
+
   async update(restaurant: IRestaurant, input: any) {
     const { id } = restaurant;
     return await this.RestaurantData.update(id, input);
+  }
+
+  async remove(restaurant: IRestaurant) {
+    const { id } = restaurant;
+    return await this.RestaurantData.remove(id);
   }
 }
 

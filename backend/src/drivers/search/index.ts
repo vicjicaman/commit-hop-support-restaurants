@@ -25,6 +25,13 @@ class SeachEngine {
       refresh: true,
     });
   }
+
+  async remove(index: string, id: number) {
+    await client.delete({
+      id,
+      index,
+    });
+  }
 }
 
 export default SeachEngine;

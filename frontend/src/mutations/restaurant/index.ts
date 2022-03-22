@@ -1,12 +1,26 @@
 import { gql } from "@apollo/client";
-import {
-  RestaurantFragment,
-  RestaurantFullFragment,
-  RestaurantSearchFragment,
-} from "../../fragments";
+import { RestaurantFragment, RestaurantFullFragment } from "../../fragments";
+
+export const RESTAURANT_CREATE = gql`
+  mutation CreateRestaurant($input: RestaurantInput!) {
+    viewer {
+      account {
+        restaurants {
+          create(input: $input) {
+            id
+            list {
+              ...RestaurantFragment
+            }
+          }
+        }
+      }
+    }
+  }
+  ${RestaurantFragment}
+`;
 
 export const RESTAURANT_EDIT = gql`
-  mutation EditRestaurantList($id: ID!, $input: RestaurantInput!) {
+  mutation EditRestaurant($id: ID!, $input: RestaurantInput!) {
     viewer {
       account {
         restaurants {
@@ -23,4 +37,24 @@ export const RESTAURANT_EDIT = gql`
     }
   }
   ${RestaurantFullFragment}
+`;
+
+export const RESTAURANT_REMOVE = gql`
+  mutation RemoveRestaurant($id: ID!) {
+    viewer {
+      account {
+        restaurants {
+          get(id: $id) {
+            remove {
+              id
+              list {
+                ...RestaurantFragment
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  ${RestaurantFragment}
 `;

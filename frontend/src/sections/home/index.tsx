@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import { RESTAURANT_FIND } from "../../queries/restaurant";
 import { useQuery } from "@apollo/client";
 import { useWindowSize } from "../../components/useWindowSize";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 import {
   MapContainer,
@@ -41,6 +42,8 @@ function LocationMarker({ setPosition, position }: any) {
 }
 
 const Markers = ({ position }: any) => {
+  const params = useParams();
+  const navigate = useNavigate();
   const { loading, error, data } = useQuery(RESTAURANT_FIND, {
     variables: {
       latitude: position ? position.lat : 52.012551077226085,
@@ -56,11 +59,20 @@ const Markers = ({ position }: any) => {
       {!loading &&
         data.viewer.account.restaurants.find.map(
           ({ id, name, latitude, longitude, images }: any) => (
-            <Marker key={id} position={[latitude, longitude]}>
-              <Tooltip>
+            <Marker
+              key={id}
+              position={[latitude, longitude]}
+              eventHandlers={{
+                click: (e) => {
+                  navigate(`/listing/${params.lang}/view/${id}`);
+                  //console.log("marker clicked", e);
+                },
+              }}
+            >
+              <Tooltip direction="top" offset={[0, -10]}>
                 <b>{name}</b>
                 <img
-                  style={{ width: "200px", display: "block" }}
+                  style={{ width: "100px", marginLeft: "10px" }}
                   src={images[0]}
                 />
               </Tooltip>

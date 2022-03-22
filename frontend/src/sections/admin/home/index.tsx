@@ -26,6 +26,17 @@ export const Component = () => {
 
   return (
     <Container>
+      <Row>
+        <Col>
+          {" "}
+          <Link
+            className="btn  btn-primary"
+            to={`/${params.lang}/admin/create`}
+          >
+            Create
+          </Link>
+        </Col>
+      </Row>
       {list.map(({ id, name, images, description, receivedDonations }: any) => (
         <Row key={id} className="m-4">
           <Col>

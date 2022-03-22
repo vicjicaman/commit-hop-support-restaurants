@@ -146,15 +146,47 @@ class RestaurantData {
 
   async create(input: IRestaurantCreateInput) {
     const text = `INSERT INTO restaurants(id, "userId", name, description, "supportedEmployees", "preparedMeals", "receivedDonations", owner, images, location)
-    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, ST_SetSRID(ST_POINT($10, $11), 4326) ) RETURNING ${FragmentFull}`;
+    VALUES ( nextval('restaurant_sequence'),  $1, $2, $3, $4, $5, $6, $7, $8, ST_SetSRID(ST_POINT($9, $10), 4326) ) RETURNING ${FragmentFull}`;
 
-    const { name, description } = input;
+    const {
+      name,
+      description,
+      supportedEmployees,
+      receivedDonations,
+      preparedMeals,
+      owner,
+      latitude,
+      longitude,
+      images,
+    } = serialize(input);
 
-    const values = [777, 1, name, description];
+    const values = [
+      1,
+      name,
+      description,
+      supportedEmployees,
+      preparedMeals,
+      receivedDonations,
+      owner,
+      images,
+      latitude,
+      longitude,
+    ];
 
     try {
       const res = await this.dataDriver.query(text, values);
-      return this.RestaurantFactory.create(deserialize(res.rows[0]));
+      const robj = this.RestaurantFactory.create(deserialize(res.rows[0]));
+
+      await this.searchDriver.index(SEARCH_INDEX, robj.id, {
+        id: robj.id,
+        name,
+        description,
+        latitude,
+        longitude,
+        images: robj.images,
+      });
+
+      return robj;
     } catch (err) {
       console.log(err.stack);
       throw err;
@@ -209,6 +241,12 @@ class RestaurantData {
   }
 
   async remove(id: number) {
+    try {
+      await this.searchDriver.remove(SEARCH_INDEX, id);
+    } catch (err) {
+      console.log(err.stack);
+    }
+
     const text = `DELETE FROM restaurants WHERE id = $1`;
 
     try {

@@ -12,8 +12,7 @@ import {
   Handler as FormHandler,
   validation as validationSchema,
 } from "../../../components/restaurant/form";
-import { RESTAURANT_GET } from "../../../queries/restaurant";
-import { RESTAURANT_EDIT } from "../../../mutations/restaurant";
+import { RESTAURANT_CREATE } from "../../../mutations/restaurant";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
@@ -24,38 +23,32 @@ export const Component = () => {
   const [processing, setProcessing] = useState<boolean>(false);
   const navegate = useNavigate();
   const params = useParams();
-  const queryRes = useQuery(RESTAURANT_GET, {
-    variables: { id: params.id },
-  });
-  const [mutate, mutationRes] = useMutation(RESTAURANT_EDIT, {
+
+  const [mutate, mutationRes] = useMutation(RESTAURANT_CREATE, {
     onCompleted: () => {
-      navegate(`/${params.lang}/admin/view/${id}`);
+      navegate(`/${params.lang}/admin`);
     },
   });
-
-  if (queryRes.loading) return <p>Loading...</p>;
-  if (queryRes.error) return <p>Error :(</p>;
 
   if (mutationRes.loading) return <p>Submitting...</p>;
   if (mutationRes.error)
     return <p>Submission error! {mutationRes.error.message}</p>;
 
-  const {
-    viewer: {
-      account: {
-        restaurants: { get },
-      },
-    },
-  } = queryRes.data;
-
-  const { id, images, name, description } = get;
-
   return (
     <Container>
-      <Row key={id} className="m-4">
+      <Row className="m-4">
         <Col>
           <Formik
-            initialValues={get}
+            initialValues={{
+              name: "",
+              description: "",
+              supportedEmployees: 1,
+              preparedMeals: 100,
+              receivedDonations: 0,
+              images: [],
+              latitude: 0.0,
+              longitude: 0.0,
+            }}
             validationSchema={validationSchema}
             onSubmit={(values, { setSubmitting }) => {
               //console.log(values);
@@ -71,7 +64,6 @@ export const Component = () => {
               } = values;
               mutate({
                 variables: {
-                  id,
                   input: {
                     name,
                     description,

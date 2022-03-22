@@ -86,7 +86,7 @@ try {
     app.use(bodyParser());
     app.use(cors());
 
-    app.use((req, res, next) => {
+    app.use((req: any, res: any, next: any) => {
       next();
     });
 

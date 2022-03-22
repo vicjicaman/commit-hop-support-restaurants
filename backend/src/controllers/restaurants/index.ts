@@ -26,8 +26,16 @@ class RestaurantController {
     return this.RestaurantUsecase.search(term);
   }
 
+  async create(input: any) {
+    return await this.RestaurantUsecase.create(input);
+  }
+
   async update(restaurant: IRestaurant, input: any) {
     return await this.RestaurantUsecase.update(restaurant, input);
+  }
+
+  async remove(restaurant: IRestaurant) {
+    return await this.RestaurantUsecase.remove(restaurant);
   }
 }
 
