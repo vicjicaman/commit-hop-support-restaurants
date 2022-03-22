@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { RESTAURANT_GET } from "../../../queries/restaurant";
+import { RESTAURANT_GET } from "queries/restaurant";
+import RestaurantContent from "components/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
 
@@ -18,24 +19,20 @@ export const Component = () => {
   const {
     viewer: {
       account: {
-        restaurants: { get },
+        restaurants: { get: restaurant },
       },
     },
   } = data;
 
-  const { id, images, name, description } = get;
+  const { id, images, name, description } = restaurant;
 
   return (
     <Container>
       <Row key={id} className="m-4">
+        <RestaurantContent restaurant={restaurant} />
         <Col>
-          <img className="w-50" src={images[0]} />
-        </Col>
-        <Col>
-          <b>{name}</b>
-          <p>{description}</p>
           <Link to={`/${params.lang}/admin/edit/${id}`}>Edit</Link>
-          <Remove restaurant={get} />
+          <Remove restaurant={restaurant} />
         </Col>
       </Row>
     </Container>

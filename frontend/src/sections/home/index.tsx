@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { RESTAURANT_FIND } from "../../queries/restaurant";
+import { RESTAURANT_FIND } from "queries/restaurant";
 import { useQuery } from "@apollo/client";
-import { useWindowSize } from "../../components/useWindowSize";
+import { useWindowSize } from "components//useWindowSize";
 import { useParams, Link, useNavigate } from "react-router-dom";
 
 import {
@@ -64,7 +64,8 @@ const Markers = ({ position }: any) => {
               position={[latitude, longitude]}
               eventHandlers={{
                 click: (e) => {
-                  navigate(`/listing/${params.lang}/view/${id}`);
+                  window.open(`/listing/${params.lang}/view/${id}`, "_blank");
+                  //navigate(`/listing/${params.lang}/view/${id}`);
                   //console.log("marker clicked", e);
                 },
               }}

@@ -4,10 +4,10 @@ import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import Navbar from "../../../components/navbar";
+import Navbar from "components///navbar";
 import { Container, Row, Col, Badge } from "reactstrap";
-import { RESTAURANT_GET } from "../../../queries/restaurant";
-import client from "../../../utils/client";
+import { RESTAURANT_GET } from "queries/restaurant";
+import client from "utils/client";
 
 export async function getServerSideProps(cxt) {
   const { data } = await client.query({

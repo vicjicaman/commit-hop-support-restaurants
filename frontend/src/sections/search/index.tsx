@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { RESTAURANT_SEARCH } from "../../queries/restaurant";
+import { RESTAURANT_SEARCH } from "queries/restaurant";
+import RestaurantContent from "components/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 
@@ -65,20 +66,22 @@ export const Component = () => {
       </Container>
       <Container>
         {list.length ? (
-          list.map(({ id, name, images, description }: any) => (
-            <Row key={id} className="m-4">
-              <Col>
-                <img className="w-50" src={images[0]} />
-              </Col>
-              <Col>
-                <b>{name}</b>
-                <p>{description}</p>
-              </Col>
-              <Col>
-                <a href={`/listing/${params.lang}/view/${id}`}>View</a>
-              </Col>
-            </Row>
-          ))
+          list.map((restaurant: any) => {
+            const { id, name, images, description } = restaurant;
+            return (
+              <Row key={id} className="m-4">
+                <RestaurantContent restaurant={restaurant} />
+                <Col>
+                  <a
+                    className="btn btn-primary"
+                    href={`/listing/${params.lang}/view/${id}`}
+                  >
+                    View
+                  </a>
+                </Col>
+              </Row>
+            );
+          })
         ) : (
           <div className="text-center">No results </div>
         )}

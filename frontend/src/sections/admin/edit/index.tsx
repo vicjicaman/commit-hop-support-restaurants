@@ -11,8 +11,8 @@ import {
 import {
   Handler as FormHandler,
   validation as validationSchema,
-} from "../../../components/restaurant/form";
-import { RESTAURANT_GET } from "../../../queries/restaurant";
+} from "components///restaurant/form";
+import { RESTAURANT_GET } from "queries/restaurant";
 import { RESTAURANT_EDIT } from "../../../mutations/restaurant";
 import { useQuery, useMutation } from "@apollo/client";
 import { useParams, Link, useNavigate } from "react-router-dom";
