@@ -177,14 +177,7 @@ class RestaurantData {
       const res = await this.dataDriver.query(text, values);
       const robj = this.RestaurantFactory.create(deserialize(res.rows[0]));
 
-      await this.searchDriver.index(SEARCH_INDEX, robj.id, {
-        id: robj.id,
-        name,
-        description,
-        latitude,
-        longitude,
-        images: robj.images,
-      });
+      await this.searchDriver.index(SEARCH_INDEX, robj.id, robj);
 
       return robj;
     } catch (err) {
@@ -223,17 +216,11 @@ class RestaurantData {
 
     try {
       const res = await this.dataDriver.query(text, values);
+      const robj = this.RestaurantFactory.create(deserialize(res.rows[0]));
 
-      await this.searchDriver.index(SEARCH_INDEX, id, {
-        id,
-        name,
-        description,
-        latitude,
-        longitude,
-        images: input.images,
-      });
+      await this.searchDriver.index(SEARCH_INDEX, id, robj);
 
-      return this.RestaurantFactory.create(deserialize(res.rows[0]));
+      return robj;
     } catch (err) {
       console.log(err.stack);
       throw err;
