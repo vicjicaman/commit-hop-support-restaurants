@@ -22,6 +22,12 @@ export const RestaurantSearchFragment = gql`
     name
     description
     images
+    longitude
+    latitude
+    receivedDonations
+
+    createdAt
+    updatedAt
   }
 `;
 

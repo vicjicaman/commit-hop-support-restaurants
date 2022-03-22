@@ -8,6 +8,10 @@ const client = new Client({
 class SeachEngine {
   constructor() {}
 
+  driver() {
+    return client;
+  }
+
   async query(index: string, query: any): Promise<any[]> {
     var response = await client.search({
       index,
