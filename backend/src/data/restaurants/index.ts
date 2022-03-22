@@ -98,6 +98,22 @@ class RestaurantData {
     this.RestaurantFactory = opts.RestaurantFactory;
   }
 
+  async init() {
+    const settings = {
+      settings: {
+        index: {
+          number_of_shards: 4,
+          number_of_replicas: 1,
+        },
+      },
+    };
+
+    const response = await this.searchDriver.driver().indices.create({
+      index: SEARCH_INDEX,
+      body: settings,
+    });
+  }
+
   async list(): Promise<IRestaurant[]> {
     const res = await this.dataDriver.query(
       `SELECT ${FragmentFull} from restaurants order by "receivedDonations" asc`
@@ -210,8 +226,8 @@ class RestaurantData {
       preparedMeals,
       receivedDonations,
       images,
-      latitude,
       longitude,
+      latitude,
     ];
 
     try {

@@ -102,42 +102,19 @@ try {
       const index_name = "restaurants";
 
       const resOps = [];
-      try {
-        var settings = {
-          settings: {
-            index: {
-              number_of_shards: 4,
-              number_of_replicas: 1,
-            },
-          },
-        };
 
-        var response = await search.indices.create({
+      const list = await container.cradle.RestaurantData.list();
+
+      for (const rs of list) {
+        await container.cradle.search.driver().index({
+          id: rs.id,
           index: index_name,
-          body: settings,
-        });
-
-        resOps.push(response.body);
-      } catch (e) {
-        resOps.push(e.toString());
-      }
-
-      const data: any[] = [];
-
-      for (const rs of data) {
-        const { id, name, description, latitude, longitude, images } = rs;
-
-        var response = await search.index({
-          id,
-          index: index_name,
-          body: { id, name, description, latitude, longitude, images },
+          body: rs,
           refresh: true,
         });
-
-        resOps.push(response.body);
       }
 
-      res.send(JSON.stringify(resOps));
+      res.send(JSON.stringify(list));
     });*/
 
     console.log("Listen port " + PORT_SERVICE);
