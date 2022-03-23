@@ -22,5 +22,9 @@
   "app.latitude": "latitudine",
   "app.longitude": "longitudine",
   "app.remove": "elimina",
-  "app.confirm-remove": "Chiar vrei să elimini intrarea restaurantului"
+  "app.confirm-remove": "Chiar vrei să elimini intrarea restaurantului",
+  "app.nearest-restaurants": "Cele mai apropiate restaurante",
+  "msg.intro": "În timpul cercetării restaurantelor implicate, am văzut că coordonarea restaurantelor care pregătește mese gratuite pentru refugiați este orchestrată de",
+  "msg.goal": "Am început o mică campanie de strângere de fonduri pentru a continua să răspândim cuvântul până când obiectivul este atins și să fie util într-un fel la situația dificilă din Ucraina.",
+  "msg.cta": "Contribuiți cu o donație sau ajutați-ne să răspândim cuvântul."
 }

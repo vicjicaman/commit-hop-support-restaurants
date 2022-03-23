@@ -22,5 +22,9 @@
   "app.latitude": "latitude",
   "app.longitude": "longitude",
   "app.remove": "retirer",
-  "app.confirm-remove": "Voulez-vous vraiment enlever l'entrée du restaurant"
+  "app.confirm-remove": "Voulez-vous vraiment enlever l'entrée du restaurant",
+  "app.nearest-restaurants": "Restaurants les plus proches",
+  "msg.intro": "Au cours de la recherche des restaurants impliqués, j'ai vu que la coordination des restaurants préparant des repas gratuits pour les réfugiés est orchestré par",
+  "msg.goal": "J'ai lancé une petite campagne de collecte de fonds pour continuer à diffuser le mot jusqu'à ce que l'objectif soit atteint et soit utile d'une certaine manière à la situation difficile en Ukraine.",
+  "msg.cta": "Veuillez contribuer avec un don ou nous aider à diffuser le mot."
 }

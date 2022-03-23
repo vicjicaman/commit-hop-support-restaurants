@@ -22,5 +22,9 @@
   "app.latitude": "szélességi kör",
   "app.longitude": "hosszúság",
   "app.remove": "eltávolít",
-  "app.confirm-remove": "Tényleg eltávolítani szeretné az éttermi bejegyzést"
+  "app.confirm-remove": "Tényleg eltávolítani szeretné az éttermi bejegyzést",
+  "app.nearest-restaurants": "Legközelebbi éttermek",
+  "msg.intro": "Az érintett éttermek kutatása során láttam, hogy a menekültek ingyenes étkezését előkészítő éttermek koordinációja",
+  "msg.goal": "Elkezdtem egy kis adománygyűjtő kampányt, hogy tovább terjessze a szót, amíg elérte a célt, és hasznos lehet valamilyen módon a nehéz helyzet Ukrajnában.",
+  "msg.cta": "Kérjük, adjon hozzá adományt, vagy segítsen nekünk elterjeszteni a szót."
 }

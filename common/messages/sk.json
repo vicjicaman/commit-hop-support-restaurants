@@ -22,5 +22,9 @@
   "app.latitude": "šírka",
   "app.longitude": "dĺžka",
   "app.remove": "odstrániť",
-  "app.confirm-remove": "Naozaj chcete odstrániť vstup reštaurácie"
+  "app.confirm-remove": "Naozaj chcete odstrániť vstup reštaurácie",
+  "app.nearest-restaurants": "Najbližšie reštaurácie",
+  "msg.intro": "Počas výskumu zúčastnených reštaurácií som videl, že koordinácia reštaurácií príprava bezplatných jedál pre utečencov je orchestrovaná",
+  "msg.goal": "Začal som malú fundraisingovú kampaň, aby som sa šíriť slovo, kým sa cieľ nedosiahne a bude užitočný nejakým spôsobom do ťažkej situácie na Ukrajine.",
+  "msg.cta": "Prosím, prispievajte s darom alebo nám pomôžu šíriť slovo."
 }

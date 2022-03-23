@@ -1,5 +1,5 @@
 {
-  "app.title": "wspierać restauracje",
+  "app.title": "wsparcie restauracji.",
   "app.map": "mapa",
   "app.search": "Szukaj",
   "app.listing": "wymienianie kolejno",
@@ -22,5 +22,9 @@
   "app.latitude": "szerokość",
   "app.longitude": "długość geograficzna",
   "app.remove": "usunąć",
-  "app.confirm-remove": "Czy naprawdę chcesz usunąć wpis restauracyjny"
+  "app.confirm-remove": "Czy naprawdę chcesz usunąć wpis restauracyjny",
+  "app.nearest-restaurants": "Najbliższe restauracje.",
+  "msg.intro": "Podczas badań zaangażowanych restauracji widziałem, że koordynacja restauracji przygotowujących bezpłatne posiłki dla uchodźców jest zorganizowany przez",
+  "msg.goal": "Zacząłem małą kampanię funduszy, aby rozprzestrzeniać słowo, dopóki cel zostanie osiągnięty i być pomocny w jakiś sposób do trudnej sytuacji na Ukrainie.",
+  "msg.cta": "Proszę przyczynić się do darowizny lub pomóż nam rozpowszechniać słowo."
 }
