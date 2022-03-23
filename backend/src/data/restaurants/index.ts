@@ -183,8 +183,8 @@ class RestaurantData {
       receivedDonations,
       owner,
       images,
-      latitude,
       longitude,
+      latitude,
     ];
 
     try {
