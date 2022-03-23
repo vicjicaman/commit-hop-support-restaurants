@@ -1,5 +1,5 @@
 {
-  "app.title": "wsparcie restauracji.",
+  "app.title": "wspierać restauracje",
   "app.map": "mapa",
   "app.search": "Szukaj",
   "app.listing": "wymienianie kolejno",
@@ -26,5 +26,9 @@
   "app.nearest-restaurants": "Najbliższe restauracje.",
   "msg.intro": "Podczas badań zaangażowanych restauracji widziałem, że koordynacja restauracji przygotowujących bezpłatne posiłki dla uchodźców jest zorganizowany przez",
   "msg.goal": "Zacząłem małą kampanię funduszy, aby rozprzestrzeniać słowo, dopóki cel zostanie osiągnięty i być pomocny w jakiś sposób do trudnej sytuacji na Ukrainie.",
-  "msg.cta": "Proszę przyczynić się do darowizny lub pomóż nam rozpowszechniać słowo."
+  "msg.cta": "Proszę przyczynić się do darowizny lub pomóż nam rozpowszechniać słowo.",
+  "msg.welcome": "Witamy!, To jest aplikacja, aby znaleźć pobliskie restauracje, które przygotowują bezpłatne posiłki dla uchodźców w ukraińskich granicach",
+  "msg.search": "Możesz także wykonać wyszukiwanie tekstowe w przypadku, gdy masz adres lub szczegóły dotyczące Twojej lokalizacji.",
+  "msg.admin": "Możesz dodać lub edytować nową restaurację do listy, aby pomóc nam rozwinąć listę!",
+  "msg.donate": "Informacje znajdziesz na tym, jak przyczynić się do tych wysiłków z darowizną!"
 }

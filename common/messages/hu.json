@@ -26,5 +26,9 @@
   "app.nearest-restaurants": "Legközelebbi éttermek",
   "msg.intro": "Az érintett éttermek kutatása során láttam, hogy a menekültek ingyenes étkezését előkészítő éttermek koordinációja",
   "msg.goal": "Elkezdtem egy kis adománygyűjtő kampányt, hogy tovább terjessze a szót, amíg elérte a célt, és hasznos lehet valamilyen módon a nehéz helyzet Ukrajnában.",
-  "msg.cta": "Kérjük, adjon hozzá adományt, vagy segítsen nekünk elterjeszteni a szót."
+  "msg.cta": "Kérjük, adjon hozzá adományt, vagy segítsen nekünk elterjeszteni a szót.",
+  "msg.welcome": "Welcome!",
+  "msg.search": "Szöveges keresést is elvégezhet, ha van a címe vagy részletei a helyéről.",
+  "msg.admin": "Új étterem hozzáadása vagy szerkesztése a listához, hogy segítsen bontani a listát!",
+  "msg.donate": "Információkat találsz arról, hogyan járul hozzá az adományozással kapcsolatos erőfeszítésekhez!"
 }

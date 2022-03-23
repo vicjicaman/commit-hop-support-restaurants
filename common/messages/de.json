@@ -26,5 +26,9 @@
   "app.nearest-restaurants": "Nächste Restaurants.",
   "msg.intro": "Während der Erforschung der beteiligten Restaurants sah ich, dass die Koordination der Restaurants, die kostenlose Mahlzeiten für die Flüchtlinge bereitstellen, orchestriert werden",
   "msg.goal": "Ich begann mit einer kleinen Fundraising-Kampagne, um das Wort zu verbreiten, bis das Ziel erreicht ist und in gewisser Weise in irgendeiner Weise in die schwierige Situation in der Ukraine hilfreich ist.",
-  "msg.cta": "Bitte beitragen Sie mit einer Spende oder helfen Sie uns, das Wort zu verbreiten."
+  "msg.cta": "Bitte beitragen Sie mit einer Spende oder helfen Sie uns, das Wort zu verbreiten.",
+  "msg.welcome": "WILLKOMMEN!, Dies ist eine App, mit der Sie in der Nähe von Restaurants finden können, die kostenlose Mahlzeiten für Flüchtlinge in den ukrainischen Grenzen vorbereiten",
+  "msg.search": "Sie können auch eine Textsuche durchführen, falls Sie über die Adresse oder Angaben zu Ihrem Standort verfügen.",
+  "msg.admin": "Sie können ein neues Restaurant in der Liste hinzufügen oder bearbeiten, um die Liste zu erweitern oder zu erweitern.",
+  "msg.donate": "Informationen zum Beitrag zu diesen Bemühungen mit einer Spende!"
 }

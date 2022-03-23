@@ -147,7 +147,46 @@ export const Component = () => {
 
         <LocationMarker position={position} setPosition={setPosition} />
 
-        {position && <Markers position={position} />}
+        {position ? (
+          <Markers position={position} />
+        ) : (
+          <div
+            style={{
+              position: "absolute",
+              width: 500,
+              height: 500,
+              top: 0,
+              right: 20,
+              zIndex: 500,
+            }}
+          >
+            <Container className="bg-white m-2 p-2">
+              <Row className="p-1 text-center text-capitalize">
+                <Col>
+                  <h5>
+                    <FormattedMessage id="app.nearest-restaurants" />
+                  </h5>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <p>
+                    <FormattedMessage id="msg.welcome" />
+                  </p>
+                  <p>
+                    <FormattedMessage id="msg.search" />
+                  </p>
+                  <p>
+                    <FormattedMessage id="msg.admin" />
+                  </p>
+                  <p>
+                    <FormattedMessage id="msg.donate" />
+                  </p>
+                </Col>
+              </Row>
+            </Container>
+          </div>
+        )}
       </MapContainer>
     </>
   );

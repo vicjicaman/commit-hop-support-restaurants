@@ -26,5 +26,9 @@
   "app.nearest-restaurants": "Cele mai apropiate restaurante",
   "msg.intro": "În timpul cercetării restaurantelor implicate, am văzut că coordonarea restaurantelor care pregătește mese gratuite pentru refugiați este orchestrată de",
   "msg.goal": "Am început o mică campanie de strângere de fonduri pentru a continua să răspândim cuvântul până când obiectivul este atins și să fie util într-un fel la situația dificilă din Ucraina.",
-  "msg.cta": "Contribuiți cu o donație sau ajutați-ne să răspândim cuvântul."
+  "msg.cta": "Contribuiți cu o donație sau ajutați-ne să răspândim cuvântul.",
+  "msg.welcome": "Bine ați venit!, Aceasta este o aplicație care vă permite să găsiți restaurante din apropiere care pregătesc mese gratuite pentru refugiați în granițele ucrainene",
+  "msg.search": "De asemenea, puteți face o căutare de text în cazul în care aveți adresa sau detaliile despre locația dvs.",
+  "msg.admin": "Puteți adăuga sau edita un nou restaurant în listă pentru a ne ajuta să extindem lista!",
+  "msg.donate": "Veți găsi informații despre cum să contribuiți la eforturile cu o donație!"
 }

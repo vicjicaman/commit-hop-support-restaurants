@@ -26,5 +26,9 @@
   "app.nearest-restaurants": "Najbližšie reštaurácie",
   "msg.intro": "Počas výskumu zúčastnených reštaurácií som videl, že koordinácia reštaurácií príprava bezplatných jedál pre utečencov je orchestrovaná",
   "msg.goal": "Začal som malú fundraisingovú kampaň, aby som sa šíriť slovo, kým sa cieľ nedosiahne a bude užitočný nejakým spôsobom do ťažkej situácie na Ukrajine.",
-  "msg.cta": "Prosím, prispievajte s darom alebo nám pomôžu šíriť slovo."
+  "msg.cta": "Prosím, prispievajte s darom alebo nám pomôžu šíriť slovo.",
+  "msg.welcome": "Vitajte!, To je aplikácia, ktorá vám umožní nájsť blízke reštaurácie, ktoré pripravujú bezplatné jedlá pre utečencov v ukrajinských hraniciach",
+  "msg.search": "Môžete tiež urobiť textové vyhľadávanie v prípade, že máte adresu alebo podrobnosti o vašej polohe.",
+  "msg.admin": "Novú reštauráciu môžete pridať alebo upraviť do zoznamu, ktorý nám pomôže rozšíriť zoznam!",
+  "msg.donate": "Nájdete informácie o tom, ako prispieť k týmto snahám s darom!"
 }
