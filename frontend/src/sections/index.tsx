@@ -4,6 +4,7 @@ import { Component as HomeSection } from "./home";
 import { Component as AdminSection } from "./admin";
 import { Component as SearchSection } from "./search";
 import { Component as ListingSection } from "./listing";
+import { Component as DonateSection } from "./donate";
 
 import { Route, Routes, Link } from "react-router-dom";
 
@@ -14,6 +15,7 @@ export const Component = () => {
       <Route path={`/admin/*`} element={<AdminSection />} />
       <Route path={`/search/*`} element={<SearchSection />} />
       <Route path={`/listing/*`} element={<ListingSection />} />
+      <Route path={`/donate/*`} element={<DonateSection />} />
     </Routes>
   );
 };

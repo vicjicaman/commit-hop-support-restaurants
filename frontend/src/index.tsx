@@ -21,6 +21,7 @@ ReactDOM.render(
         <Routes>
           <Route path={"/"} element={<Navigate to="/en" replace />}></Route>
           <Route path={"/:lang/*"} element={<App />}></Route>
+          <Route path={"/listing/:lang/*"} element={<ListingSection />}></Route>
         </Routes>
       </ApolloProvider>
     </BrowserRouter>

@@ -10,7 +10,7 @@ export const Component = () => {
   const params = useParams();
   const { loading, error, data } = useQuery(RESTAURANT_LIST);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <p>...</p>;
   if (error) return <p>Error :(</p>;
 
   const {
@@ -39,7 +39,7 @@ export const Component = () => {
         return (
           <Row key={id} className="m-4">
             <RestaurantContent restaurant={restaurant} />
-            <Col>
+            <Col className="col-md-2">
               <Link
                 className="btn btn-primary text-capitalize"
                 to={`/${params.lang}/admin/view/${id}`}

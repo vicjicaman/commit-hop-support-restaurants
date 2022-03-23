@@ -146,7 +146,7 @@ export const Handler = ({ values }: any) => {
             ) : (
               <button type="button" onClick={() => arrayHelpers.push("")}>
                 {/* show this when user has removed all images from the list */}
-                <FormattedMessage id="app.add-image" /> Add a Image
+                <FormattedMessage id="app.add-image" />
               </button>
             )}
           </Container>
