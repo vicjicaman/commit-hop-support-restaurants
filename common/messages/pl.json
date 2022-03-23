@@ -1,3 +1,15 @@
 {
-  "app.title": "Wsparcie restauracji"
+  "app.title": "wspierać restauracje",
+  "app.map": "mapa",
+  "app.search": "Szukaj",
+  "app.listing": "wymienianie kolejno",
+  "app.admin": "Admin",
+  "app.donate": "podarować",
+  "app.no-results": "brak wyników",
+  "app.view": "pogląd",
+  "app.details": "Detale",
+  "app.new": "Nowy",
+  "app.edit": "edytować",
+  "app.cancel": "Anuluj",
+  "app.delete": "usunąć"
 }

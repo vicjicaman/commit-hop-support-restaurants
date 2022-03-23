@@ -1,0 +1,15 @@
+{
+  "app.title": "Restaurantes de apoyo",
+  "app.map": "mapa",
+  "app.search": "búsqueda",
+  "app.listing": "listado",
+  "app.admin": "administración",
+  "app.donate": "donar",
+  "app.no-results": "no hay resultados",
+  "app.view": "vista",
+  "app.details": "detalles",
+  "app.new": "nuevo",
+  "app.edit": "editar",
+  "app.cancel": "cancelar",
+  "app.delete": "Eliminar"
+}

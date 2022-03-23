@@ -20,8 +20,12 @@ const options = [
   { lang: "en", flag: "us", label: "English" },
   { lang: "pl", flag: "pl", label: "Polish" },
   { lang: "fr", flag: "fr", label: "French" },
-  { lang: "ua", flag: "ua", label: "Ukrainian" },
+  { lang: "uk", flag: "ua", label: "Ukrainian" },
   { lang: "ro", flag: "ro", label: "Romanian" },
+  { lang: "es", flag: "mx", label: "Spanish" },
+  { lang: "sk", flag: "sk", label: "Slovak" },
+  { lang: "de", flag: "de", label: "German" },
+  { lang: "hu", flag: "hu", label: "Hungarian" },
 ];
 const flagUrl = (flag) => `/backend/static/flags/${flag}.png`;
 

@@ -1,0 +1,15 @@
+{
+  "app.title": "Ресторани підтримки",
+  "app.map": "карта",
+  "app.search": "пошук",
+  "app.listing": "перелік",
+  "app.admin": "адміністратор",
+  "app.donate": "пожертвувати",
+  "app.no-results": "немає результатів",
+  "app.view": "погляд",
+  "app.details": "деталі",
+  "app.new": "новий",
+  "app.edit": "редагувати",
+  "app.cancel": "скасувати",
+  "app.delete": "видаляти"
+}

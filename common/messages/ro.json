@@ -1,3 +1,15 @@
 {
-  "app.title": "Susține restaurantele"
+  "app.title": "Sprijiniți restaurantele",
+  "app.map": "Hartă",
+  "app.search": "căutare",
+  "app.listing": "listare.",
+  "app.admin": "admin.",
+  "app.donate": "Donează",
+  "app.no-results": "fara rezultate",
+  "app.view": "vedere",
+  "app.details": "Detalii",
+  "app.new": "nou",
+  "app.edit": "Editați | ×",
+  "app.cancel": "Anulare",
+  "app.delete": "șterge"
 }

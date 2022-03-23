@@ -1,18 +1,26 @@
 import React from "react";
 
 import { IntlProvider, FormattedMessage } from "react-intl";
-import French from "common/messages/fr.json";
-import Polish from "common/messages/pl.json";
-import English from "common/messages/en.json";
-import Ukranian from "common/messages/ua.json";
-import Romanian from "common/messages/ro.json";
+import fr from "common/messages/fr.json";
+import pl from "common/messages/pl.json";
+import en from "common/messages/en.json";
+import uk from "common/messages/uk.json";
+import ro from "common/messages/ro.json";
+import hu from "common/messages/hu.json";
+import sk from "common/messages/sk.json";
+import es from "common/messages/es.json";
+import de from "common/messages/de.json";
 
 const messages = {
-  fr: French,
-  en: English,
-  pl: Polish,
-  ua: Ukranian,
-  ro: Romanian,
+  fr,
+  en,
+  pl,
+  uk,
+  ro,
+  hu,
+  sk,
+  es,
+  de,
 };
 
 export default ({ lang, children }: any) => {

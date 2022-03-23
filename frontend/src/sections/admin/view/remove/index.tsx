@@ -38,7 +38,7 @@ export default ({ restaurant }: any) => {
   const toggle = () => setOpen(!open);
   return (
     <>
-      <Button color="link" className="text-danger" onClick={toggle}>
+      <Button color="danger" className="m-2" onClick={toggle}>
         Remove
       </Button>
       <Modal isOpen={open} toggle={toggle}>

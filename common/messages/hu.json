@@ -1,0 +1,15 @@
+{
+  "app.title": "Éttermek támogatása",
+  "app.map": "térkép",
+  "app.search": "keresés",
+  "app.listing": "felsorolás",
+  "app.admin": "adminisztrátor",
+  "app.donate": "adományoz",
+  "app.no-results": "nincs eredmény",
+  "app.view": "Kilátás",
+  "app.details": "részletek",
+  "app.new": "új",
+  "app.edit": "szerkesztés",
+  "app.cancel": "megszünteti",
+  "app.delete": "töröl"
+}

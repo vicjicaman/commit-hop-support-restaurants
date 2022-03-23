@@ -7,8 +7,9 @@
   "app.donate": "donate",
   "app.no-results": "no results",
   "app.view": "view",
+  "app.details": "details",
   "app.new": "new",
   "app.edit": "edit",
-  "app.delete": "delete",
-  "app.cancel": "cancel"
+  "app.cancel": "cancel",
+  "app.delete": "delete"
 }

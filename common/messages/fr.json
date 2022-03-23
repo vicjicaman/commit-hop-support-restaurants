@@ -1,3 +1,15 @@
 {
-  "app.title": "Soutenez les restaurateurs"
+  "app.title": "Restaurants de soutien",
+  "app.map": "carte",
+  "app.search": "chercher",
+  "app.listing": "référencement",
+  "app.admin": "admin",
+  "app.donate": "faire un don",
+  "app.no-results": "aucun résultat",
+  "app.view": "voir",
+  "app.details": "des détails",
+  "app.new": "Nouveau",
+  "app.edit": "Éditer",
+  "app.cancel": "Annuler",
+  "app.delete": "effacer"
 }

@@ -39,7 +39,7 @@ export default ({ lang, tag }) => {
   const props = { lang, tag };
   return (
     <Navbar color="light" light expand="md">
-      <NavbarBrand href={`/${lang}`}>
+      <NavbarBrand className="text-capitalize" href={`/${lang}`}>
         <FormattedMessage id="app.title" />
       </NavbarBrand>
 

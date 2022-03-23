@@ -31,7 +31,12 @@ export const Component = () => {
       <Row key={id} className="m-4">
         <RestaurantContent restaurant={restaurant} />
         <Col>
-          <Link to={`/${params.lang}/admin/edit/${id}`}>Edit</Link>
+          <Link
+            className="btn btn-primary m-2"
+            to={`/${params.lang}/admin/edit/${id}`}
+          >
+            Edit
+          </Link>
           <Remove restaurant={restaurant} />
         </Col>
       </Row>
