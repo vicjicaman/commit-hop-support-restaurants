@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from "react";
+import React from "react";
 import _ from "lodash";
 import {
   Collapse,
@@ -14,7 +14,6 @@ import {
   DropdownItem,
   NavbarText,
 } from "reactstrap";
-import { useParams, useNavigate } from "react-router-dom";
 
 const flagStyle = { width: "2em", border: 0 };
 const options = [
@@ -26,11 +25,7 @@ const options = [
 ];
 const flagUrl = (flag) => `/backend/static/flags/${flag}.png`;
 
-export const Selector = ({}) => {
-  const navegate = useNavigate();
-  const params = useParams();
-  const { lang: current } = params;
-
+export const Selector = ({ lang: current }) => {
   const currFlag = _.find(options, { lang: current });
 
   if (!currFlag) {
@@ -46,7 +41,8 @@ export const Selector = ({}) => {
         e.preventDefault();
         const ck = key.lang;
         //setLang(ck);
-        navegate(`/${ck}`);
+        //navegate(`/${ck}`);
+        window.location.href = `/${ck}`;
       }}
     >
       <img style={flagStyle} key={key} src={flagUrl(key.flag)} /> {key.label}

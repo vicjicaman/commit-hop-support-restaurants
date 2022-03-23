@@ -1,0 +1,14 @@
+{
+  "app.title": "support restaurants",
+  "app.map": "map",
+  "app.search": "search",
+  "app.listing": "listing",
+  "app.admin": "admin",
+  "app.donate": "donate",
+  "app.no-results": "no results",
+  "app.view": "view",
+  "app.new": "new",
+  "app.edit": "edit",
+  "app.delete": "delete",
+  "app.cancel": "cancel"
+}
