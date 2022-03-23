@@ -20,6 +20,7 @@ config.autoAddCss = false;
 export async function getServerSideProps(cxt) {
   const { data } = await client.query({
     query: RESTAURANT_LIST,
+    fetchPolicy: "no-cache"
   });
 
   return {

@@ -21,6 +21,7 @@ export async function getServerSideProps(cxt) {
   const { data } = await client.query({
     query: RESTAURANT_GET,
     variables: { id: cxt.params.id },
+    fetchPolicy: "no-cache",
   });
 
   return {
