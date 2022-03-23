@@ -8,7 +8,7 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { useQuery } from "@apollo/client";
-import { Link, useParams, Navigate } from "react-router-dom";
+import { Link, useParams, Navigate, useLocation } from "react-router-dom";
 import L from "leaflet";
 
 import { Component as SectionComponent } from "./sections";
@@ -29,6 +29,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 function App() {
+  const location = useLocation();
   const params = useParams();
   const { lang } = params;
   const [isOpen, setIsOpen] = useState(false);
@@ -38,7 +39,7 @@ function App() {
 
   return (
     <PageHandler lang={current}>
-      <Navbar lang={lang} tag={Link} />
+      <Navbar lang={lang} tag={Link} pathname={location.pathname} />
       <SectionComponent />
     </PageHandler>
   );

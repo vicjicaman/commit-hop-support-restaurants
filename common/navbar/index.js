@@ -17,26 +17,24 @@ import {
 import { FormattedMessage } from "react-intl";
 import * as Lang from "common/lang";
 
-const NavItemCommon = ({ lang, id, tag, href }) => {
-  const target = `/${lang}${href}`;
+const NavItemCommon = ({ lang, id, tag, href: target, pathname, exact }) => {
+  //const target = `/${lang}${href}`;
+  const active =
+    exact === true ? pathname === target : pathname.startsWith(target);
+
   return tag ? (
-    <NavLink
-      className="text-capitalize"
-      tag={tag}
-      to={target}
-      active={window.location.pathname === target}
-    >
+    <NavLink className="text-capitalize" tag={tag} to={target} active={active}>
       <FormattedMessage id={id} />
     </NavLink>
   ) : (
-    <NavLink className="text-capitalize" href={target}>
+    <NavLink className="text-capitalize" href={target} active={active}>
       <FormattedMessage id={id} />
     </NavLink>
   );
 };
 
-export default ({ lang, tag }) => {
-  const props = { lang, tag };
+export default ({ lang, tag, pathname }) => {
+  const props = { lang, tag, pathname };
   return (
     <Navbar color="light" light expand="md">
       <NavbarBrand className="text-capitalize" href={`/${lang}`}>
@@ -46,19 +44,40 @@ export default ({ lang, tag }) => {
       <Collapse isOpen={true} navbar>
         <Nav className="mr-auto" navbar>
           <NavItem>
-            <NavItemCommon {...props} id={"app.map"} href={""} />
+            <NavItemCommon
+              {...props}
+              id={"app.map"}
+              href={`/${lang}`}
+              exact={true}
+            />
           </NavItem>
           <NavItem>
-            <NavItemCommon {...props} id={"app.search"} href={"/search"} />
+            <NavItemCommon
+              {...props}
+              id={"app.search"}
+              href={`/${lang}/search`}
+            />
           </NavItem>
           <NavItem>
-            <NavItemCommon {...props} id={"app.listing"} href={"/listing"} />
+            <NavItemCommon
+              {...props}
+              id={"app.listing"}
+              href={`/listing/${lang}`}
+            />
           </NavItem>
           <NavItem>
-            <NavItemCommon {...props} id={"app.admin"} href={"/admin"} />
+            <NavItemCommon
+              {...props}
+              id={"app.admin"}
+              href={`/${lang}/admin`}
+            />
           </NavItem>
           <NavItem>
-            <NavItemCommon {...props} id={"app.donate"} href={"/donate"} />
+            <NavItemCommon
+              {...props}
+              id={"app.donate"}
+              href={`/${lang}/donate`}
+            />
           </NavItem>
           <Lang.Selector lang={lang} />
         </Nav>
