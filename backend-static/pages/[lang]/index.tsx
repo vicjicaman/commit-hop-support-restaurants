@@ -12,6 +12,10 @@ import Navbar from "common/navbar";
 import RestaurantContent from "common/restaurant/content";
 import { FormattedMessage } from "react-intl";
 
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
 export async function getServerSideProps(cxt) {
   const { data } = await client.query({
     query: RESTAURANT_LIST,
