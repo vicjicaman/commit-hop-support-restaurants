@@ -9,12 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.10",
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "bootstrap": "4",
+    "graphql": "^16.3.0",
+    "lodash": "^4.17.21",
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "@apollo/client": "^3.5.10",
-    "bootstrap": "4",
-    "graphql": "^16.3.0",
+    "react-intl": "^5.24.7",
     "reactstrap": "8"
   },
   "devDependencies": {

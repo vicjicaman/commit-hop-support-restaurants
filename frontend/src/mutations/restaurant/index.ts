@@ -1,5 +1,5 @@
 import { gql } from "@apollo/client";
-import { RestaurantFragment, RestaurantFullFragment } from "../../fragments";
+import { RestaurantFragment, RestaurantFullFragment } from "common/fragments/restaurant";
 
 export const RESTAURANT_CREATE = gql`
   mutation CreateRestaurant($input: RestaurantInput!) {

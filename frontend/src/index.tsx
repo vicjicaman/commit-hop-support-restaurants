@@ -7,7 +7,6 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import * as Lang from "./components/lang";
 import { Component as ListingSection } from "./sections/listing";
 
 const client = new ApolloClient({
@@ -22,7 +21,6 @@ ReactDOM.render(
         <Routes>
           <Route path={"/"} element={<Navigate to="/en" replace />}></Route>
           <Route path={"/:lang/*"} element={<App />}></Route>
-          <Route path={`/listing/*`} element={<ListingSection />} />
         </Routes>
       </ApolloProvider>
     </BrowserRouter>

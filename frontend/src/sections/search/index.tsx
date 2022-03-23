@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { RESTAURANT_SEARCH } from "queries/restaurant";
-import RestaurantContent from "components/restaurant/content";
+import { RESTAURANT_SEARCH } from "common/queries/restaurant";
+import RestaurantContent from "common/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 

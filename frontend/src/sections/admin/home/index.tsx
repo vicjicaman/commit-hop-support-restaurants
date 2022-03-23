@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Badge } from "reactstrap";
-import { RESTAURANT_LIST } from "queries/restaurant";
-import RestaurantContent from "components/restaurant/content";
+import { RESTAURANT_LIST } from "common/queries/restaurant";
+import RestaurantContent from "common/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
 

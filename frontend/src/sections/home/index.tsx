@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "reactstrap";
-import { RESTAURANT_FIND } from "queries/restaurant";
+import { RESTAURANT_FIND } from "common/queries/restaurant";
 import { useQuery } from "@apollo/client";
 import { useWindowSize } from "components//useWindowSize";
 import { useParams, Link, useNavigate } from "react-router-dom";
