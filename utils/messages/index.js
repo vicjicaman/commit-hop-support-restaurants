@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const data = fs
-  .readFileSync("./support-restaurants - messages.csv")
+  .readFileSync("./support-restaurants - messages.tsv")
   .toLocaleString();
 
 const lines = data.split("\n");
@@ -11,7 +11,7 @@ const index = {};
 
 for (const idx in lines) {
   const line = lines[idx];
-  const columns = line.trim().split(",");
+  const columns = line.trim().split("\t");
 
   for (const icx in columns) {
     const value = columns[icx];
@@ -29,7 +29,7 @@ for (const idx in lines) {
   }
 }
 
-console.log(JSON.stringify(res, null, 2));
+console.log(JSON.stringify([res, index], null, 2));
 
 for (const code in res) {
   fs.writeFileSync(`./dist/${code}.json`, JSON.stringify(res[code], null, 2));
