@@ -20,10 +20,10 @@ export default ({ restaurant }: any) => {
 
   return (
     <>
-      <Col sm={2}>
+      <Col md={2}>
         <img className="w-100" src={images[0]} />
       </Col>
-      <Col sm={8}>
+      <Col md={8}>
         <b>{name}</b>
         <p>{description}</p>
         <div>

@@ -4,6 +4,7 @@ import { RESTAURANT_FIND } from "common/queries/restaurant";
 import { useQuery } from "@apollo/client";
 import { useWindowSize } from "components//useWindowSize";
 import { useParams, Link, useNavigate } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 import {
   MapContainer,
@@ -51,7 +52,6 @@ const Markers = ({ position }: any) => {
     },
   });
 
-  //if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
   return (
@@ -70,7 +70,7 @@ const Markers = ({ position }: any) => {
                 },
               }}
             >
-              <Tooltip direction="top" offset={[0, -10]}>
+              <Tooltip direction="top" offset={[10, -10]}>
                 <b>{name}</b>
                 <img
                   style={{ width: "100px", marginLeft: "10px" }}
@@ -80,6 +80,41 @@ const Markers = ({ position }: any) => {
             </Marker>
           )
         )}
+
+      <div
+        style={{
+          position: "absolute",
+          width: 500,
+          height: 500,
+          top: 0,
+          right: 20,
+          zIndex: 500,
+        }}
+      >
+        <Container className="bg-white m-2 p-2">
+          <Row className="p-1 text-center text-capitalize">
+            <Col>
+              <h5>
+                <FormattedMessage id="app.nearest-restaurants" />
+              </h5>
+            </Col>
+          </Row>
+          {!loading &&
+            data.viewer.account.restaurants.find.map(
+              ({ id, name, latitude, longitude, images, description }: any) => (
+                <Row key={id} className="p-1">
+                  <Col sm={3}>
+                    <img className="w-100" src={images[0]} />
+                  </Col>
+                  <Col>
+                    <a href={`/listing/${params.lang}/view/${id}`}> {name}</a>
+                    <p>{description}</p>
+                  </Col>
+                </Row>
+              )
+            )}
+        </Container>
+      </div>
     </>
   );
 };
@@ -96,23 +131,25 @@ export const Component = () => {
 
   /*TODO*/
   /*Add debounce to height changes*/
-  /*Get top of map and substract it from the total height*/
+  /*Get top of map and substract it from the total height, set 70 for the demo*/
   return (
-    <MapContainer
-      key={height}
-      style={{ height: height + "px" }}
-      center={initPosition}
-      zoom={8}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <>
+      <MapContainer
+        key={height}
+        style={{ height: height - 70 + "px" }}
+        center={initPosition}
+        zoom={8}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      <LocationMarker position={position} setPosition={setPosition} />
+        <LocationMarker position={position} setPosition={setPosition} />
 
-      {position && <Markers position={position} />}
-    </MapContainer>
+        {position && <Markers position={position} />}
+      </MapContainer>
+    </>
   );
 };
 /*
