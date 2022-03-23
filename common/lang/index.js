@@ -46,7 +46,9 @@ export const Selector = ({ lang: current }) => {
         const ck = key.lang;
         //setLang(ck);
         //navegate(`/${ck}`);
-        window.location.href = `/${ck}`;
+        // Just for the demo, replace the current lang with the target, TODO: take care of the multiple bases
+        const currpath = window.location.pathname;
+        window.location.href = currpath.replace(`/${current}`, `/${ck}`);
       }}
     >
       <img style={flagStyle} key={key} src={flagUrl(key.flag)} /> {key.label}
