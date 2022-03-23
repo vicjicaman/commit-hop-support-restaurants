@@ -4,7 +4,6 @@ import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-
 import { Container, Row, Col, Badge } from "reactstrap";
 import { RESTAURANT_LIST } from "common/queries/restaurant";
 import client from "utils/client";
@@ -48,7 +47,12 @@ const Home: NextPage = ({ list, lang }) => {
             <Row key={id} className="m-4">
               <RestaurantContent restaurant={restaurant} />
               <Col>
-                <a href={`/listing/${lang}/view/${id}`}>View</a>
+                <a
+                  href={`/listing/${lang}/view/${id}`}
+                  className="text-capitalize btn btn-primary"
+                >
+                  <FormattedMessage id="app.view" />
+                </a>
               </Col>
             </Row>
           );

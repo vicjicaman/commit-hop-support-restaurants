@@ -5,6 +5,7 @@ import { RESTAURANT_SEARCH } from "common/queries/restaurant";
 import RestaurantContent from "common/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { Link, useParams } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export const Component = () => {
   const params = useParams();
@@ -44,22 +45,25 @@ export const Component = () => {
               }}
             >
               <FormGroup>
-                <Label for="searchTerm" hidden>
-                  Search
+                <Label for="searchTerm" hidden className="text-capitalize">
+                  <FormattedMessage id="app.search" />
                 </Label>
                 <Input
                   autoFocus
                   type="search"
-                  name="Search"
+                  name="search"
                   id="searchTerm"
-                  placeholder="Search"
                   value={value}
                   onChange={(e) => {
                     setValue(e.target.value);
                   }}
                 />
               </FormGroup>{" "}
-              <Button>Submit</Button>
+              <Button>
+                <span className="text-capitalize">
+                  <FormattedMessage id="app.search" />
+                </span>
+              </Button>
             </Form>
           </Col>
         </Row>
@@ -73,17 +77,19 @@ export const Component = () => {
                 <RestaurantContent restaurant={restaurant} />
                 <Col>
                   <a
-                    className="btn btn-primary"
+                    className="btn btn-primary text-capitalize"
                     href={`/listing/${params.lang}/view/${id}`}
                   >
-                    View
+                    <FormattedMessage id="app.view" />
                   </a>
                 </Col>
               </Row>
             );
           })
         ) : (
-          <div className="text-center">No results </div>
+          <div className="text-center text-capitalize">
+            <FormattedMessage id="app.no-results" />
+          </div>
         )}
       </Container>
     </>

@@ -11,5 +11,16 @@
   "app.new": "new",
   "app.edit": "edit",
   "app.cancel": "cancel",
-  "app.delete": "delete"
+  "app.delete": "delete",
+  "app.name": "name",
+  "app.description": "description",
+  "app.save": "save",
+  "app.add-image": "add image",
+  "app.prepared-meals": "prepared meals",
+  "app.received-donations": "received donations",
+  "app.supported-employees": "supported employees",
+  "app.latitude": "latitude",
+  "app.longitude": "longitude",
+  "app.remove": "remove",
+  "app.confirm-remove": "Do you really want to remove the restaurant entry"
 }

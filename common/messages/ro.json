@@ -11,5 +11,16 @@
   "app.new": "nou",
   "app.edit": "Editați | ×",
   "app.cancel": "Anulare",
-  "app.delete": "șterge"
+  "app.delete": "șterge",
+  "app.name": "Nume",
+  "app.description": "Descriere",
+  "app.save": "salva",
+  "app.add-image": "adauga imagine",
+  "app.prepared-meals": "Mâncăruri pregătite",
+  "app.received-donations": "au primit donații",
+  "app.supported-employees": "angajați susținuți",
+  "app.latitude": "latitudine",
+  "app.longitude": "longitudine",
+  "app.remove": "elimina",
+  "app.confirm-remove": "Chiar vrei să elimini intrarea restaurantului"
 }

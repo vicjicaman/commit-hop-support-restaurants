@@ -11,5 +11,16 @@
   "app.new": "новий",
   "app.edit": "редагувати",
   "app.cancel": "скасувати",
-  "app.delete": "видаляти"
+  "app.delete": "видаляти",
+  "app.name": "назва",
+  "app.description": "опис",
+  "app.save": "урятувати",
+  "app.add-image": "Додати зображення",
+  "app.prepared-meals": "приготоване харчування",
+  "app.received-donations": "Отримані пожертвування",
+  "app.supported-employees": "Підтримувані працівники",
+  "app.latitude": "широта",
+  "app.longitude": "довгота",
+  "app.remove": "видалити",
+  "app.confirm-remove": "Ви дійсно хочете видалити запис ресторану"
 }

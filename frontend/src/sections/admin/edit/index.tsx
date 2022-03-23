@@ -33,12 +33,12 @@ export const Component = () => {
     },
   });
 
-  if (queryRes.loading) return <p>Loading...</p>;
+  if (queryRes.loading) return <p>...</p>;
   if (queryRes.error) return <p>Error :(</p>;
 
-  if (mutationRes.loading) return <p>Submitting...</p>;
+  if (mutationRes.loading) return <p>...</p>;
   if (mutationRes.error)
-    return <p>Submission error! {mutationRes.error.message}</p>;
+    return <p>Error: {mutationRes.error.message}</p>;
 
   const {
     viewer: {

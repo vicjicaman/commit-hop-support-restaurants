@@ -11,5 +11,16 @@
   "app.new": "Nový",
   "app.edit": "upraviť",
   "app.cancel": "Zrušiť",
-  "app.delete": "vymazať"
+  "app.delete": "vymazať",
+  "app.name": "názov",
+  "app.description": "popis",
+  "app.save": "uložiť",
+  "app.add-image": "pridať obrázok",
+  "app.prepared-meals": "pripravené jedlá",
+  "app.received-donations": "prijaté dary",
+  "app.supported-employees": "podporovaných zamestnancov",
+  "app.latitude": "šírka",
+  "app.longitude": "dĺžka",
+  "app.remove": "odstrániť",
+  "app.confirm-remove": "Naozaj chcete odstrániť vstup reštaurácie"
 }

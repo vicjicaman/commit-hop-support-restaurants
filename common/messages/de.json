@@ -11,5 +11,16 @@
   "app.new": "Neu",
   "app.edit": "bearbeiten",
   "app.cancel": "Abbrechen",
-  "app.delete": "löschen"
+  "app.delete": "löschen",
+  "app.name": "Name",
+  "app.description": "Bezeichnung",
+  "app.save": "sparen",
+  "app.add-image": "Bild hinzufügen",
+  "app.prepared-meals": "Zubereitete Mahlzeiten",
+  "app.received-donations": "Spenden erhalten",
+  "app.supported-employees": "unterstützte Mitarbeiter.",
+  "app.latitude": "Breite",
+  "app.longitude": "Längengrad",
+  "app.remove": "Löschen",
+  "app.confirm-remove": "Möchten Sie wirklich den Restauranteintrag entfernen?"
 }

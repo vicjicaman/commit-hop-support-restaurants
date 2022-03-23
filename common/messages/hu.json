@@ -11,5 +11,16 @@
   "app.new": "új",
   "app.edit": "szerkesztés",
   "app.cancel": "megszünteti",
-  "app.delete": "töröl"
+  "app.delete": "töröl",
+  "app.name": "név",
+  "app.description": "leírás",
+  "app.save": "megment",
+  "app.add-image": "kép hozzáadása",
+  "app.prepared-meals": "Elkészített ételek",
+  "app.received-donations": "kapott adományokat",
+  "app.supported-employees": "Támogatott alkalmazottak",
+  "app.latitude": "szélességi kör",
+  "app.longitude": "hosszúság",
+  "app.remove": "eltávolít",
+  "app.confirm-remove": "Tényleg eltávolítani szeretné az éttermi bejegyzést"
 }

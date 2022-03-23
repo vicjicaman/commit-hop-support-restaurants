@@ -9,6 +9,7 @@ import {
   Label,
 } from "reactstrap";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormattedMessage } from "react-intl";
 
 import { RESTAURANT_REMOVE } from "../../../../mutations/restaurant";
 import { useMutation } from "@apollo/client";
@@ -27,9 +28,8 @@ export default ({ restaurant }: any) => {
     },
   });
 
-  if (mutationRes.loading) return <p>Submitting...</p>;
-  if (mutationRes.error)
-    return <p>Submission error! {mutationRes.error.message}</p>;
+  if (mutationRes.loading) return <p>...</p>;
+  if (mutationRes.error) return <p>Error {mutationRes.error.message}</p>;
 
   /*
 
@@ -38,19 +38,22 @@ export default ({ restaurant }: any) => {
   const toggle = () => setOpen(!open);
   return (
     <>
-      <Button color="danger" className="m-2" onClick={toggle}>
-        Remove
+      <Button color="danger" className="m-2 text-capitalize" onClick={toggle}>
+        <FormattedMessage id="app.remove" />
       </Button>
       <Modal isOpen={open} toggle={toggle}>
-        <ModalHeader toggle={toggle}>Remove restaurant</ModalHeader>
+        <ModalHeader toggle={toggle} className="text-capitalize">
+          <FormattedMessage id="app.remove" />
+        </ModalHeader>
         <ModalBody>
-          Do you really want to remove the restaurant entry:{" "}
+          <FormattedMessage id="app.confirm-remove" />:{" "}
           <div>
             <b>{name}</b> - {description}
           </div>
         </ModalBody>
         <ModalFooter>
           <Button
+            className={"text-capitalize"}
             color="danger"
             onClick={() => {
               mutate({
@@ -60,10 +63,14 @@ export default ({ restaurant }: any) => {
               });
             }}
           >
-            Remove
+            <FormattedMessage id="app.remove" />
           </Button>{" "}
-          <Button color="secondary" onClick={toggle}>
-            Cancel
+          <Button
+            className={"text-capitalize"}
+            color="secondary"
+            onClick={toggle}
+          >
+            <FormattedMessage id="app.cancel" />
           </Button>
         </ModalFooter>
       </Modal>

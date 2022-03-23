@@ -11,5 +11,16 @@
   "app.new": "nuevo",
   "app.edit": "editar",
   "app.cancel": "cancelar",
-  "app.delete": "Eliminar"
+  "app.delete": "Eliminar",
+  "app.name": "nombre",
+  "app.description": "descripción",
+  "app.save": "salvar",
+  "app.add-image": "añadir imagen",
+  "app.prepared-meals": "comidas preparadas",
+  "app.received-donations": "Recibió donaciones",
+  "app.supported-employees": "empleados apoyados",
+  "app.latitude": "latitud",
+  "app.longitude": "longitud",
+  "app.remove": "retirar",
+  "app.confirm-remove": "¿De verdad quieres quitar la entrada del restaurante?"
 }

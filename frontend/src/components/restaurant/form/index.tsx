@@ -11,6 +11,7 @@ import {
 import { useParams, Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage, FieldArray } from "formik";
+import { FormattedMessage } from "react-intl";
 
 export const validation = Yup.object().shape({
   name: Yup.string().required("Required"),
@@ -24,7 +25,9 @@ export const Handler = ({ values }: any) => {
   return (
     <Form>
       <FormGroup>
-        <Label for="name">Name</Label>
+        <Label className="text-capitalize" for="name">
+          <FormattedMessage id="app.name" />
+        </Label>
         <Field name="name" type="text" className="form-control" />
         <ErrorMessage
           name="name"
@@ -34,7 +37,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="description">Description</Label>
+        <Label className="text-capitalize" for="description">
+          <FormattedMessage id="app.description" />
+        </Label>
         <Field name="description" type="text" className="form-control" />
         <ErrorMessage
           name="description"
@@ -44,7 +49,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="preparedMeals">Prepared Meals</Label>
+        <Label className="text-capitalize" for="preparedMeals">
+          <FormattedMessage id="app.prepared-meals" />
+        </Label>
         <Field name="preparedMeals" type="number" className="form-control" />
         <ErrorMessage
           name="preparedMeals"
@@ -54,7 +61,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="supportedEmployees">Supported Employees</Label>
+        <Label className="text-capitalize" for="supportedEmployees">
+          <FormattedMessage id="app.supported-employees" />
+        </Label>
         <Field
           name="supportedEmployees"
           type="number"
@@ -68,7 +77,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="receivedDonations">Received Donations</Label>
+        <Label className="text-capitalize" for="receivedDonations">
+          <FormattedMessage id="app.received-donations" />
+        </Label>
         <Field
           name="receivedDonations"
           type="number"
@@ -82,7 +93,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="latitude">Latitude</Label>
+        <Label className="text-capitalize" for="latitude">
+          <FormattedMessage id="app.latitude" />
+        </Label>
         <Field name="latitude" type="number" className="form-control" />
         <ErrorMessage
           name="latitude"
@@ -92,7 +105,9 @@ export const Handler = ({ values }: any) => {
       </FormGroup>
 
       <FormGroup>
-        <Label for="longitude">Longitude</Label>
+        <Label className="text-capitalize" for="longitude">
+          <FormattedMessage id="app.longitude" />
+        </Label>
         <Field name="longitude" type="number" className="form-control" />
         <ErrorMessage
           name="longitude"
@@ -131,27 +146,28 @@ export const Handler = ({ values }: any) => {
             ) : (
               <button type="button" onClick={() => arrayHelpers.push("")}>
                 {/* show this when user has removed all images from the list */}
-                Add a Image
+                <FormattedMessage id="app.add-image" /> Add a Image
               </button>
             )}
           </Container>
         )}
       />
 
-      <Button color="danger" type="submit" className="mr-4">
-        Save
+      <Button color="danger" type="submit" className="mr-4 text-capitalize">
+        <FormattedMessage id="app.save" />
       </Button>
 
       <Button
         color="secondary"
         type="button"
+        className="text-capitalize"
         onClick={() => {
           values.id
             ? navegate(`/${params.lang}/admin/view/${values.id}`)
             : navegate(`/${params.lang}/admin`);
         }}
       >
-        Cancel
+        <FormattedMessage id="app.cancel" />
       </Button>
     </Form>
   );

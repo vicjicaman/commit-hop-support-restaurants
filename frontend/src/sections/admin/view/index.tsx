@@ -4,6 +4,7 @@ import { RESTAURANT_GET } from "common/queries/restaurant";
 import RestaurantContent from "common/restaurant/content";
 import { useQuery } from "@apollo/client";
 import { useParams, Link } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 import Remove from "./remove";
 
@@ -32,10 +33,10 @@ export const Component = () => {
         <RestaurantContent restaurant={restaurant} />
         <Col>
           <Link
-            className="btn btn-primary m-2"
+            className="btn btn-primary m-2  text-capitalize"
             to={`/${params.lang}/admin/edit/${id}`}
           >
-            Edit
+            <FormattedMessage id="app.edit" />
           </Link>
           <Remove restaurant={restaurant} />
         </Col>

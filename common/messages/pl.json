@@ -11,5 +11,16 @@
   "app.new": "Nowy",
   "app.edit": "edytować",
   "app.cancel": "Anuluj",
-  "app.delete": "usunąć"
+  "app.delete": "usunąć",
+  "app.name": "imię",
+  "app.description": "opis",
+  "app.save": "zapisać",
+  "app.add-image": "Dodaj obraz",
+  "app.prepared-meals": "przygotowane posiłki",
+  "app.received-donations": "odebrane darowizny",
+  "app.supported-employees": "Obsługiwane pracownicy.",
+  "app.latitude": "szerokość",
+  "app.longitude": "długość geograficzna",
+  "app.remove": "usunąć",
+  "app.confirm-remove": "Czy naprawdę chcesz usunąć wpis restauracyjny"
 }

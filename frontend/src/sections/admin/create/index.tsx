@@ -30,9 +30,8 @@ export const Component = () => {
     },
   });
 
-  if (mutationRes.loading) return <p>Submitting...</p>;
-  if (mutationRes.error)
-    return <p>Submission error! {mutationRes.error.message}</p>;
+  if (mutationRes.loading) return <p>...</p>;
+  if (mutationRes.error) return <p>Error: {mutationRes.error.message}</p>;
 
   return (
     <Container>
