@@ -145,9 +145,7 @@ class RestaurantData {
       },
     });
 
-    return res.map((row: any) =>
-      this.RestaurantFactory.create(deserialize(row))
-    );
+    return res.map((row: any) => this.RestaurantFactory.create(row));
   }
 
   async get(id: number): Promise<IRestaurant> {
