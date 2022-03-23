@@ -7,9 +7,32 @@ export const RestaurantFragment = gql`
     description
 
     images
+
+    supportedEmployees
+    preparedMeals
+    receivedDonations
+
     longitude
     latitude
+
+    createdAt
+    updatedAt
+  }
+`;
+
+export const RestaurantSearchFragment = gql`
+  fragment RestaurantSearchFragment on Restaurant {
+    id
+    name
+    description
+    images
+
+    supportedEmployees
+    preparedMeals
     receivedDonations
+
+    longitude
+    latitude
 
     createdAt
     updatedAt

@@ -3,7 +3,7 @@ import {
   RestaurantFragment,
   RestaurantFullFragment,
   RestaurantSearchFragment,
-} from "../../fragments";
+} from "common/fragments/restaurant";
 
 export const RESTAURANT_LIST = gql`
   query GetRestaurantList {
