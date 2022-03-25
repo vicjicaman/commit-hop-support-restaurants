@@ -1,12 +1,12 @@
 # Introduction
-This is a Hackathon Onboarding Project (HOP) for www.commit.dev, Commit is a great company that is helping engineers to get their next job within a startup and a very supportive community, If you want to know more about this, please feel free to reach out.
+This is a Hackathon Onboarding Project (HOP) for www.commit.dev, Commit is a great company that is helping engineers get their next job at a startup. They also provide access to a very supportive and collaborative community of like-minded engineers.If you want to know more about this, please feel free to reach out.
 
-The core idea for this HOP is to have a list of Restaurants that are preparing free meals for refugees on the borders with Ukraine.
-This idea comes from a new report that I saw about the restaurants that are preparing free meals for the refugees, this news report stuck with me (I have a small gastronomic background) . I found that the HOP was a great opportunity to contribute and know more about this situation.
+The core idea for this HOP is to have a list of restaurants bording Ukraine that are preparing free meals for refugees. This idea came from a news report that I saw about the restaurants that are preparing free meals for the refugees and it stuck with me (I have previous experience in gastronomy as well). I found that the HOP was a great opportunity to contribute positively and learn more about this situation.
 
-At first the idea was to list the restaurants information, how many meals they are preparing and the number of employees that they are supporting and a way to contact them or donate to them directly.But after some research I found the news reporting again and I saw that all the efforts of the involved restaurants are coordinated by World Central Kitchen and that the meals are distributed to locations around the borders.
+At first the idea was to list the restaurant's information, how many meals they are preparing, the number of employees they are supporting, and a way to contact them or donate to them directly. But after further research I saw that all the efforts of the involved restaurants are coordinated by World Central Kitchen and that the meals are distributed to locations around the borders.
 
-I am planning to modify this project to show the border distribution points and find the cheapest, stable and long term way to set this project live.
+I am planning to modify this project to show the border distribution points and find the cheapest, stable and long term way to make this project live.
+
 
 # Donate
 Please donate to WCK in this fundraising camping:
