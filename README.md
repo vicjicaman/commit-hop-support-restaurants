@@ -13,9 +13,9 @@ Please donate to WCK in this fundraising camping:
 https://donate.wck.org/give/f3789323/#!/donation/checkout
 
 # Trying new things
-The HOP for commit is focused on learning new things while solving a problem, this was a great opportunity to try a lot of new libraries and concepts 
-- **PostGIS and openstreetmaps**: 
-- **Postgres in Node**:
+The HOP for commit is focused on learning new things while working on a project, this was a great opportunity to try a lot of new libraries and concepts 
+- **PostGIS and openstreetmaps**: Since I am planning to use Postgres as the database I will be using its spartial extension PostGIS, I will be trying OSM to render the maps (I am familiar with google maps, but you need to enable the billing even for the free tier now :( )
+- **Postgres in Node**: I have been working mostly with NoSQL databases recently, it is very nice to SELECT FROM again in node.
 - **Typescript**: I am using React and Node for the frontend and backend, but I used to use just vanilla script, this was a great opportunity to use Typescript for the projects from the beginning.
 - **NextJS**: I always was hesitant to use React on the server, this was a great opportunity to take the bull by the horns
 - **Clean Architecture**: This concept was new to me, my coworker Igor share me a great repository as reference:  https://github.com/igor-toporet/clean-arch-in-node
