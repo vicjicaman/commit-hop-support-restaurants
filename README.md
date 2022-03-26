@@ -5,12 +5,10 @@ The core idea for this HOP is to have a list of restaurants bording Ukraine that
 
 At first the idea was to list the restaurant's information, how many meals they are preparing, the number of employees they are supporting, and a way to contact them or donate to them directly. But after further research I saw that all the efforts of the involved restaurants are coordinated by World Central Kitchen and that the meals are distributed to locations around the borders.
 
-I am planning to modify this project to show the border distribution points and find the cheapest, stable and long term way to make this project live.
 
 
 # Donate
-Please donate to WCK in this fundraising camping:
-https://donate.wck.org/give/f3789323/#!/donation/checkout
+Please donate to WCK in this fundraising camping: <a href="https://donate.wck.org/give/f3789323/#!/donation/checkout" target="_blank" > donate </a>
 
 # Trying new things
 The HOP for commit is focused on learning new things while working on a project, this was a great opportunity to try a lot of new libraries and concepts 
@@ -19,7 +17,7 @@ The HOP for commit is focused on learning new things while working on a project,
 - **Typescript**: I am using React and Node for the frontend and backend, but I used to use just vanilla script, this was a great opportunity to use Typescript for the projects from the beginning.
 - **NextJS**: I always was hesitant to use React on the server, this was a great opportunity to take the bull by the horns
 - **Clean Architecture**: This concept was new to me, my coworker Igor share me a great repository as reference:  https://github.com/igor-toporet/clean-arch-in-node
-- **Opensearch**: 
+- **Opensearch**: I wanted to use ElasticSearch to help me with the limited query capabilities of DynamoDB, this was a perfect opportunity to add this functionality.
 - **React Intl**: I use i18n on the past, but it was a homemade solution, I saw that it was very easy to use this library (but I don't like that you need to build in the messages)
 - **Formik**: This is another functionality that I used to resolve with a homemade solution.
 An honorable mention is the fontawesome package, I have used fontawesome, but not in its package form :)
@@ -39,19 +37,28 @@ This project is just for the local development, one of the goals with this setup
 Clone this repository
 
 Create the next folders and modify the ownership:
-
-mkdir data;sudo chown -R 1001:1001 data/ mkdir search-data; sudo chown -R 1000:1000 search-data/
-
+```
+  mkdir data;sudo chown -R 1001:1001 data/ 
+  mkdir search-data; sudo chown -R 1000:1000 search-data/
+```
 Add www.commit-hop.test to your /etc/hosts file (You can change this, but you need to change this as well on the nginx commit.conf file)
 
-Run  yarn install inside the frontend, backend and backend-static folders
+Run  
+```
+  yarn install 
+```
+inside the frontend, backend and backend-static folders
 
 Copy the common folder into the frontend and backend-static folder (I am working on a friendly workaround for this)
 
-Run docker compose up
+Run
+```
+  docker compose up
+```
 
 # For the future
-As mentioned before, I am planning to modify this project to show the border distribution points and find the cheapest, stable and long term way to set this project live.
+
+I am planning to modify this project to show the border distribution points and find a long term way to make this project live.
 
 I am also planning to separate the boilerplate structure for future quick MVP projects.
 
