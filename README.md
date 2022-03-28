@@ -1,5 +1,5 @@
 # Introduction
-This is a Hackathon Onboarding Project (HOP) for www.commit.dev, Commit is a great company that is helping engineers get their next job at a startup. They also provide access to a very supportive and collaborative community of like-minded engineers.If you want to know more about this, please feel free to reach out.
+This is a Hackathon Onboarding Project (HOP) for <a href="https://www.commit.dev" target="_blank" > Commit.dev </a>, Commit is a great company that is helping engineers get their next job at a startup. They also provide access to a very supportive and collaborative community of like-minded engineers.If you want to know more about this, please feel free to reach out.
 
 The core idea for this HOP is to have a list of restaurants bording Ukraine that are preparing free meals for refugees. This idea came from a news report that I saw about the restaurants that are preparing free meals for the refugees and it stuck with me (I have previous experience in gastronomy as well). I found that the HOP was a great opportunity to contribute positively and learn more about this situation.
 
@@ -16,7 +16,7 @@ The HOP for commit is focused on learning new things while working on a project,
 - **Postgres in Node**: I have been working mostly with NoSQL databases recently, it is very nice to SELECT FROM again in node.
 - **Typescript**: I am using React and Node for the frontend and backend, but I used to use just vanilla script, this was a great opportunity to use Typescript for the projects from the beginning.
 - **NextJS**: I always was hesitant to use React on the server, this was a great opportunity to take the bull by the horns
-- **Clean Architecture**: This concept was new to me, my coworker Igor share me a great repository as reference:  https://github.com/igor-toporet/clean-arch-in-node
+- **Clean Architecture**: This concept was new to me, my coworker Igor share me a great repository as reference: <a href="https://github.com/igor-toporet/clean-arch-in-node" target="_blank" > repository </a> 
 - **Opensearch**: I wanted to use ElasticSearch to help me with the limited query capabilities of DynamoDB, this was a perfect opportunity to add this functionality.
 - **React Intl**: I use i18n on the past, but it was a homemade solution, I saw that it was very easy to use this library (but I don't like that you need to build in the messages)
 - **Formik**: This is another functionality that I used to resolve with a homemade solution.
