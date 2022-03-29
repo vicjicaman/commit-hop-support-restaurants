@@ -13,7 +13,7 @@ const awilix = require("awilix");
 //import search from "utils/search";
 import { schema, resolvers } from "./gateway";
 
-import LoggerDriver from "drivers/logger";
+import LoggerDriver from "common/drivers/logger";
 import DatabaseDriver from "drivers/db";
 import SearchDriver from "drivers/search";
 import RestaurantController from "controllers/restaurants";
