@@ -56,6 +56,46 @@ Run
   docker compose up
 ```
 
+# Deployment resources
+
+The project will be deployed to a very simple stack to be able to focus on explore CloudFormation and CodePipeline, overall we will use a EC2 node (with docker compose inside) and a CloudFront distribution helper.
+The apex domain ua-wck.com as a temporal domain to have a fresh apex domain and continue with the development, please suggest a better and long term domain name for the project.
+Please let me know any feedback about the approach.
+
+The goal of the scoped {{www}} deployment scripts will be to generate the functionality on the next urls
+
+ - {{www}}.ua-wck.com -> CDN cached CRA
+ - {{www}}.ua-wck.com/listing -> CDN cached NextJS
+ - {{www}}-api.ua-wck.com/listing -> For NextJS origin
+ - {{www}}-api.ua-wck.com/backend/graphql -> For external graphQL requests (search/admin)
+
+The expected resources to be created in CloudFormation, the scope will be based on the {{www}} label.
+ - Bucket s3://{{www}}.ua-wck.com
+ - Route {{www}}.ua-wck.com to CloudFront distribution
+ - Route {{www}}-api.ua-wck.com to EC2 instance
+ - CloudFront distribution {{www}}.ua-wck.com
+   - Lambda version for distribution behavoir for origin control
+ - EC2 instance
+   - Volume to attach
+
+Build resources
+ - EC2 inner script, docker-compose and config files
+ - CRA bundle app to s3://{{www}}.ua-wck.com
+ - Docker image for {{www}}-backend
+ - Docker image for {{www}}-backend-static
+ - New lambda@edge version for distribution
+
+Hardcoded resources:
+ - Certificate - *.ua-wck.com, create and destroy certificated limits are very narrow, I hope that this will cover all certificate needs.
+
+# Development flow
+
+Two branches will be created for any desired scope {{www}}/prod and {{www}}/dev
+Only the scopes {{www}} will be have an automated CD/CI pipeline as {{www}} will be the only env always online, {{stage}} and other scopes should be $tart and $hutdown manually.
+You should be able to checkout any dev branch and easily start the local docker-compose.
+Please let me know any feedback about the approach.
+
+
 # For the future
 
 I am planning to modify this project to show the border distribution points and find a long term way to make this project live.
