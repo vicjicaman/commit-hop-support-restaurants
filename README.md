@@ -59,6 +59,7 @@ Run
 # Deployment resources
 
 The project will be deployed to a very simple stack to be able to focus on explore CloudFormation and CodePipeline, overall we will use a EC2 node (with docker compose inside) and a CloudFront distribution helper.
+
 The apex domain ua-wck.com as a temporal domain to have a fresh apex domain and continue with the development, please suggest a better and long term domain name for the project.
 Please let me know any feedback about the approach.
 
@@ -87,11 +88,13 @@ Build resources
 
 Hardcoded resources:
  - Certificate - *.ua-wck.com, create and destroy certificated limits are very narrow, I hope that this will cover all certificate needs.
+ - Hosted Zone - This is going to be created by hand and referred by the CloudFront templates to create the RecordSets
 
 # Development flow
 
 Two branches will be created for any desired scope {{www}}/prod and {{www}}/dev
 Only the scopes {{www}} will be have an automated CD/CI pipeline as {{www}} will be the only env always online, {{stage}} and other scopes should be $tart and $hutdown manually.
+
 You should be able to checkout any dev branch and easily start the local docker-compose.
 Please let me know any feedback about the approach.
 
