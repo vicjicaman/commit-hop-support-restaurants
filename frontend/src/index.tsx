@@ -10,7 +10,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Component as ListingSection } from "./sections/listing";
 
 const client = new ApolloClient({
-  uri: "http://www.commit-hop.dev/backend/graphql",
+  uri: "http://www.commit-hop.test/backend/graphql",
   cache: new InMemoryCache(),
 });
 

@@ -48,6 +48,7 @@ services:
         max-file: "5"
         max-size: "10m"
   data-admin:
+    entrypoint: ["echo", "Service disabled"]
     container_name: pgadmin4_container
     image: dpage/pgadmin4
     restart: always
@@ -110,6 +111,7 @@ services:
         max-file: "5"
         max-size: "10m"
   opensearch-dashboards:
+    entrypoint: ["echo", "Service disabled"]
     image: opensearchproject/opensearch-dashboards:latest
     container_name: opensearch-dashboards
     ports:

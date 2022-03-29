@@ -3,16 +3,17 @@ const path = require("path");
 const express = require("express");
 import cors from "cors";
 import bodyParser from "body-parser";
+const { applyMiddleware } = require("graphql-middleware");
 const { ApolloServer } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
-
 const awilix = require("awilix");
 
 //import search from "utils/search";
 import { schema, resolvers } from "./gateway";
 
+import LoggerDriver from "drivers/logger";
 import DatabaseDriver from "drivers/db";
 import SearchDriver from "drivers/search";
 import RestaurantController from "controllers/restaurants";
@@ -30,12 +31,22 @@ const container = awilix.createContainer({
 
 container.register({
   db: awilix.asClass(DatabaseDriver),
+  logger: awilix.asClass(LoggerDriver),
   search: awilix.asClass(SearchDriver),
   RestaurantController: awilix.asClass(RestaurantController),
   RestaurantData: awilix.asClass(RestaurantData),
   RestaurantFactory: awilix.asClass(RestaurantFactory),
   RestaurantUsecase: awilix.asClass(RestaurantUsecase),
 });
+
+const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {
+  const logger = cxt.container.cradle.logger;
+  logger.debug(`args for ${info.fieldName}: ${JSON.stringify(args)}`);
+  const result = await resolve(root, args, cxt, info);
+  logger.debug(`result for ${info.fieldName}: ${JSON.stringify(result)}`);
+  return result
+}
+
 
 export const prepare = (schema: any, resolvers: any) =>
   makeExecutableSchema({
@@ -72,16 +83,25 @@ export const prepare = (schema: any, resolvers: any) =>
     },
   });
 
+
+
+
 try {
   (async () => {
+
+    const schemaObj = prepare(schema, resolvers)
+    const schemaWithMiddleware = applyMiddleware(schemaObj, logResolver)
+
+
     const server = new ApolloServer({
-      schema: prepare(schema, resolvers),
+      schema: schemaWithMiddleware,
       context: { container },
     });
     await server.start();
 
     const app: any = express();
     server.applyMiddleware({ app, path: "/backend/graphql" });
+
 
     app.use(bodyParser());
     app.use(cors());
