@@ -1,0 +1,378 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "c564a3a4-6892-44ce-b147-125a225bd011": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 10
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "31c64eb2-a22a-4f39-89e8-8149003f750c",
+                    "db9b9191-212e-40db-bcfe-7b093a54a6ce",
+                    "e2836e4a-ea14-4274-ae16-2b883e63e0a7",
+                    "b85844e5-2ca4-4f0e-9d91-01300e479db0"
+                ]
+            },
+            "09c44c6c-5566-4dd4-a91c-6a872e0ea03e": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 310,
+                    "y": 300
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "a62de25c-78aa-4666-9eb0-94abdb5f6d61"
+                ]
+            },
+            "a62de25c-78aa-4666-9eb0-94abdb5f6d61": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 310,
+                    "y": 400
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "1dd5e116-4f3a-42f5-9569-06c685ff7913": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 620,
+                    "y": 10
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "af073334-5aa3-4061-b7db-3f78c424d6f3"
+                ]
+            },
+            "e2836e4a-ea14-4274-ae16-2b883e63e0a7": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 480,
+                    "y": 10
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "1dd5e116-4f3a-42f5-9569-06c685ff7913"
+                ]
+            },
+            "31c64eb2-a22a-4f39-89e8-8149003f750c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 440,
+                    "y": -100
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "4c2bdb35-f695-4401-97c0-1956e808a89c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 160,
+                    "y": -50
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "e5e108ff-95df-40b5-ba29-56103e7954e3": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 190,
+                    "y": 240
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "db9b9191-212e-40db-bcfe-7b093a54a6ce": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": -170
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "b85844e5-2ca4-4f0e-9d91-01300e479db0": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 110
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "af073334-5aa3-4061-b7db-3f78c424d6f3": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 680,
+                    "y": 120
+                },
+                "z": 0,
+                "embeds": []
+            }
+        }
+    },
+    "Resources": {
+        "Distribution": {
+            "Type": "AWS::CloudFront::Distribution",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c564a3a4-6892-44ce-b147-125a225bd011"
+                }
+            },
+            "DependsOn": [
+                "PublicBucket",
+                "DefaultCache",
+                "OriginFunctionVersion",
+                "ViewerFunction"
+            ]
+        },
+        "BackendInstance": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
+                }
+            },
+            "DependsOn": [
+                "DataVolume"
+            ]
+        },
+        "DataVolume": {
+            "Type": "AWS::EC2::Volume",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a62de25c-78aa-4666-9eb0-94abdb5f6d61"
+                }
+            }
+        },
+        "OriginFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "1dd5e116-4f3a-42f5-9569-06c685ff7913"
+                }
+            },
+            "DependsOn": [
+                "LambdaEdgeRole"
+            ]
+        },
+        "OriginFunctionVersion": {
+            "Type": "AWS::Lambda::Version",
+            "Properties": {
+                "FunctionName": {
+                    "Ref": "OriginFunction"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "e2836e4a-ea14-4274-ae16-2b883e63e0a7"
+                }
+            }
+        },
+        "PublicBucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": {
+                    "Fn::Join": [
+                        ".",
+                        [
+                            {
+                                "Ref": "ScopeName"
+                            },
+                            {
+                                "Ref": "ApexDomainName"
+                            }
+                        ]
+                    ]
+                },
+                "AccessControl": "PublicRead",
+                "WebsiteConfiguration": {
+                    "IndexDocument": "index.html",
+                    "ErrorDocument": "404.html"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "31c64eb2-a22a-4f39-89e8-8149003f750c"
+                }
+            }
+        },
+        "CdnRoute": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+                "HostedZoneId": {
+                    "Ref": "HostedZoneId"
+                },
+                "Name": {
+                    "Fn::Join": [
+                        ".",
+                        [
+                            {
+                                "Ref": "ScopeName"
+                            },
+                            {
+                                "Ref": "ApexDomainName"
+                            }
+                        ]
+                    ]
+                },
+                "AliasTarget": {
+                    "HostedZoneId": "Z2FDTNDATAQYW2",
+                    "DNSName": {
+                        "Fn::GetAtt": [
+                            "Distribution",
+                            "DomainName"
+                        ]
+                    }
+                },
+                "TTL": "300",
+                "Type": "A"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4c2bdb35-f695-4401-97c0-1956e808a89c"
+                }
+            },
+            "DependsOn": [
+                "Distribution"
+            ]
+        },
+        "ApiRoute": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+                "HostedZoneId": {
+                    "Ref": "HostedZoneId"
+                },
+                "Name": {
+                    "Fn::Join": [
+                        ".",
+                        [
+                            {
+                                "Fn::Join": [
+                                    "-",
+                                    [
+                                        {
+                                            "Ref": "ScopeName"
+                                        },
+                                        "api"
+                                    ]
+                                ]
+                            },
+                            {
+                                "Ref": "ApexDomainName"
+                            }
+                        ]
+                    ]
+                },
+                "TTL": "300",
+                "Type": "A",
+                "ResourceRecords": [
+                    {
+                        "Fn::GetAtt": [
+                            "BackendInstance",
+                            "PublicIp"
+                        ]
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "e5e108ff-95df-40b5-ba29-56103e7954e3"
+                }
+            },
+            "DependsOn": [
+                "BackendInstance"
+            ]
+        },
+        "DefaultCache": {
+            "Type": "AWS::CloudFront::CachePolicy",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "db9b9191-212e-40db-bcfe-7b093a54a6ce"
+                }
+            }
+        },
+        "ViewerFunction": {
+            "Type": "AWS::CloudFront::Function",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "b85844e5-2ca4-4f0e-9d91-01300e479db0"
+                }
+            }
+        },
+        "LambdaEdgeRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {},
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "af073334-5aa3-4061-b7db-3f78c424d6f3"
+                }
+            }
+        }
+    },
+    "Parameters": {
+        "ScopeName": {
+            "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
+            "Type": "String"
+        },
+        "ApexDomainName": {
+            "Description": "Apex domain (always ua-wck.com)",
+            "Type": "String"
+        },
+        "AcmCertificate": {
+            "AllowedPattern": "^$|(arn:aws:acm:)([a-z0-9/:-])*([a-z0-9])$",
+            "Description": "The AWS Certification Manager certificate ARN for the *.ua-wck.com certificate.",
+            "Type": "String"
+        },
+        "HostedZoneId": {
+            "Description": "Hosted Zone ID for ua-wck.com",
+            "Type": "String"
+        }
+    }
+}
