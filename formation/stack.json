@@ -14,10 +14,7 @@
                 "z": 0,
                 "embeds": [],
                 "dependson": [
-                    "31c64eb2-a22a-4f39-89e8-8149003f750c",
-                    "db9b9191-212e-40db-bcfe-7b093a54a6ce",
-                    "e2836e4a-ea14-4274-ae16-2b883e63e0a7",
-                    "b85844e5-2ca4-4f0e-9d91-01300e479db0"
+                    "31c64eb2-a22a-4f39-89e8-8149003f750c"
                 ]
             },
             "09c44c6c-5566-4dd4-a91c-6a872e0ea03e": {
@@ -26,13 +23,16 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 310,
-                    "y": 300
+                    "x": 300,
+                    "y": 330
                 },
                 "z": 0,
                 "embeds": [],
+                "isassociatedwith": [
+                    "4f05693d-f3e3-4905-84cb-6ec35fd11c82"
+                ],
                 "dependson": [
-                    "a62de25c-78aa-4666-9eb0-94abdb5f6d61"
+                    "28dd2f7d-0608-4534-9696-93981074c94f"
                 ]
             },
             "a62de25c-78aa-4666-9eb0-94abdb5f6d61": {
@@ -41,41 +41,11 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 310,
-                    "y": 400
+                    "x": 450,
+                    "y": 470
                 },
                 "z": 0,
                 "embeds": []
-            },
-            "1dd5e116-4f3a-42f5-9569-06c685ff7913": {
-                "size": {
-                    "width": 60,
-                    "height": 60
-                },
-                "position": {
-                    "x": 620,
-                    "y": 10
-                },
-                "z": 0,
-                "embeds": [],
-                "dependson": [
-                    "af073334-5aa3-4061-b7db-3f78c424d6f3"
-                ]
-            },
-            "e2836e4a-ea14-4274-ae16-2b883e63e0a7": {
-                "size": {
-                    "width": 60,
-                    "height": 60
-                },
-                "position": {
-                    "x": 480,
-                    "y": 10
-                },
-                "z": 0,
-                "embeds": [],
-                "isassociatedwith": [
-                    "1dd5e116-4f3a-42f5-9569-06c685ff7913"
-                ]
             },
             "31c64eb2-a22a-4f39-89e8-8149003f750c": {
                 "size": {
@@ -113,103 +83,229 @@
                 "z": 0,
                 "embeds": []
             },
-            "db9b9191-212e-40db-bcfe-7b093a54a6ce": {
+            "4f05693d-f3e3-4905-84cb-6ec35fd11c82": {
                 "size": {
                     "width": 60,
                     "height": 60
                 },
                 "position": {
-                    "x": 340,
-                    "y": -170
+                    "x": 440,
+                    "y": 250
                 },
                 "z": 0,
                 "embeds": []
             },
-            "b85844e5-2ca4-4f0e-9d91-01300e479db0": {
+            "28dd2f7d-0608-4534-9696-93981074c94f": {
                 "size": {
                     "width": 60,
                     "height": 60
                 },
                 "position": {
-                    "x": 340,
-                    "y": 110
+                    "x": 30,
+                    "y": 410
                 },
                 "z": 0,
-                "embeds": []
+                "embeds": [],
+                "isassociatedwith": [
+                    "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
+                ]
             },
-            "af073334-5aa3-4061-b7db-3f78c424d6f3": {
-                "size": {
-                    "width": 60,
-                    "height": 60
+            "b11be761-399e-4a4e-80a7-00d23c135558": {
+                "source": {
+                    "id": "a62de25c-78aa-4666-9eb0-94abdb5f6d61"
                 },
-                "position": {
-                    "x": 680,
-                    "y": 120
+                "target": {
+                    "id": "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
                 },
-                "z": 0,
-                "embeds": []
+                "z": 0
             }
         }
     },
     "Resources": {
         "Distribution": {
             "Type": "AWS::CloudFront::Distribution",
-            "Properties": {},
+            "Properties": {
+                "DistributionConfig": {
+                    "Aliases": [
+                        {
+                            "Fn::Join": [
+                                ".",
+                                [
+                                    {
+                                        "Ref": "ScopeName"
+                                    },
+                                    {
+                                        "Ref": "ApexDomainName"
+                                    }
+                                ]
+                            ]
+                        }
+                    ],
+                    "CacheBehaviors": [
+                        {
+                            "PathPattern": "listing/*",
+                            "AllowedMethods": [
+                                "GET",
+                                "HEAD"
+                            ],
+                            "DefaultTTL": 900,
+                            "MaxTTL": 900,
+                            "MinTTL": 900,
+                            "ForwardedValues": {
+                                "QueryString": true,
+                                "Headers": [
+                                    "Host"
+                                ]
+                            },
+                            "TargetOriginId": "BackendStaticOrigin",
+                            "ViewerProtocolPolicy": "redirect-to-https",
+                            "Compress": true
+                        }
+                    ],
+                    "Comment": {
+                        "Ref": "AWS::StackName"
+                    },
+                    "DefaultCacheBehavior": {
+                        "AllowedMethods": [
+                            "GET",
+                            "HEAD"
+                        ],
+                        "DefaultTTL": 0,
+                        "MaxTTL": 0,
+                        "MinTTL": 0,
+                        "ForwardedValues": {
+                            "QueryString": true,
+                            "Headers": [
+                                "*"
+                            ],
+                            "Cookies": {
+                                "Forward": "all"
+                            }
+                        },
+                        "TargetOriginId": "PublicBucketOrigin",
+                        "ViewerProtocolPolicy": "redirect-to-https",
+                        "Compress": true
+                    },
+                    "Enabled": true,
+                    "Origins": [
+                        {
+                            "DomainName": {
+                                "Fn::Select": [
+                                    1,
+                                    {
+                                        "Fn::Split": [
+                                            "//",
+                                            {
+                                                "Fn::GetAtt": [
+                                                    "PublicBucket",
+                                                    "WebsiteURL"
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            "Id": "PublicBucketOrigin",
+                            "CustomOriginConfig": {
+                                "OriginProtocolPolicy": "https-only"
+                            }
+                        },
+                        {
+                            "DomainName": {
+                                "Fn::Join": [
+                                    ".",
+                                    [
+                                        {
+                                            "Fn::Join": [
+                                                "-",
+                                                [
+                                                    {
+                                                        "Ref": "ScopeName"
+                                                    },
+                                                    "api"
+                                                ]
+                                            ]
+                                        },
+                                        {
+                                            "Ref": "ApexDomainName"
+                                        }
+                                    ]
+                                ]
+                            },
+                            "Id": "BackendStaticOrigin",
+                            "CustomOriginConfig": {
+                                "OriginProtocolPolicy": "https-only"
+                            }
+                        }
+                    ],
+                    "PriceClass": "PriceClass_100",
+                    "ViewerCertificate": {
+                        "AcmCertificateArn": {
+                            "Ref": "AcmCertificate"
+                        },
+                        "SslSupportMethod": "sni-only",
+                        "MinimumProtocolVersion": "TLSv1"
+                    }
+                }
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "c564a3a4-6892-44ce-b147-125a225bd011"
                 }
             },
             "DependsOn": [
-                "PublicBucket",
-                "DefaultCache",
-                "OriginFunctionVersion",
-                "ViewerFunction"
+                "PublicBucket"
             ]
         },
         "BackendInstance": {
             "Type": "AWS::EC2::Instance",
-            "Properties": {},
+            "Properties": {
+                "ImageId": "ami-0d5eff06f840b45e9",
+                "InstanceType": "t2.micro",
+                "KeyName": "default",
+                "SecurityGroups": [
+                    {
+                        "Ref": "BackendInstanceSecurityGroup"
+                    }
+                ]
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
                 }
-            },
-            "DependsOn": [
-                "DataVolume"
-            ]
+            }
         },
         "DataVolume": {
             "Type": "AWS::EC2::Volume",
-            "Properties": {},
+            "Properties": {
+                "Size": "8",
+                "AvailabilityZone": {
+                    "Fn::GetAtt": [
+                        "BackendInstance",
+                        "AvailabilityZone"
+                    ]
+                }
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "a62de25c-78aa-4666-9eb0-94abdb5f6d61"
                 }
             }
         },
-        "OriginFunction": {
-            "Type": "AWS::Lambda::Function",
-            "Properties": {},
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "1dd5e116-4f3a-42f5-9569-06c685ff7913"
-                }
-            },
-            "DependsOn": [
-                "LambdaEdgeRole"
-            ]
-        },
-        "OriginFunctionVersion": {
-            "Type": "AWS::Lambda::Version",
+        "DataMountpoint": {
+            "Type": "AWS::EC2::VolumeAttachment",
             "Properties": {
-                "FunctionName": {
-                    "Ref": "OriginFunction"
-                }
+                "InstanceId": {
+                    "Ref": "BackendInstance"
+                },
+                "VolumeId": {
+                    "Ref": "DataVolume"
+                },
+                "Device": "/dev/sdh"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
-                    "id": "e2836e4a-ea14-4274-ae16-2b883e63e0a7"
+                    "id": "b11be761-399e-4a4e-80a7-00d23c135558"
                 }
             }
         },
@@ -269,17 +365,13 @@
                         ]
                     }
                 },
-                "TTL": "300",
                 "Type": "A"
             },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "4c2bdb35-f695-4401-97c0-1956e808a89c"
                 }
-            },
-            "DependsOn": [
-                "Distribution"
-            ]
+            }
         },
         "ApiRoute": {
             "Type": "AWS::Route53::RecordSet",
@@ -323,35 +415,77 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "e5e108ff-95df-40b5-ba29-56103e7954e3"
                 }
+            }
+        },
+        "BackendInstanceSecurityGroup": {
+            "Type": "AWS::EC2::SecurityGroup",
+            "Properties": {
+                "GroupName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "backend-security-group",
+                            {
+                                "Ref": "ScopeName"
+                            }
+                        ]
+                    ]
+                },
+                "GroupDescription": "Allow HTTP/HTTPS and SSH inbound and outbound traffic",
+                "SecurityGroupIngress": [
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 80,
+                        "ToPort": 80,
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 443,
+                        "ToPort": 443,
+                        "CidrIp": "0.0.0.0/0"
+                    },
+                    {
+                        "IpProtocol": "tcp",
+                        "FromPort": 22,
+                        "ToPort": 22,
+                        "CidrIp": "0.0.0.0/0"
+                    }
+                ]
             },
-            "DependsOn": [
-                "BackendInstance"
-            ]
-        },
-        "DefaultCache": {
-            "Type": "AWS::CloudFront::CachePolicy",
-            "Properties": {},
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
-                    "id": "db9b9191-212e-40db-bcfe-7b093a54a6ce"
+                    "id": "4f05693d-f3e3-4905-84cb-6ec35fd11c82"
                 }
             }
         },
-        "ViewerFunction": {
-            "Type": "AWS::CloudFront::Function",
-            "Properties": {},
+        "BackendPublicIP": {
+            "Type": "AWS::EC2::EIP",
+            "Properties": {
+                "Domain": "vpc",
+                "InstanceId": {
+                    "Ref": "BackendInstance"
+                },
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": {
+                            "Fn::Join": [
+                                "-",
+                                [
+                                    "webapp-eip",
+                                    {
+                                        "Ref": "ScopeName"
+                                    }
+                                ]
+                            ]
+                        }
+                    }
+                ]
+            },
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
-                    "id": "b85844e5-2ca4-4f0e-9d91-01300e479db0"
-                }
-            }
-        },
-        "LambdaEdgeRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {},
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "af073334-5aa3-4061-b7db-3f78c424d6f3"
+                    "id": "28dd2f7d-0608-4534-9696-93981074c94f"
                 }
             }
         }
@@ -367,7 +501,7 @@
         },
         "AcmCertificate": {
             "AllowedPattern": "^$|(arn:aws:acm:)([a-z0-9/:-])*([a-z0-9])$",
-            "Description": "The AWS Certification Manager certificate ARN for the *.ua-wck.com certificate.",
+            "Description": "[ Optional ] The AWS Certification Manager certificate ARN for the CloudFront distribution certificate - this certificate should be created in the us-east-1 (N. Virginia) region and must reference the WordPress domain name you use below.",
             "Type": "String"
         },
         "HostedZoneId": {
