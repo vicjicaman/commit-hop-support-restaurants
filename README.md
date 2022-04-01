@@ -98,10 +98,16 @@ Only the scopes {{www}} will be have an automated CD/CI pipeline as {{www}} will
 You should be able to checkout any dev branch and easily start the local docker-compose.
 Please let me know any feedback about the approach.
 
+# Video
+
+Watch the HOP walkthrough/presentation here:
+https://www.youtube.com/watch?v=5m2pxz0URqY
+
+This is the video of the HOP presentation that I did during my first weeks at commit. The features and state of the current project are different as the project evolves.
 
 # For the future
 
 I am planning to modify this project to show the border distribution points and find a long term way to make this project live.
-
+I was thinking of adding a static tweeter wall of love for tweets that support the Ukraine refugees and WCK.
 I am also planning to separate the boilerplate structure for future quick MVP projects.
 
