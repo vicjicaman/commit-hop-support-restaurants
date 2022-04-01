@@ -62,7 +62,59 @@
                     "x": 340,
                     "y": 110
                 },
-                "z": 0
+                "z": 0,
+                "embeds": []
+            },
+            "461dca28-584d-4393-a39c-33d6c1553f58": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 550,
+                    "y": 10
+                },
+                "z": 0,
+                "embeds": [],
+                "dependson": [
+                    "d7e88c58-b23d-4069-a554-5843f359a26b"
+                ]
+            },
+            "d7e88c58-b23d-4069-a554-5843f359a26b": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 620,
+                    "y": -70
+                },
+                "z": 0,
+                "embeds": []
+            },
+            "a7140dd2-a449-4e36-96b3-2ef316c34a17": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 440,
+                    "y": 10
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "461dca28-584d-4393-a39c-33d6c1553f58"
+                ]
+            },
+            "1b0a0c79-7fd5-4379-93a5-a446b7051f5c": {
+                "source": {
+                    "id": "461dca28-584d-4393-a39c-33d6c1553f58"
+                },
+                "target": {
+                    "id": "d7e88c58-b23d-4069-a554-5843f359a26b"
+                },
+                "z": 11
             }
         }
     },
@@ -125,6 +177,14 @@
                         "TargetOriginId": "PublicBucketOrigin",
                         "ViewerProtocolPolicy": "redirect-to-https",
                         "Compress": true,
+                        "LambdaFunctionAssociations": [
+                            {
+                                "EventType": "origin-request",
+                                "LambdaFunctionARN": {
+                                    "Ref": "OriginRequestFunctionVersion"
+                                }
+                            }
+                        ],
                         "FunctionAssociations": [
                             {
                                 "EventType": "viewer-request",
@@ -310,6 +370,83 @@
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "0e4c86c0-c19f-4e5e-a75b-9a4b83bb66e6"
+                }
+            }
+        },
+        "OriginRequestFunction": {
+            "Type": "AWS::Lambda::Function",
+            "Properties": {
+                "Description": "Request origin resolver for SPA and static resources.\n",
+                "Code": {
+                    "ZipFile": "const path = require('path');\nexports.handler = async (event) => {\n  var request = event.Records[0].cf.request;\n return request;\n};\n"
+                },
+                "Handler": "index.handler",
+                "MemorySize": 128,
+                "Role": {
+                    "Fn::Sub": "${LambdaFunctionExecRole.Arn}"
+                },
+                "Runtime": "nodejs14.x",
+                "Tags": [
+                    {
+                        "Key": "ScopeName",
+                        "Value": {
+                            "Ref": "ScopeName"
+                        }
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "461dca28-584d-4393-a39c-33d6c1553f58"
+                }
+            },
+            "DependsOn": [
+                "LambdaFunctionExecRole"
+            ]
+        },
+        "LambdaFunctionExecRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": [
+                                    "edgelambda.amazonaws.com",
+                                    "lambda.amazonaws.com"
+                                ]
+                            },
+                            "Action": [
+                                "sts:AssumeRole"
+                            ]
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "d7e88c58-b23d-4069-a554-5843f359a26b"
+                }
+            }
+        },
+        "OriginRequestFunctionVersion": {
+            "Type": "AWS::Lambda::Version",
+            "Properties": {
+                "FunctionName": {
+                    "Ref": "OriginRequestFunction"
+                },
+                "Description": {
+                    "Fn::Sub": "Origin request for ${ScopeName}"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a7140dd2-a449-4e36-96b3-2ef316c34a17"
                 }
             }
         }
