@@ -2,7 +2,7 @@ const { logger, command } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 
-const enabled = false;
+const enabled = true;
 
 const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath }) => {
 

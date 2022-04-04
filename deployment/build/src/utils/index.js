@@ -17,6 +17,18 @@ const command = async (cmd, args, handler) => {
     }
 }
 
+const buildParamTemplate = async (inputFilename, outputFolder, params) => {
+    let input = await fs.readFile(inputFilename, 'utf8');
+    const basename = path.parse(inputFilename).base;
+
+    for (const param in params) {
+        logger.debug(`Replace ${`xPARAMx${param}`} with ${params[param]}`)
+        input = input.replaceAll(`xPARAMx${param}`, params[param])
+    }
+
+    await fs.writeFile(path.join(outputFolder, basename), input, 'utf8');
+}
+
 
 const copyWithActiveSegment = async (filename, outputFilename, block = "prod", cxt) => {
     const BLOCK_START = "#BLOCK|";
@@ -54,4 +66,4 @@ const copyWithActiveSegment = async (filename, outputFilename, block = "prod", c
 
 }
 
-module.exports = { logger, command, copyWithActiveSegment }
+module.exports = { logger, command, copyWithActiveSegment, buildParamTemplate }
