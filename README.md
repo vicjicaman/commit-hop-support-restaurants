@@ -20,6 +20,7 @@ The HOP for commit is focused on learning new things while working on a project,
 - **Opensearch**: I wanted to use ElasticSearch to help me with the limited query capabilities of DynamoDB, this was a perfect opportunity to add this functionality.
 - **React Intl**: I use i18n on the past, but it was a homemade solution, I saw that it was very easy to use this library (but I don't like that you need to build in the messages)
 - **Formik**: This is another functionality that I used to resolve with a homemade solution.
+
 An honorable mention is the fontawesome package, I have used fontawesome, but not in its package form :)
 
 # Stack and Architecture
@@ -89,6 +90,7 @@ Build resources
 Hardcoded resources:
  - Certificate - *.ua-wck.com, create and destroy certificated limits are very narrow, I hope that this will cover all certificate needs.
  - Hosted Zone - This is going to be created by hand and referred by the CloudFront templates to create the RecordSets
+ - Utils bucket - A private S3 bucket (ua-wck-utils) will be manually created as a helper
 
 # Development flow
 
