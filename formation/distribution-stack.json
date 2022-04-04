@@ -106,15 +106,6 @@
                 "isassociatedwith": [
                     "461dca28-584d-4393-a39c-33d6c1553f58"
                 ]
-            },
-            "1b0a0c79-7fd5-4379-93a5-a446b7051f5c": {
-                "source": {
-                    "id": "461dca28-584d-4393-a39c-33d6c1553f58"
-                },
-                "target": {
-                    "id": "d7e88c58-b23d-4069-a554-5843f359a26b"
-                },
-                "z": 11
             }
         }
     },
@@ -181,7 +172,7 @@
                             {
                                 "EventType": "origin-request",
                                 "LambdaFunctionARN": {
-                                    "Ref": "OriginRequestFunctionVersion"
+                                    "Ref": "OriginRequestFunctionVersionxPARAMxSCOPExVERSIONxHASH"
                                 }
                             }
                         ],
@@ -376,12 +367,19 @@
         "OriginRequestFunction": {
             "Type": "AWS::Lambda::Function",
             "Properties": {
+                "FunctionName": {
+                    "Fn::Sub": "origin-request-${AWS::StackName}"
+                },
                 "Description": "Request origin resolver for SPA and static resources.\n",
                 "Code": {
-                    "ZipFile": "const path = require('path');\nexports.handler = async (event) => {\n  var request = event.Records[0].cf.request;\n return request;\n};\n"
+                    "S3Bucket": "ua-wck-utils",
+                    "S3Key": {
+                        "Fn::Sub": "${ScopeName}/${ScopeVersion}/origin-request/payload.zip"
+                    }
                 },
                 "Handler": "index.handler",
                 "MemorySize": 128,
+                "Timeout": 5,
                 "Role": {
                     "Fn::Sub": "${LambdaFunctionExecRole.Arn}"
                 },
@@ -391,6 +389,12 @@
                         "Key": "ScopeName",
                         "Value": {
                             "Ref": "ScopeName"
+                        }
+                    },
+                    {
+                        "Key": "ScopeVersion",
+                        "Value": {
+                            "Ref": "ScopeVersion"
                         }
                     }
                 ]
@@ -434,14 +438,14 @@
                 }
             }
         },
-        "OriginRequestFunctionVersion": {
+        "OriginRequestFunctionVersionxPARAMxSCOPExVERSIONxHASH": {
             "Type": "AWS::Lambda::Version",
             "Properties": {
                 "FunctionName": {
                     "Ref": "OriginRequestFunction"
                 },
                 "Description": {
-                    "Fn::Sub": "Origin request for ${ScopeName}"
+                    "Fn::Sub": "Origin request for ${ScopeName} ${ScopeVersion}"
                 }
             },
             "Metadata": {
@@ -454,6 +458,10 @@
     "Parameters": {
         "ScopeName": {
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
+            "Type": "String"
+        },
+        "ScopeVersion": {
+            "Description": "Published version for the scope",
             "Type": "String"
         },
         "ApexDomainName": {

@@ -1,0 +1,19 @@
+{
+  "name": "origin-request",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "author": "Victor Jimenez <vic.jicama@gmail.com>",
+  "dependencies": {
+  },
+  "scripts": {
+    "clean": "rm -Rf ./dist*",
+    "build": "yarn clean && webpack --config webpack.config.js --mode=production",
+    "build:dev": "yarn clean && webpack --config webpack.config.js --mode=development "
+  },
+  "devDependencies": {
+    "webpack": "^5.63.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
