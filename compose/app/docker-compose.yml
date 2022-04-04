@@ -1,0 +1,39 @@
+version: '3'
+
+networks: 
+  default: 
+    external: 
+      name: ua-wck-network 
+services:
+  backend:
+    environment:
+      - ENV_MODE=prod
+      - PORT_SERVICE=4000
+      - DATA_URL=data:5432
+      - DATABASE_URL=postgres://postgres@data:5432/prod-data
+      - SEARCH_URL=http://admin:admin@opensearch-node:9200
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+  backend-static:
+    environment:
+      - DATA_URL=data:5432
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"
+  nginx:
+    depends_on:
+      - backend
+      - backend-static
+    ports:
+      - "80:80"
+      - "443:443"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"

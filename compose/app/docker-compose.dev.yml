@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ../../backend
+    environment:
+      - ENV_MODE=prod
+      - PORT_SERVICE=4000
+      - DATA_URL=data:5432
+      - DATABASE_URL=postgres://postgres@data:5432/prod-data
+      - SEARCH_URL=http://admin:admin@opensearch-node:9200
+    volumes:
+      - ../../backend:/app
+  backend-static:
+    build:
+      context: ../../backend-static
+    volumes:
+      - ../../backend-static:/app
+  nginx:
+    build:
+      context: ../../nginx
+    volumes:
+      - ../../nginx/log/:/var/log
+      - ../../nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ../../nginx/sites/:/etc/nginx/sites-available
+    extra_hosts:
+      - "hostdev:172.17.0.1"
+

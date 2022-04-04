@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  backend:
+    image: repoflow/ua-wck-backend:latest
+    environment:
+      - ENV_MODE=prod
+      - PORT_SERVICE=4000
+      - DATA_URL=data:5432
+      - DATABASE_URL=postgres://postgres@data:5432/prod-data
+      - SEARCH_URL=http://admin:admin@opensearch-node:9200
+  backend-static:
+    image: repoflow/ua-wck-backend-static:latest
+  nginx:
+    image: repoflow/ua-wck-proxy:latest
+
