@@ -8,6 +8,7 @@ const FrontendStep = require("./steps/frontend")
 const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
 const OriginRequestStep = require("./steps/origin-request")
+const ProxyStep = require("./steps/proxy")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
@@ -40,10 +41,12 @@ const outputPath = `/media/victor/helper/build/${scope}/${version}`;
     // ENV
     await command(`mkdir -p ${outputPath}`);
 
+    await ProxyStep.step(cxt);
     await FormationStep.step(cxt);
     await FrontendStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);
+    
 
 })()

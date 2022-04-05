@@ -24,7 +24,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`cp ${path.join(backendPath, "dist/index.js")} ${path.join(backendOutputPath, "dist/index.js")} `);
     //await command(`cp ${path.join(backendPath, "Dockerfile")} ${path.join(backendOutputPath, "Dockerfile")} `);
     await copyWithActiveSegment(`${path.join(backendPath, "Dockerfile")}`, `${path.join(backendOutputPath, "Dockerfile")}`, "prod");
-    await command(`docker build -t ua-wck-backend .`, { cwd: backendOutputPath });
+    await command(`docker build --no-cache -t ua-wck-backend .`, { cwd: backendOutputPath });
 
 
 }

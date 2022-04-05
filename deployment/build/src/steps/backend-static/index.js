@@ -26,7 +26,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`cp ${path.join(backendStaticPath, "next.config.js")} ${path.join(backendStaticOutputPath, "next.config.js")} `);
     await command(`yarn install --production`, { cwd: backendStaticOutputPath });
     await copyWithActiveSegment(`${path.join(backendStaticPath, "Dockerfile")}`, `${path.join(backendStaticOutputPath, "Dockerfile")}`, "prod");
-    await command(`docker build -t ua-wck-backend-static .`, { cwd: backendStaticOutputPath });
+    await command(`docker build --no-cache -t ua-wck-backend-static .`, { cwd: backendStaticOutputPath });
 
 
 }
