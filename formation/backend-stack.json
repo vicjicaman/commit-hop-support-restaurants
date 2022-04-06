@@ -88,14 +88,150 @@
             "Properties": {
                 "ImageId": "ami-0d5eff06f840b45e9",
                 "InstanceType": "t2.micro",
-                "KeyName": "default",
+                "KeyName": "defaultKey",
                 "SecurityGroups": [
                     {
                         "Ref": "BackendInstanceSecurityGroup"
                     }
-                ]
+                ],
+                "UserData": {
+                    "Fn::Base64": {
+                        "Fn::Join": [
+                            "",
+                            [
+                                "#!/bin/bash -xe\n",
+                                "# create mount point directory\n",
+                                "mkdir /mnt/xvdh\n",
+                                "# create ext4 filesystem on new volume\n",
+                                "mkfs -t ext4 /dev/xvdh\n",
+                                "# add an entry to fstab to mount volume during boot\n",
+                                "echo \"/dev/xvdh       /mnt/xvdh   ext4    defaults,nofail 0       2\" >> /etc/fstab\n",
+                                "# mount the volume on current boot\n",
+                                "mount -a\n",
+                                "# Get the latest CloudFormation package\n",
+                                "yum update -y aws-cfn-bootstrap\n",
+                                "# Start cfn-init\n",
+                                {
+                                    "Fn::Sub": "/opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource BackendInstance --configsets default --region ${AWS::Region} \n"
+                                },
+                                "# Start up the cfn-hup daemon to listen for changes to the Web Server metadata\n",
+                                "/opt/aws/bin/cfn-hup || error_exit 'Failed to start cfn-hup'\n",
+                                "# All done so signal success\n",
+                                {
+                                    "Fn::Sub": "/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource BackendInstance --region ${AWS::Region} \n"
+                                }
+                            ]
+                        ]
+                    }
+                }
             },
             "Metadata": {
+                "AWS::CloudFormation::Init": {
+                    "configSets": {
+                        "default": [
+                            "cloud-init",
+                            "install_docker",
+                            "download_compose",
+                            "install_compose"
+                        ]
+                    },
+                    "cloud-init": {
+                        "files": {
+                            "/etc/cfn/cfn-hup.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[main]\n",
+                                            "stack=",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            },
+                                            "\n",
+                                            "region=",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n"
+                                        ]
+                                    ]
+                                },
+                                "mode": "000400",
+                                "owner": "root",
+                                "group": "root"
+                            },
+                            "/etc/cfn/hooks.d/cfn-auto-reloader.conf": {
+                                "content": {
+                                    "Fn::Join": [
+                                        "",
+                                        [
+                                            "[cfn-auto-reloader-hook]\n",
+                                            "triggers=post.update\n",
+                                            "path=Resources.BackendInstance.Metadata.AWS::CloudFormation::Init\n",
+                                            "action=/opt/aws/bin/cfn-init -s ",
+                                            {
+                                                "Ref": "AWS::StackId"
+                                            },
+                                            " -r BackendInstance ",
+                                            " --region     ",
+                                            {
+                                                "Ref": "AWS::Region"
+                                            },
+                                            "\n",
+                                            "runas=root\n"
+                                        ]
+                                    ]
+                                }
+                            }
+                        },
+                        "services": {
+                            "sysvinit": {
+                                "cfn-hup": {
+                                    "enabled": "true",
+                                    "ensureRunning": "true",
+                                    "files": [
+                                        "/etc/cfn/cfn-hup.conf",
+                                        "/etc/cfn/hooks.d/cfn-auto-reloader.conf"
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "install_docker": {
+                        "packages": {
+                            "yum": {
+                                "docker": []
+                            }
+                        },
+                        "services": {
+                            "sysvinit": {
+                                "docker": {
+                                    "enabled": "true",
+                                    "ensureRunning": "true"
+                                }
+                            }
+                        },
+                        "commands": {
+                            "docker_for_ec2_user": {
+                                "command": "usermod -G docker ec2-user"
+                            }
+                        }
+                    },
+                    "download_compose": {
+                        "commands": {
+                            "compose_for_ec2_user": {
+                                "command": "curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose"
+                            }
+                        }
+                    },
+                    "install_compose": {
+                        "commands": {
+                            "compose_chmod": {
+                                "command": "chmod +x /usr/local/bin/docker-compose;ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose"
+                            }
+                        }
+                    }
+                },
                 "AWS::CloudFormation::Designer": {
                     "id": "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
                 }
@@ -257,6 +393,10 @@
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
             "Type": "String"
         },
+        "ScopeVersion": {
+            "Description": "Published version for the scope",
+            "Type": "String"
+        },
         "ApexDomainName": {
             "Description": "Apex domain (always ua-wck.com)",
             "Type": "String"
@@ -269,6 +409,34 @@
         "HostedZoneId": {
             "Description": "Hosted Zone ID for ua-wck.com",
             "Type": "String"
+        }
+    },
+    "Outputs": {
+        "WebsiteURL": {
+            "Description": "Application URL",
+            "Value": {
+                "Fn::Join": [
+                    "",
+                    [
+                        "http://",
+                        {
+                            "Fn::GetAtt": [
+                                "BackendInstance",
+                                "PublicDnsName"
+                            ]
+                        }
+                    ]
+                ]
+            }
+        },
+        "PublicIP": {
+            "Description": "BackendInstance Public IP",
+            "Value": {
+                "Fn::GetAtt": [
+                    "BackendInstance",
+                    "PublicIp"
+                ]
+            }
         }
     }
 }
