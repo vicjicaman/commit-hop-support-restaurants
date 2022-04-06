@@ -1,5 +1,4 @@
 const { logger, command, copyWithActiveSegment } = require("../../utils")
-const fs = require('fs').promises;
 const path = require("path");
 
 const enabled = true;

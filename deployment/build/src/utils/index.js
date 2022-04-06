@@ -2,6 +2,7 @@ const path = require("path");
 const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const fs = require('fs').promises;
+const ejs = require("ejs");
 
 const logger = { info: msg => console.log(msg), debug: msg => console.log(msg) }
 
@@ -28,6 +29,14 @@ const buildParamTemplate = async (inputFilename, outputFolder, params) => {
 
     await fs.writeFile(path.join(outputFolder, basename), input, 'utf8');
 }
+
+
+const renderTemplate = async (filename, outputFilename, data) => {
+    const input = await fs.readFile(filename, 'utf8');
+    const res = ejs.render(input, data)
+    await fs.writeFile(outputFilename, res, 'utf8');
+}
+
 
 
 const copyWithActiveSegment = async (filename, outputFilename, block = "prod", cxt) => {
@@ -66,4 +75,10 @@ const copyWithActiveSegment = async (filename, outputFilename, block = "prod", c
 
 }
 
-module.exports = { logger, command, copyWithActiveSegment, buildParamTemplate }
+module.exports = {
+    logger,
+    command,
+    copyWithActiveSegment,
+    buildParamTemplate,
+    renderTemplate
+}

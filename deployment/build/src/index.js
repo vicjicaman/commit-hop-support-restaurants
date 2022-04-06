@@ -9,10 +9,11 @@ const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
 const OriginRequestStep = require("./steps/origin-request")
 const ProxyStep = require("./steps/proxy")
+const ComposeAppStep = require("./steps/compose-app")
+const ComposeDataStep = require("./steps/compose-data")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
-
 
 const rootPath = "../..";
 const commonPath = path.join(rootPath, "common")
@@ -47,6 +48,8 @@ const outputPath = `/media/victor/helper/build/${scope}/${version}`;
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);
+    await ComposeAppStep.step(cxt);
+    await ComposeDataStep.step(cxt);
     
 
 })()
