@@ -38,7 +38,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 150,
+                    "x": 230,
                     "y": 150
                 },
                 "z": 0,
@@ -79,6 +79,33 @@
                     "id": "09c44c6c-5566-4dd4-a91c-6a872e0ea03e"
                 },
                 "z": 0
+            },
+            "bc6b770f-8025-4d05-bd6b-ba3f146bf728": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 340,
+                    "y": 30
+                },
+                "z": 0,
+                "embeds": [],
+                "isassociatedwith": [
+                    "ecd7610f-a3ed-4a3e-aa7f-9842a6756e61"
+                ]
+            },
+            "ecd7610f-a3ed-4a3e-aa7f-9842a6756e61": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 430,
+                    "y": -20
+                },
+                "z": 0,
+                "embeds": []
             }
         }
     },
@@ -87,8 +114,11 @@
             "Type": "AWS::EC2::Instance",
             "Properties": {
                 "ImageId": "ami-0d5eff06f840b45e9",
-                "InstanceType": "t2.micro",
+                "InstanceType": "t2.medium",
                 "KeyName": "defaultKey",
+                "IamInstanceProfile": {
+                    "Ref": "BackendInstanceProfile"
+                },
                 "SecurityGroups": [
                     {
                         "Ref": "BackendInstanceSecurityGroup"
@@ -100,14 +130,25 @@
                             "",
                             [
                                 "#!/bin/bash -xe\n",
-                                "# create mount point directory\n",
-                                "mkdir /mnt/xvdh\n",
-                                "# create ext4 filesystem on new volume\n",
-                                "mkfs -t ext4 /dev/xvdh\n",
-                                "# add an entry to fstab to mount volume during boot\n",
-                                "echo \"/dev/xvdh       /mnt/xvdh   ext4    defaults,nofail 0       2\" >> /etc/fstab\n",
-                                "# mount the volume on current boot\n",
-                                "mount -a\n",
+                                "## See: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-using-volumes.html\n",
+                                "EC2_INSTANCE_ID=$(curl -s http://instance-data/latest/meta-data/instance-id)\n",
+                                "######################################################################\n",
+                                "# Volume /dev/sdh (which will get created as /dev/xvdh on Amazon Linux)\n",
+                                "DATA_STATE=\"unknown\"\n",
+                                "until [ \"${DATA_STATE}\" == \"attached\" ]; do\n",
+                                {
+                                    "Fn::Sub": "  DATA_STATE=$(aws ec2 describe-volumes \\\n    --region ${AWS::Region} \\\n    --filters \\\n        Name=attachment.instance-id,Values=${!EC2_INSTANCE_ID} \\\n        Name=attachment.device,Values=/dev/sdh \\\n    --query Volumes[].Attachments[].State \\\n    --output text)\n "
+                                },
+                                "  sleep 5\n",
+                                "done\n",
+                                "# Format /dev/xvdh if it does not contain a partition yet\n",
+                                "if [ \"$(file -b -s /dev/xvdh)\" == \"data\" ]; then\n",
+                                "  mkfs -t ext4 /dev/xvdh\n",
+                                "fi\n",
+                                "mkdir -p /data\n",
+                                "mount /dev/xvdh /data\n",
+                                "# Persist the volume in /etc/fstab so it gets mounted again\n",
+                                "echo '/dev/xvdh /data ext4 defaults,nofail 0 2' >> /etc/fstab\n",
                                 "# Get the latest CloudFormation package\n",
                                 "yum update -y aws-cfn-bootstrap\n",
                                 "# Start cfn-init\n",
@@ -116,6 +157,10 @@
                                 },
                                 "# Start up the cfn-hup daemon to listen for changes to the Web Server metadata\n",
                                 "/opt/aws/bin/cfn-hup || error_exit 'Failed to start cfn-hup'\n",
+                                "mkdir /data/data\n",
+                                "mkdir /data/search-data\n",
+                                "chown -R 1001:1001 /data/data/\n",
+                                "chown -R 1000:1000 /data/search-data/\n",
                                 "# All done so signal success\n",
                                 {
                                     "Fn::Sub": "/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource BackendInstance --region ${AWS::Region} \n"
@@ -298,14 +343,11 @@
                         ]
                     ]
                 },
-                "TTL": "300",
+                "TTL": "120",
                 "Type": "A",
                 "ResourceRecords": [
                     {
-                        "Fn::GetAtt": [
-                            "BackendInstance",
-                            "PublicIp"
-                        ]
+                        "Ref": "BackendPublicIP"
                     }
                 ]
             },
@@ -384,6 +426,70 @@
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "28dd2f7d-0608-4534-9696-93981074c94f"
+                }
+            }
+        },
+        "BackendInstanceProfile": {
+            "Type": "AWS::IAM::InstanceProfile",
+            "Properties": {
+                "InstanceProfileName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "backend-instance-profile",
+                            {
+                                "Ref": "ScopeName"
+                            }
+                        ]
+                    ]
+                },
+                "Path": "/",
+                "Roles": [
+                    {
+                        "Ref": "BackendRole"
+                    }
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "bc6b770f-8025-4d05-bd6b-ba3f146bf728"
+                }
+            }
+        },
+        "BackendRole": {
+            "Type": "AWS::IAM::Role",
+            "Properties": {
+                "RoleName": {
+                    "Fn::Join": [
+                        "-",
+                        [
+                            "backend-role",
+                            {
+                                "Ref": "ScopeName"
+                            }
+                        ]
+                    ]
+                },
+                "AssumeRolePolicyDocument": {
+                    "Version": "2012-10-17",
+                    "Statement": [
+                        {
+                            "Effect": "Allow",
+                            "Action": "sts:AssumeRole",
+                            "Principal": {
+                                "AWS": "*"
+                            }
+                        }
+                    ]
+                },
+                "ManagedPolicyArns": [
+                    "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess",
+                    "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+                ]
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "ecd7610f-a3ed-4a3e-aa7f-9842a6756e61"
                 }
             }
         }
