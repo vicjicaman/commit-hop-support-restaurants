@@ -12,5 +12,7 @@ services:
   backend-static:
     image: repoflow/ua-wck-backend-static:<%= scope %>-<%= version %>
   nginx:
+    volumes:
+      - ./certificates/:/certificates
     image: repoflow/ua-wck-proxy:<%= scope %>-<%= version %>
 

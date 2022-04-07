@@ -19,7 +19,6 @@ CMD ["dev"]
 
 #BLOCK|prod
 
-#COPY --chown=node:node ./node_modules /app/node_modules
 #COPY --chown=node:node ./next.config.js /app/next.config.js
 #COPY --chown=node:node ./package.json /app/package.json
 #COPY --chown=node:node ./.next/standalone /app/
@@ -30,7 +29,7 @@ CMD ["dev"]
 #ENV NODE_ENV production
 #ENV NEXT_TELEMETRY_DISABLED 1
 #ENTRYPOINT ["node"]
-#CMD ["/app/index.js"]
+#CMD ["/app/server.js"]
 #prod
 
 
