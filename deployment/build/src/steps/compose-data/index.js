@@ -9,16 +9,16 @@ const step = async ({ outputPath, rootPath, scope, version }) => {
         return
     }
 
-    logger.info("Compose app step")
+    logger.info("Compose data step")
     const sourcePath = path.join(rootPath, "compose/data")
     const targetPath = path.join(outputPath, "compose-data");
     await command(`rm -rf ${targetPath}`);
     await command(`mkdir -p ${targetPath}`);
 
-    const basefile = path.join(sourcePath, "docker-compose.yml")
-    await renderTemplate(`${basefile}`, `${basefile}`, { scope, version })
-    const prodfile = path.join(sourcePath, "docker-compose.prod.yml")
-    await renderTemplate(`${prodfile}`, `${prodfile}`, { scope, version })
+    const basefile = "docker-compose.yml"
+    await renderTemplate(path.join(sourcePath, basefile), path.join(targetPath, basefile), { scope, version })
+    const prodfile = "docker-compose.prod.yml"
+    await renderTemplate(path.join(sourcePath, prodfile), path.join(targetPath, prodfile), { scope, version })
 
 }
 

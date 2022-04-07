@@ -86,6 +86,9 @@ Build resources
  - Docker image for {{www}}-backend
  - Docker image for {{www}}-backend-static
  - New lambda@edge version for distribution
+ - Versioned compose from template
+ - Cloudformation templates
+ - Lambda code to s3
 
 Hardcoded resources:
  - Certificate - *.ua-wck.com, create and destroy certificated limits are very narrow, I hope that this will cover all certificate needs.
@@ -110,6 +113,8 @@ This is the video of the HOP presentation that I did during my first weeks at co
 # For the future
 
 I am planning to modify this project to show the border distribution points and find a long term way to make this project live.
-I was thinking of adding a static tweeter wall of love for tweets that support the Ukraine refugees and WCK.
+
+I was thinking of adding a static tweeter wall for tweets that support the Ukraine refugees and WCK.
+
 I am also planning to separate the boilerplate structure for future quick MVP projects.
 
