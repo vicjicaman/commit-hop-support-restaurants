@@ -6,5 +6,5 @@ services:
       - '/home/victor/commit/user-data/data/data:/bitnami/postgresql'
   opensearch-node:
     volumes:
-      - /home/victor/commit/user-data/data/search-data:/usr/share/opensearch/data
+      - '/home/victor/commit/user-data/data/search-data:/usr/share/opensearch/data'
 

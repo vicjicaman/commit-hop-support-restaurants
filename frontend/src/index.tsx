@@ -9,8 +9,10 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Component as ListingSection } from "./sections/listing";
 
+const SCOPE = process.env.REACT_APP_SCOPE;
+
 const client = new ApolloClient({
-  uri: "http://www.commit-hop.test/backend/graphql",
+  uri: `https://${SCOPE}-api.ua-wck.com/backend/graphql`,
   cache: new InMemoryCache(),
 });
 
