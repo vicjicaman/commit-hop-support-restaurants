@@ -12,9 +12,7 @@ services:
     environment:
       ALLOW_EMPTY_PASSWORD: 'yes'
       POSTGRES_USER: user
-      POSTGRES_DB: prod-data
-    volumes:
-      - './data:/bitnami/postgresql'
+      POSTGRES_DB: data
     logging:
       driver: "json-file"
       options:
@@ -37,8 +35,6 @@ services:
       nofile:
         soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
         hard: 65536
-    volumes:
-      - ./search-data:/usr/share/opensearch/data
     ports:
       - 9200:9200
       - 9600:9600 # required for Performance Analyzer

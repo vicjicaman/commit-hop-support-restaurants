@@ -9,9 +9,9 @@ const { makeExecutableSchema } = require("graphql-tools");
 const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
 const awilix = require("awilix");
-
 //import search from "utils/search";
 import { schema, resolvers } from "./gateway";
+import initialize from "./initialize"
 
 import LoggerDriver from "common/drivers/logger";
 import DatabaseDriver from "drivers/db";
@@ -92,10 +92,11 @@ try {
     const schemaObj = prepare(schema, resolvers)
     const schemaWithMiddleware = applyMiddleware(schemaObj, logResolver)
 
+    cxt.container = container;
 
     const server = new ApolloServer({
       schema: schemaWithMiddleware,
-      context: { container },
+      context: cxt,
     });
     await server.start();
 
@@ -136,6 +137,10 @@ try {
 
       res.send(JSON.stringify(list));
     });*/
+
+
+    await initialize(cxt);
+
 
     console.log("Listen port " + PORT_SERVICE);
     app.listen({ port: PORT_SERVICE }, () => console.log("Node running."));
