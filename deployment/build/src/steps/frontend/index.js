@@ -4,7 +4,7 @@ const path = require("path");
 
 const enabled = true;
 
-const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath }) => {
+const step = async ({ outputPath, rootPath, componentsPath, scope }) => {
 
     if (!enabled) {
         return
@@ -19,7 +19,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`mkdir -p ${frontendCommonPath}`);
     await command(`cp -r ${componentsPath}/* ${frontendCommonPath}`);
     await command(`yarn install`, { cwd: frontendPath });
-    await command(`yarn build`, { cwd: frontendPath });
+    await command(`REACT_APP_SCOPE=${scope} yarn build`, { cwd: frontendPath });
     await command(`mv ${path.join(frontendPath, "build")} ${frontendOutputPath}`);
 
 }

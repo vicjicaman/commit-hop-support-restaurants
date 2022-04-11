@@ -27,7 +27,9 @@ const options = [
   { lang: "de", flag: "de", label: "German" },
   { lang: "hu", flag: "hu", label: "Hungarian" },
 ];
-const flagUrl = (flag) => `/backend/static/flags/${flag}.png`;
+
+const SCOPE = process.env.REACT_APP_SCOPE || process.env.NEXT_PUBLIC_SCOPE || "dev";
+const flagUrl = (flag) => `https://${SCOPE}.ua-wck.com/flags/${flag}.png`;
 
 export const Selector = ({ lang: current }) => {
   const currFlag = _.find(options, { lang: current });
