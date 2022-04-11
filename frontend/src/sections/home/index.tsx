@@ -23,7 +23,7 @@ function LocationMarker({ setPosition, position }: any) {
       //console.log(e.latlng);
       setPosition(e.latlng);
     },
-    locationfound(e: any) {},
+    locationfound(e: any) { },
   });
 
   var greenIcon = new L.Icon({
@@ -133,70 +133,59 @@ export const Component = () => {
   /*Add debounce to height changes*/
   /*Get top of map and substract it from the total height, set 70 for the demo*/
   return (
-    <>
-      <MapContainer
-        key={height}
-        style={{ height: height - 70 + "px" }}
-        center={initPosition}
-        zoom={8}
-      >
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+    <MapContainer
+      key={height}
+      style={{ height: height - 70 + "px" }}
+      center={initPosition}
+      zoom={8}
+    >
+      <TileLayer
+        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
 
-        <LocationMarker position={position} setPosition={setPosition} />
+      <LocationMarker position={position} setPosition={setPosition} />
 
-        {position ? (
-          <Markers position={position} />
-        ) : (
-          <div
-            style={{
-              position: "absolute",
-              width: 500,
-              height: 500,
-              top: 0,
-              right: 20,
-              zIndex: 500,
-            }}
-          >
-            <Container className="bg-white m-2 p-2">
-              <Row className="p-1 text-center text-capitalize">
-                <Col>
-                  <h5>
-                    <FormattedMessage id="app.nearest-restaurants" />
-                  </h5>
-                </Col>
-              </Row>
-              <Row>
-                <Col>
-                  <p>
-                    <FormattedMessage id="msg.welcome" />
-                  </p>
-                  <p>
-                    <FormattedMessage id="msg.search" />
-                  </p>
-                  <p>
-                    <FormattedMessage id="msg.admin" />
-                  </p>
-                  <p>
-                    <FormattedMessage id="msg.donate" />
-                  </p>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        )}
-      </MapContainer>
-    </>
+      {position ? (
+        <Markers position={position} />
+      ) : (
+        <div
+          style={{
+            position: "absolute",
+            width: 500,
+            height: 500,
+            top: 0,
+            right: 20,
+            zIndex: 500,
+          }}
+        >
+          <Container className="bg-white m-2 p-2">
+            <Row className="p-1 text-center text-capitalize">
+              <Col>
+                <h5>
+                  <FormattedMessage id="app.nearest-restaurants" />
+                </h5>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <p>
+                  <FormattedMessage id="msg.welcome" />
+                </p>
+                <p>
+                  <FormattedMessage id="msg.search" />
+                </p>
+                <p>
+                  <FormattedMessage id="msg.admin" />
+                </p>
+                <p>
+                  <FormattedMessage id="msg.donate" />
+                </p>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      )}
+    </MapContainer>
   );
 };
-/*
-const {
-  viewer: {
-    account: {
-      restaurants: { find },
-    },
-  },
-} = data;
-*/
