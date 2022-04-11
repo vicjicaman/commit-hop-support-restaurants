@@ -19,6 +19,7 @@ CMD ["/app/node_modules/nodemon/bin/nodemon.js", "-L", "/app/dist/index.js", "--
 
 #BLOCK|prod
 #COPY --chown=node:node ./node_modules /app/node_modules
+#COPY --chown=node:node ./migrations /app/migrations
 #COPY --chown=node:node ./package.json /app/package.json
 #COPY --chown=node:node ./dist/index.js /app/dist/index.js
 #ENV NODE_ENV production
