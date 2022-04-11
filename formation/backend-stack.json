@@ -157,10 +157,7 @@
                                 },
                                 "# Start up the cfn-hup daemon to listen for changes to the Web Server metadata\n",
                                 "/opt/aws/bin/cfn-hup || error_exit 'Failed to start cfn-hup'\n",
-                                "mkdir /data/data\n",
-                                "mkdir /data/search-data\n",
-                                "chown -R 1001:1001 /data/data/\n",
-                                "chown -R 1000:1000 /data/search-data/\n",
+                                "\n",
                                 "# All done so signal success\n",
                                 {
                                     "Fn::Sub": "/opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackName} --resource BackendInstance --region ${AWS::Region} \n"
@@ -175,9 +172,15 @@
                     "configSets": {
                         "default": [
                             "cloud-init",
+                            "init_folders",
+                            "init_owners",
                             "install_docker",
                             "download_compose",
-                            "install_compose"
+                            "install_compose",
+                            "create_network",
+                            "sync",
+                            "compose_data",
+                            "compose_app"
                         ]
                     },
                     "cloud-init": {
@@ -242,6 +245,29 @@
                             }
                         }
                     },
+                    "init_folders": {
+                        "commands": {
+                            "home_app": {
+                                "command": "mkdir -p /home/ec2-user/app >/dev/null 2>&1"
+                            },
+                            "data_db": {
+                                "command": "mkdir -p /data/data >/dev/null 2>&1"
+                            },
+                            "data_search": {
+                                "command": "mkdir -p /data/search-data >/dev/null 2>&1"
+                            }
+                        }
+                    },
+                    "init_owners": {
+                        "commands": {
+                            "data_db_own": {
+                                "command": "chown -R 1001:1001 /data/data/"
+                            },
+                            "data_search_own": {
+                                "command": "chown -R 1000:1000 /data/search-data/"
+                            }
+                        }
+                    },
                     "install_docker": {
                         "packages": {
                             "yum": {
@@ -273,6 +299,44 @@
                         "commands": {
                             "compose_chmod": {
                                 "command": "chmod +x /usr/local/bin/docker-compose;ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose"
+                            }
+                        }
+                    },
+                    "create_network": {
+                        "commands": {
+                            "compose_chmod": {
+                                "command": "docker network inspect ua-wck-network >/dev/null 2>&1 || docker network create ua-wck-network"
+                            }
+                        }
+                    },
+                    "sync": {
+                        "commands": {
+                            "compose_app_sync": {
+                                "command": {
+                                    "Fn::Sub": "aws s3 sync s3://ua-wck-utils/${ScopeName}/${ScopeVersion}/compose-app /home/ec2-user/app/compose/app"
+                                }
+                            },
+                            "compose_data_sync": {
+                                "command": {
+                                    "Fn::Sub": "aws s3 sync s3://ua-wck-utils/${ScopeName}/${ScopeVersion}/compose-data /home/ec2-user/app/compose/data"
+                                }
+                            },
+                            "certificate": {
+                                "command": "aws s3 sync s3://ua-wck-utils/certificates/ua-wck.com /home/ec2-user/app/compose/app/certificates/ua-wck.com"
+                            }
+                        }
+                    },
+                    "compose_data": {
+                        "commands": {
+                            "docker_compose_data": {
+                                "command": "cd /home/ec2-user/app/compose/data; docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
+                            }
+                        }
+                    },
+                    "compose_app": {
+                        "commands": {
+                            "docker_compose_app": {
+                                "command": "cd /home/ec2-user/app/compose/app; docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d"
                             }
                         }
                     }
