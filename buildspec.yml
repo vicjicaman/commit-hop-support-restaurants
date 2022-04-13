@@ -3,6 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
+      - echo "#{SourceVariables.CommitId}"
+      - pwd
+      - ls
+      - echo node -v
       - echo update npm...
       - npm install -g n
       - n latest
@@ -18,12 +22,12 @@ phases:
   pre_build:
     commands:
       - echo Installing source NPM dependencies...
-      - yarn install --cwd ./deployment/build
+      - yarn --cwd ./deployment/build install 
   build:
     commands:
       - echo Build started on `date`
       - echo Compiling the Node.js code
-      - yarn start --cwd ./deployment/build
+      - yarn --cwd ./deployment/build start 
   post_build:
     commands:
       - echo Build completed on `date`
