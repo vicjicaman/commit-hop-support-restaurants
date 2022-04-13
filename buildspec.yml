@@ -3,10 +3,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "#{SourceVariables.CommitId}"
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - pwd
       - ls
-      - echo node -v
+      - node -v
       - echo update npm...
       - npm install -g n
       - n latest
