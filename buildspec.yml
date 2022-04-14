@@ -1,18 +1,17 @@
 version: 0.2
 
 phases:
+
   install:
+    runtime-versions:
+      nodejs: 16
     commands:
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - pwd
       - ls
-      - node -v
-      - echo update npm...
-      - sudo npm install -g n
-      - n latest
-      - npm update -g npm
       - echo node -v
       - node -v
+      - npm update -g npm
       - echo npm -v
       - npm -v
       - echo install yarn...
