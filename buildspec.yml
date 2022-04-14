@@ -5,6 +5,7 @@ phases:
   install:
     runtime-versions:
       nodejs: 16
+      docker: 18
     commands:
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - pwd
