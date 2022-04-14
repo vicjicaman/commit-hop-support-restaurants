@@ -8,7 +8,7 @@ phases:
       - ls
       - node -v
       - echo update npm...
-      - npm install -g n
+      - sudo npm install -g n
       - n latest
       - npm update -g npm
       - echo node -v
