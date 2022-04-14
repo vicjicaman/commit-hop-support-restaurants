@@ -10,13 +10,17 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
         return
     }
 
-
     logger.info("Backend static step")
     const backendStaticPath = path.join(rootPath, "backend-static")
+    const backendStaticCommonPath = path.join(backendStaticPath, "common");
     const backendStaticOutputPath = path.join(outputPath, "backend-static");
+
     await command(`rm -rf ${backendStaticOutputPath}`);
     await command(`mkdir -p ${backendStaticOutputPath}`);
     await command(`mkdir -p ${backendStaticOutputPath}/.next`);
+    await command(`mkdir -p ${backendStaticCommonPath}`);
+    await command(`cp -r ${componentsPath}/* ${backendStaticCommonPath}`);
+
     await command(`yarn install`, { cwd: backendStaticPath });
     await command(`yarn build`, { cwd: backendStaticPath });
     await command(`cp -r ${path.join(backendStaticPath, ".next")} ${path.join(backendStaticOutputPath)}`);
