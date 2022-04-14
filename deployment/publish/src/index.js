@@ -14,12 +14,13 @@ const ComposeDataStep = require("./steps/compose-data")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
+const BUILD_TARGET_PATH = process.env.BUILD_TARGET_PATH;
 
 const rootPath = "../..";
 const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
 const s3Target = `ua-wck-utils/${scope}/${version}`;
-const outputPath = `/media/victor/helper/build/${scope}/${version}`;
+const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
 
 (async () => {
     // Steps preparation for the Pipeline scripts

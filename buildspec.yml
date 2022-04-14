@@ -29,6 +29,7 @@ phases:
       - docker login
       - echo Installing source NPM dependencies...
       - yarn --cwd ./deployment/build install 
+      - yarn --cwd ./deployment/publish install 
   build:
     commands:
       - echo Build started on `date`
@@ -38,3 +39,4 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Distributing to S3...
+      - yarn --cwd ./deployment/publish start 
