@@ -24,6 +24,11 @@ const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
 const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
 
+if(typeof String.prototype.replaceAll === "undefined") {
+    String.prototype.replaceAll = function(match, replace) {
+       return this.replace(new RegExp(match, 'g'), () => replace);
+    }
+}
 
 (async () => {
     // Steps preparation for the Pipeline scripts
