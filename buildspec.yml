@@ -5,13 +5,14 @@ phases:
   install:
     runtime-versions:
       nodejs: 14
-      docker: 18
     commands:
       - echo $CODEBUILD_RESOLVED_SOURCE_VERSION
       - pwd
       - ls
       - echo node -v
       - node -v
+      - echo docker -v
+      - docker -v
       - npm update -g npm
       - echo npm -v
       - npm -v
