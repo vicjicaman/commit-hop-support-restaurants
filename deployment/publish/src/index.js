@@ -21,7 +21,7 @@ const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
 const s3Target = `ua-wck-utils/${scope}/${version}`;
 const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
-
+ 
 (async () => {
     // Steps preparation for the Pipeline scripts
     console.log(`Publish helper `);
