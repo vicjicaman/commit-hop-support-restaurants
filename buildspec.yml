@@ -20,8 +20,10 @@ phases:
       - npm install -g yarn
       - echo yarn -v
       - yarn -v
+      - mkdir ~/.docker && echo "{\n\t\"auths\": {\n\t\t\"https://index.docker.io/v1/\": {\n\t\t\t\"auth\": \"$DOCKER_AUTH\"\n\t\t}\n\t}\n}" > ~/.docker/config.json  
   pre_build:
     commands:
+      - docker login -u repoflow
       - echo Installing source NPM dependencies...
       - yarn --cwd ./deployment/build install 
   build:
