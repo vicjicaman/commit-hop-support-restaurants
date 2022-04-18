@@ -41,3 +41,7 @@ phases:
 artifacts:
   files:
     - '$BUILD_TARGET_PATH/**/*'
+  exclude-paths: 
+     - ./**/backend
+     - ./**/backend-static
+     - ./**/proxy
