@@ -19,12 +19,12 @@ const command = async (cmd, args, handler) => {
 
 
 const outputArtifact = async (stepName, cxt) => {
-    const { outputPath, version, scope, rootPath, s3Target, artifactOutputPAth } = cxt;
+    const { outputPath, version, scope, rootPath, s3Target, artifactOutputPath } = cxt;
 
     const sourcePath = path.join(outputPath, stepName);
-    const targetPath = path.join(artifactOutputPAth, stepName);
+    const targetPath = path.join(artifactOutputPath, stepName);
 
-    await exec(`mkdir -p ${artifactOutputPAth}`);
+    await exec(`mkdir -p ${artifactOutputPath}`);
     await exec(`cp -r ${sourcePath}/*  ${targetPath}`);
 }
 
