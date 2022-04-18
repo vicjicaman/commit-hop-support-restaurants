@@ -21,7 +21,7 @@ const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
 const s3Target = `ua-wck-utils/${scope}/${version}`;
 const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
-const artifactOutputPath = `${outputPath}/artifact-output`;
+const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
  
 (async () => {
     // Steps preparation for the Pipeline scripts
