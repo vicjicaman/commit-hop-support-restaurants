@@ -40,8 +40,4 @@ phases:
       - yarn --cwd ./deployment/publish start 
 artifacts:
   files:
-    - '$BUILD_TARGET_PATH/**/*'
-  exclude-paths: 
-    - $BUILD_TARGET_PATH/backend/**/*
-    - $BUILD_TARGET_PATH/backend-static/**/*
-    - $BUILD_TARGET_PATH/proxy/**/*
+    - '$BUILD_TARGET_PATH/artifact-output/**/*'

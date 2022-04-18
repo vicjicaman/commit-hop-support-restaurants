@@ -1,18 +1,18 @@
-const { logger, command } = require("../../utils")
+const { logger, outputArtifact, uploadArtifact } = require("../../utils")
 const path = require("path");
 
 const enabled = true;
 
-const step = async ({ outputPath, version, scope, rootPath, s3Target }) => {
+const step = async (cxt) => {
+    const { outputPath, version, scope, rootPath, s3Target } = cxt;
 
     if (!enabled) {
         return
     }
 
     logger.info("Compose App step");
-    const publicationOutput = `${outputPath}/compose-app`;
-    const s3FormationTarget = `${s3Target}/compose-app`;
-    await command(`aws s3 sync ${publicationOutput} s3://${s3FormationTarget}`);
+    await uploadArtifact("compose-app", cxt);
+    await outputArtifact("compose-app", cxt);
 }
 
 module.exports = { step }
