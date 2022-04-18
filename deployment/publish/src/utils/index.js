@@ -22,10 +22,10 @@ const outputArtifact = async (stepName, cxt) => {
     const { outputPath, version, scope, rootPath, s3Target, artifactOutputPath } = cxt;
 
     const sourcePath = path.join(outputPath, stepName);
-    const targetPath = path.join(artifactOutputPath, stepName);
+    //const targetPath = path.join(artifactOutputPath, stepName);
 
     await exec(`mkdir -p ${artifactOutputPath}`);
-    await exec(`cp -r ${sourcePath}/*  ${targetPath}`);
+    await exec(`cp -r ${sourcePath}  ${artifactOutputPath}`);
 }
 
 const uploadArtifact = async (stepName, cxt) => {
