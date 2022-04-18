@@ -42,6 +42,6 @@ artifacts:
   files:
     - '$BUILD_TARGET_PATH/**/*'
   exclude-paths: 
-     - ./**/backend
-     - ./**/backend-static
-     - ./**/proxy
+    - $BUILD_TARGET_PATH/backend/**/*
+    - $BUILD_TARGET_PATH/backend-static/**/*
+    - $BUILD_TARGET_PATH/proxy/**/*
