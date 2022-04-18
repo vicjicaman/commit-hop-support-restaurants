@@ -39,7 +39,6 @@ phases:
       - echo Build completed on `date`
       - yarn --cwd ./deployment/publish start 
 artifacts:
-  name: 'formation'
   files:
-    - 'formation/*'
-  base-directory: 'www/$CODEBUILD_RESOLVED_SOURCE_VERSION'
+    - '**/*'
+  base-directory: '$BUILD_TARGET_PATH'
