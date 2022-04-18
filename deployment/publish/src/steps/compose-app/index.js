@@ -4,7 +4,6 @@ const path = require("path");
 const enabled = true;
 
 const step = async (cxt) => {
-    const { outputPath, version, scope, rootPath, s3Target } = cxt;
 
     if (!enabled) {
         return
