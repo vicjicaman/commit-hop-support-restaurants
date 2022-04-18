@@ -25,7 +25,6 @@ const artifactOutputPath = `${outputPath}/artifact-output`;
  
 (async () => {
     // Steps preparation for the Pipeline scripts
-    console.log(`Publish helper `);
 
     const cxt = {
         outputPath,
@@ -36,7 +35,11 @@ const artifactOutputPath = `${outputPath}/artifact-output`;
         artifactOutputPath
     };
 
+    console.log("Publish helper");
+    console.log(JSON.stringify(cxt, null, 2))
+
     // ENV
+    await command(`mkdir -p ${artifactOutputPath}`);
     await command(`docker login`);
 
     await ComposeAppStep.step(cxt);

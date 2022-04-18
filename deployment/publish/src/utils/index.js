@@ -23,9 +23,7 @@ const outputArtifact = async (stepName, cxt) => {
 
     const sourcePath = path.join(outputPath, stepName);
     //const targetPath = path.join(artifactOutputPath, stepName);
-
-    await exec(`mkdir -p ${artifactOutputPath}`);
-    await exec(`cp -r ${sourcePath}  ${artifactOutputPath}`);
+    await command(`cp -r ${sourcePath}  ${artifactOutputPath}`);
 }
 
 const uploadArtifact = async (stepName, cxt) => {
