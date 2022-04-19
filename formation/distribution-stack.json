@@ -363,7 +363,7 @@
                 "CodeUri": {
                     "Bucket": "ua-wck-utils",
                     "Key": {
-                        "Fn::Sub": "${ScopeName}/${ScopeVersion}/origin-request/payload.zip"
+                        "Fn::Sub": "${ScopeName}/PARAMxSCOPExVERSION/origin-request/payload.zip"
                     }
                 },
                 "Handler": "index.handler",
@@ -417,10 +417,6 @@
     "Parameters": {
         "ScopeName": {
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
-            "Type": "String"
-        },
-        "ScopeVersion": {
-            "Description": "Published version for the scope",
             "Type": "String"
         },
         "ApexDomainName": {
