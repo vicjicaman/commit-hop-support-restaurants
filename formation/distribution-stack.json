@@ -363,7 +363,7 @@
                 "CodeUri": {
                     "Bucket": "ua-wck-utils",
                     "Key": {
-                        "Fn::Sub": "${ScopeName}/PARAMxSCOPExVERSION/origin-request/payload.zip"
+                        "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/origin-request/payload.zip"
                     }
                 },
                 "Handler": "index.handler",
