@@ -21,15 +21,18 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     const versionHash = md5(version);
     logger.info("Version hash " + versionHash);
 
+    const params = { "SCOPExVERSIONxHASH": versionHash, "SCOPExVERSION": version };
+    
     await buildParamTemplate(
         path.join(formationPath, "distribution-stack.json"),
         formationOutputPath,
-        { "SCOPExVERSIONxHASH": versionHash })
+        params
+        )
 
     await buildParamTemplate(
         path.join(formationPath, "backend-stack.json"),
         formationOutputPath,
-        { "SCOPExVERSIONxHASH": versionHash })
+        params)
 
 }
 

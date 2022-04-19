@@ -535,6 +535,10 @@
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
             "Type": "String"
         },
+        "ScopeVersion": {
+            "Description": "Published version for the scope",
+            "Type": "String"
+        },
         "ApexDomainName": {
             "Description": "Apex domain (always ua-wck.com)",
             "Type": "String"

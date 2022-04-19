@@ -1,10 +1,11 @@
-const { logger, command } = require("../../utils")
+const { logger, command, outputArtifact } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 
 const enabled = true;
 
-const step = async ({ outputPath, version, scope, s3Target }) => {
+const step = async (cxt) => {
+    const { outputPath, version, scope, s3Target } = cxt;
 
     if (!enabled) {
         return
@@ -22,6 +23,8 @@ const step = async ({ outputPath, version, scope, s3Target }) => {
     await command(
         `aws s3 cp --cache-control 'max-age=60' ${frontendOutput}/index.html s3://${s3FrontendTarget}/`
     );
+
+    await outputArtifact("frontend", cxt);
 }
 
 module.exports = { step }

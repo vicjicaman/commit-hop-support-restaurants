@@ -14,26 +14,32 @@ const ComposeDataStep = require("./steps/compose-data")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
+const BUILD_TARGET_PATH = process.env.BUILD_TARGET_PATH;
 
 const rootPath = "../..";
 const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
 const s3Target = `ua-wck-utils/${scope}/${version}`;
-const outputPath = `/media/victor/helper/build/${scope}/${version}`;
-
+const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
+const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
+ 
 (async () => {
     // Steps preparation for the Pipeline scripts
-    console.log(`Publish helper `);
 
     const cxt = {
         outputPath,
         rootPath,
         scope,
         version,
-        s3Target
+        s3Target,
+        artifactOutputPath
     };
 
+    console.log("Publish helper");
+    console.log(JSON.stringify(cxt, null, 2))
+
     // ENV
+    await command(`mkdir -p ${artifactOutputPath}`);
     await command(`docker login`);
 
     await ComposeAppStep.step(cxt);

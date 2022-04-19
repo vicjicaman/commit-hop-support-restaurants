@@ -1,16 +1,17 @@
-const { logger, command } = require("../../utils")
+const { logger, command, outputArtifact } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 
 const enabled = true;
 
-const step = async ({ outputPath, version, scope, s3Target }) => {
+const step = async (cxt) => {
+    const { outputPath, version, scope, s3Target } = cxt;
 
     if (!enabled) {
         return
     }
 
-    logger.info("Frontend step");
+    logger.info("Origin request step");
 
     const buildOutputPath = `${outputPath}/origin-request`
     const s3OriginTarget = `${s3Target}/origin-request`;
@@ -22,6 +23,8 @@ const step = async ({ outputPath, version, scope, s3Target }) => {
     await command(
         `aws s3 cp ${buildOutputPath}/payload.zip s3://${s3OriginTarget}/`
     );
+
+    await outputArtifact("origin-request", cxt);
 
 }
 

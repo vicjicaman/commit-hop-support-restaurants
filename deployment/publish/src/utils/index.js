@@ -17,4 +17,25 @@ const command = async (cmd, args, handler) => {
     }
 }
 
-module.exports = { logger, command }
+
+const outputArtifact = async (stepName, cxt) => {
+    const { outputPath, version, scope, rootPath, s3Target, artifactOutputPath } = cxt;
+
+    const sourcePath = path.join(outputPath, stepName);
+    //const targetPath = path.join(artifactOutputPath, stepName);
+    await command(`cp -r ${sourcePath}  ${artifactOutputPath}`);
+}
+
+const uploadArtifact = async (stepName, cxt) => {
+    const { outputPath, version, scope, rootPath, s3Target } = cxt;
+
+    const sourcePath = path.join(outputPath, stepName);
+    const s3FormationTarget = `${s3Target}/${stepName}`;
+
+    await command(`aws s3 sync ${sourcePath} s3://${s3FormationTarget}`);
+}
+
+
+
+
+module.exports = { logger, command, outputArtifact, uploadArtifact }

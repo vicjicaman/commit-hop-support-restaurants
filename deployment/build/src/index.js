@@ -14,6 +14,7 @@ const ComposeDataStep = require("./steps/compose-data")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
+const BUILD_TARGET_PATH = process.env.BUILD_TARGET_PATH;
 
 const rootPath = "../..";
 const commonPath = path.join(rootPath, "common")
@@ -21,8 +22,13 @@ const componentsPath = path.join(commonPath, "components")
 const libsPath = path.join(rootPath, "libs");
 const scope = SCOPE_NAME;
 const version = SCOPE_VERSION;
-const outputPath = `/media/victor/helper/build/${scope}/${version}`;
+const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
 
+if(typeof String.prototype.replaceAll === "undefined") {
+    String.prototype.replaceAll = function(match, replace) {
+       return this.replace(new RegExp(match, 'g'), () => replace);
+    }
+}
 
 (async () => {
     // Steps preparation for the Pipeline scripts
