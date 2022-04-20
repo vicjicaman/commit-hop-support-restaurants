@@ -41,4 +41,4 @@ phases:
 artifacts:
   files:
     - '$BUILD_TARGET_PATH/artifact-output/**/*'
-  base-directory: '/'
+  base-directory: '$BUILD_TARGET_PATH/artifact-output'
