@@ -41,3 +41,4 @@ phases:
 artifacts:
   files:
     - '$BUILD_TARGET_PATH/artifact-output/**/*'
+  discard-paths: yes
