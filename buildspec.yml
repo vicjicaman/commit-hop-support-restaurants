@@ -40,5 +40,5 @@ phases:
       - yarn --cwd ./deployment/publish start 
 artifacts:
   files:
-    - '$BUILD_TARGET_PATH/artifact-output/**/*'
+    - '$BUILD_TARGET_PATH/artifact-output/*'
   base-directory: '$BUILD_TARGET_PATH/artifact-output'
