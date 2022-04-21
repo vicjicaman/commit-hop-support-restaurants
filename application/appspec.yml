@@ -3,5 +3,5 @@ os: linux
 hooks:
   ApplicationStart:
     - location: script.sh
-      timeout: 10
+      timeout: 300
       runas: root
