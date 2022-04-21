@@ -11,6 +11,7 @@ const OriginRequestStep = require("./steps/origin-request")
 const ProxyStep = require("./steps/proxy")
 const ComposeAppStep = require("./steps/compose-app")
 const ComposeDataStep = require("./steps/compose-data")
+const ApplicationStep = require("./steps/application")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
@@ -50,6 +51,6 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);
+    await ApplicationStep.step(cxt);
     
-
 })()

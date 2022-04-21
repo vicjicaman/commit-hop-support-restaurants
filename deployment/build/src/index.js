@@ -11,6 +11,7 @@ const OriginRequestStep = require("./steps/origin-request")
 const ProxyStep = require("./steps/proxy")
 const ComposeAppStep = require("./steps/compose-app")
 const ComposeDataStep = require("./steps/compose-data")
+const ApplicationStep = require("./steps/application")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
@@ -56,6 +57,6 @@ if(typeof String.prototype.replaceAll === "undefined") {
     await OriginRequestStep.step(cxt);
     await ComposeAppStep.step(cxt);
     await ComposeDataStep.step(cxt);
-    
+    await ApplicationStep.step(cxt);
 
 })()

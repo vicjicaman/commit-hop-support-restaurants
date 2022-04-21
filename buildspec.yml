@@ -47,5 +47,5 @@ artifacts:
         - '$BUILD_TARGET_PATH/artifact-output/**/*'
     appSpec:
       files:
-        - '$BUILD_TARGET_PATH/artifact-output/formation/**/*'
+        - '$BUILD_TARGET_PATH/artifact-output/application/**/*'
       discard-paths: yes
