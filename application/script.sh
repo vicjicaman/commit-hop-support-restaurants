@@ -1,5 +1,5 @@
-SCOPE=$1
-VERSION=$2
+SCOPE=xPARAMxSCOPExNAME
+VERSION=xPARAMxSCOPExVERSION
 
 aws s3 sync s3://ua-wck-utils/$SCOPE/$VERSION/compose-data /home/ec2-user/app/compose/data
 aws s3 sync s3://ua-wck-utils/$SCOPE/$VERSION/compose-app /home/ec2-user/app/compose/app

@@ -2,6 +2,6 @@ version: 0.0
 os: linux
 hooks:
   ApplicationStart:
-    - location: script.sh www $CODEBUILD_RESOLVED_SOURCE_VERSION
+    - location: script.sh
       timeout: 10
       runas: root

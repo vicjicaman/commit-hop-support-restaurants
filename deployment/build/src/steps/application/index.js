@@ -4,7 +4,7 @@ const path = require("path");
 
 const enabled = true;
 
-const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath }) => {
+const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath, scope, version }) => {
 
     if (!enabled) {
         return
@@ -17,7 +17,20 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`rm -rf ${applicationOutputPath}`);
     await command(`mkdir -p ${applicationOutputPath}`);
 
-    await command(`cp -r ${applicationPath} ${applicationOutputPath} `);
+    //await command(`cp -r ${applicationPath} ${applicationOutputPath} `);
+
+    const params = { "SCOPExNAME": scope, "SCOPExVERSION": version };
+    await buildParamTemplate(
+        path.join(applicationPath, "appspec.yml"),
+        applicationOutputPath,
+        params
+    );
+
+    await buildParamTemplate(
+        path.join(applicationPath, "script.sh"),
+        applicationOutputPath,
+        params
+    );
 }
 
 module.exports = { step }
