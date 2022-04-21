@@ -1,4 +1,4 @@
-const { logger, command, copyWithActiveSegment } = require("../../utils")
+const { logger, command, buildParamTemplate } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 
