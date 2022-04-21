@@ -42,6 +42,9 @@ artifacts:
   files:
     - '$BUILD_TARGET_PATH/artifact-output/**/*'
   secondary-artifacts:
+    BuildArtifact:
+      files:
+        - '$BUILD_TARGET_PATH/artifact-output/**/*'
     appSpec:
       files:
         - '$BUILD_TARGET_PATH/artifact-output/formation/**/*'
