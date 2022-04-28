@@ -57,7 +57,7 @@ Run
   docker compose up
 ```
 
-# Deployment resources
+# Deployment resources for experimental phase
 
 The project will be deployed to a very simple stack to be able to focus on explore CloudFormation and CodePipeline, overall we will use a EC2 node (with docker compose inside) and a CloudFront distribution helper.
 

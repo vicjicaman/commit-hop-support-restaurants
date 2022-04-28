@@ -4,7 +4,7 @@ const fs = require('fs').promises;
 const path = require("path");
 
 const FrontendStep = require("./steps/frontend")
-const BackendStep = require("./steps/backend")
+//const BackendStep = require("./steps/backend")
 
 const SCOPE_NAME = process.env.SCOPE_NAME;
 const SCOPE_VERSION = process.env.SCOPE_VERSION;
@@ -32,5 +32,5 @@ const s3Target = `ua-wck-utils/${scope}/${version}`;
     console.log(`Deploy helper`);
     console.log(JSON.stringify(cxt, null, 2));
     await FrontendStep.step(cxt);
-    await BackendStep.step(cxt);
+    //await BackendStep.step(cxt);
 })()

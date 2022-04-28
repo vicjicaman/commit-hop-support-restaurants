@@ -1,0 +1,179 @@
+{
+    "pipeline": {
+        "name": "test",
+        "roleArn": "arn:aws:iam::919446158824:role/service-role/AWSCodePipelineServiceRole-us-east-1-test",
+        "artifactStore": {
+            "type": "S3",
+            "location": "codepipeline-us-east-1-511549563686"
+        },
+        "stages": [
+            {
+                "name": "Source",
+                "actions": [
+                    {
+                        "name": "Source",
+                        "actionTypeId": {
+                            "category": "Source",
+                            "owner": "AWS",
+                            "provider": "CodeStarSourceConnection",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "BranchName": "codepipeline-test",
+                            "ConnectionArn": "arn:aws:codestar-connections:us-east-1:919446158824:connection/fb24547c-157b-4081-8f77-befb8d332d2f",
+                            "FullRepositoryId": "vicjicaman/commit-hop-support-restaurants",
+                            "OutputArtifactFormat": "CODE_ZIP"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "inputArtifacts": [],
+                        "region": "us-east-1",
+                        "namespace": "SourceVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Build",
+                "actions": [
+                    {
+                        "name": "Build",
+                        "actionTypeId": {
+                            "category": "Build",
+                            "owner": "AWS",
+                            "provider": "CodeBuild",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "EnvironmentVariables": "[{\"name\":\"SCOPE_NAME\",\"value\":\"www\",\"type\":\"PLAINTEXT\"},{\"name\":\"DOCKER_AUTH\",\"value\":\"\",\"type\":\"PLAINTEXT\"},{\"name\":\"BUILD_TARGET_PATH\",\"value\":\"/build-output-target\",\"type\":\"PLAINTEXT\"}]",
+                            "ProjectName": "ua-wck"
+                        },
+                        "outputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            },
+                            {
+                                "name": "appSpec"
+                            }
+                        ],
+                        "inputArtifacts": [
+                            {
+                                "name": "SourceArtifact"
+                            }
+                        ],
+                        "region": "us-east-1",
+                        "namespace": "BuildVariables"
+                    }
+                ]
+            },
+            {
+                "name": "Deploy",
+                "actions": [
+                    {
+                        "name": "distribution",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CloudFormation",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ActionMode": "CREATE_UPDATE",
+                            "Capabilities": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                            "ParameterOverrides": "{ \"ScopeName\": \"www\", \"ApexDomainName\":\"ua-wck.com\", \"HostedZoneId\":\"Z0815901WK0WTIBWT0BT\", \"AcmCertificate\":\"arn:aws:acm:us-east-1:919446158824:certificate/2bc00fc2-4d4f-4cc9-b855-254f9fc702be\" }",
+                            "RoleArn": "arn:aws:iam::919446158824:role/cloudformation-deployer",
+                            "StackName": "ua-wck-distribution-www",
+                            "TemplatePath": "BuildArtifact::/build-output-target/artifact-output/formation/distribution-stack.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "region": "us-east-1"
+                    },
+                    {
+                        "name": "backend",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CloudFormation",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ActionMode": "CREATE_UPDATE",
+                            "Capabilities": "CAPABILITY_IAM,CAPABILITY_NAMED_IAM,CAPABILITY_AUTO_EXPAND",
+                            "ParameterOverrides": "{ \"ScopeName\": \"www\", \"ApexDomainName\":\"ua-wck.com\", \"HostedZoneId\":\"Z0815901WK0WTIBWT0BT\", \"AcmCertificate\":\"arn:aws:acm:us-east-1:919446158824:certificate/2bc00fc2-4d4f-4cc9-b855-254f9fc702be\" }",
+                            "RoleArn": "arn:aws:iam::919446158824:role/cloudformation-deployer",
+                            "StackName": "ua-wck-backend-www",
+                            "TemplatePath": "BuildArtifact::/build-output-target/artifact-output/formation/backend-stack.json"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "BuildArtifact"
+                            }
+                        ],
+                        "region": "us-east-1",
+                        "namespace": "DeployBackendFormationVariables"
+                    }
+                ]
+            },
+            {
+                "name": "PostDeploy",
+                "actions": [
+                    {
+                        "name": "backend-instance",
+                        "actionTypeId": {
+                            "category": "Invoke",
+                            "owner": "AWS",
+                            "provider": "Lambda",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "FunctionName": "ua-wck-backend-deployer"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [],
+                        "region": "us-east-1"
+                    },
+                    {
+                        "name": "app-deploy",
+                        "actionTypeId": {
+                            "category": "Deploy",
+                            "owner": "AWS",
+                            "provider": "CodeDeploy",
+                            "version": "1"
+                        },
+                        "runOrder": 1,
+                        "configuration": {
+                            "ApplicationName": "ua-wck-www-app",
+                            "DeploymentGroupName": "default"
+                        },
+                        "outputArtifacts": [],
+                        "inputArtifacts": [
+                            {
+                                "name": "appSpec"
+                            }
+                        ],
+                        "region": "us-east-1"
+                    }
+                ]
+            }
+        ],
+        "version": 25
+    },
+    "metadata": {
+        "pipelineArn": "arn:aws:codepipeline:us-east-1:919446158824:test",
+        "created": "2022-04-13T09:05:51.857000-05:00",
+        "updated": "2022-04-20T18:48:50.537000-05:00"
+    }
+}

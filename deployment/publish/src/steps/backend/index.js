@@ -9,8 +9,8 @@ const step = async ({ scope, version }) => {
     }
 
     logger.info("Backend step");
-    await command(`docker image tag ua-wck-backend:latest repoflow/ua-wck-backend:${scope}-${version}`);
-    await command(`docker push repoflow/ua-wck-backend:${scope}-${version}`);
+    //await command(`docker image tag ua-wck-backend:latest repoflow/ua-wck-backend:${scope}-${version}`);
+    //await command(`docker push repoflow/ua-wck-backend:${scope}-${version}`);
 }
 
 module.exports = { step }
