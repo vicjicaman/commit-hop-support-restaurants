@@ -3,8 +3,8 @@ version: '3'
 services:
   data:
     volumes:
-      - '/home/victor/commit/user-data/data/data:/bitnami/postgresql'
+      - '/home/victor/commit/user-data/commit-hop-support-restaurants/data:/bitnami/postgresql'
   opensearch-node:
     volumes:
-      - '/home/victor/commit/user-data/data/search-data:/usr/share/opensearch/data'
+      - '/home/victor/commit/user-data/commit-hop-support-restaurants/search-data:/usr/share/opensearch/data'
 

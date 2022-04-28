@@ -55,8 +55,8 @@ if(typeof String.prototype.replaceAll === "undefined") {
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);
-    await ComposeAppStep.step(cxt);
-    await ComposeDataStep.step(cxt);
-    await ApplicationStep.step(cxt);
+    //await ComposeAppStep.step(cxt);
+    //await ComposeDataStep.step(cxt);
+    //await ApplicationStep.step(cxt);
 
 })()

@@ -29,10 +29,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
         params
         )
 
-    await buildParamTemplate(
-        path.join(formationPath, "backend-stack.json"),
-        formationOutputPath,
-        params)
+    //await buildParamTemplate(
+    //    path.join(formationPath, "backend-stack.json"),
+    //    formationOutputPath,
+    //    params)
 
 }
 
