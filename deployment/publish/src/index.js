@@ -43,14 +43,14 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
     await command(`mkdir -p ${artifactOutputPath}`);
     await command(`docker login`);
 
-    await ComposeAppStep.step(cxt);
-    await ComposeDataStep.step(cxt);
+    //await ComposeAppStep.step(cxt);
+    //await ComposeDataStep.step(cxt);
     await ProxyStep.step(cxt);
     await FormationStep.step(cxt);
     await FrontendStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);
-    await ApplicationStep.step(cxt);
+    //await ApplicationStep.step(cxt);
     
 })()
