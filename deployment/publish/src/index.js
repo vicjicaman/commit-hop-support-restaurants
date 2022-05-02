@@ -7,6 +7,7 @@ const FormationStep = require("./steps/formation")
 //const FrontendStep = require("./steps/frontend")
 const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
+const BackendStaticProxyStep = require("./steps/backend-static-proxy")
 const OriginRequestStep = require("./steps/origin-request")
 //const ProxyStep = require("./steps/proxy")
 //const ComposeAppStep = require("./steps/compose-app")
@@ -23,7 +24,7 @@ const version = SCOPE_VERSION;
 const s3Target = `ua-wck-utils/${scope}/${version}`;
 const outputPath = `${BUILD_TARGET_PATH}/${scope}/${version}`;
 const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
- 
+
 (async () => {
     // Steps preparation for the Pipeline scripts
 
@@ -50,7 +51,9 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
     //await FrontendStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
+    await BackendStaticProxyStep.step(cxt);
+
     await OriginRequestStep.step(cxt);
     //await ApplicationStep.step(cxt);
-    
+
 })()
