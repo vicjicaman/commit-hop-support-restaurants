@@ -1,0 +1,87 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Transform": "AWS::Serverless-2016-10-31",
+    "Globals": {
+        "Function": {
+            "Timeout": 30
+        }
+    },
+    "Resources": {
+        "ApiGateway": {
+            "Type": "AWS::Serverless::Api",
+            "Properties": {
+                "StageName": "www",
+                "TracingEnabled": true,
+                "Cors": {
+                    "AllowHeaders": "'authorization, token-id, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'",
+                    "AllowOrigin": "'*'"
+                }
+            }
+        },
+        "BackendFunction": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "CodeUri": "../backend/dist",
+                "Handler": "index.handler",
+                "Runtime": "nodejs14.x",
+                "MemorySize": 256,
+                "Architectures": [
+                    "x86_64"
+                ],
+                "Events": {
+                    "BackendApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/backend/{proxy+}",
+                            "Method": "post",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "BackendStaticHelperFunction": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "CodeUri": "../backend-static-proxy/dist",
+                "Handler": "index.handler",
+                "Runtime": "nodejs14.x",
+                "MemorySize": 256,
+                "Architectures": [
+                    "x86_64"
+                ],
+                "Environment": {
+                    "Variables":{
+                        "SERVER_NEXTJS": "http://172.17.0.1:4400/"
+                    }
+                },
+                "Events": {
+                    "RootBackendStaticApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/",
+                            "Method": "get",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    },
+                    "BackendStaticApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/{proxy+}",
+                            "Method": "get",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Outputs": {
+    }
+}
