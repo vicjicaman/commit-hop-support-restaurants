@@ -2,7 +2,7 @@ const { logger, command } = require("../../utils")
 
 const enabled = true;
 
-const step = async ({ version, scope }) => {
+const step = async ({ outputPath, s3Target }) => {
 
     if (!enabled) {
         return
