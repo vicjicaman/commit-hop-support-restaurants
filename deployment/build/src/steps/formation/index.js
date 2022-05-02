@@ -22,12 +22,18 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     logger.info("Version hash " + versionHash);
 
     const params = { "SCOPExVERSIONxHASH": versionHash, "SCOPExVERSION": version };
-    
+
     await buildParamTemplate(
         path.join(formationPath, "distribution-stack.json"),
         formationOutputPath,
         params
-        )
+    )
+
+    await buildParamTemplate(
+        path.join(formationPath, "gateway-stack.json"),
+        formationOutputPath,
+        params
+    )
 
     //await buildParamTemplate(
     //    path.join(formationPath, "backend-stack.json"),

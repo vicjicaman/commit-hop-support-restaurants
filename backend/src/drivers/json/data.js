@@ -14,13 +14,13 @@ export default {
     ],
     "restaurants": [
         {
-            "id": "",
-            "name": "",
-            "country": "",
-            "address": "",
-            "images": [],
-            "latitude": 0,
-            "longitude": 0,
+            "id": "bosko-pl",
+            "name": "BOSKO Restauracja & Delikatesy",
+            "country": "pl",
+            "address": "Władycze 1, 37-700 Przemyśl, Poland",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/5a2b9fc7795a569c36dbe602fff8554a/daba761d"],
+            "latitude": 49.781862616145666, 
+            "longitude": 22.77360414628525,
             "contact": "",
             "description": ""
         }
