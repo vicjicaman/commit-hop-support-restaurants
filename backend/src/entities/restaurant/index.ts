@@ -1,4 +1,4 @@
-import { IRestaurant } from "interfaces/restaurants";
+import { IRestaurant } from "interfaces/restaurant";
 
 type Owner = {
   name: string;
@@ -12,12 +12,8 @@ export class Restaurant implements IRestaurant {
   latitude: number;
   longitude: number;
   images: string[];
-  owner: Owner;
-  supportedEmployees: number;
-  preparedMeals: number;
-  receivedDonations: number;
-  createdAt: Date;
-  updatedAt: Date;
+  address: string;
+  country: string;
 
   constructor(inp: IRestaurant) {
     const {
@@ -26,13 +22,9 @@ export class Restaurant implements IRestaurant {
       description,
       latitude,
       longitude,
-      owner,
       images,
-      supportedEmployees,
-      preparedMeals,
-      receivedDonations,
-      createdAt,
-      updatedAt,
+      country,
+      address
     } = inp;
 
     this.id = id;
@@ -41,12 +33,8 @@ export class Restaurant implements IRestaurant {
     this.latitude = latitude;
     this.longitude = longitude;
     this.images = images;
-    this.owner = owner;
-    this.supportedEmployees = supportedEmployees;
-    this.preparedMeals = preparedMeals;
-    this.receivedDonations = receivedDonations;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
+    this.country = country;
+    this.address = address;
   }
 }
 

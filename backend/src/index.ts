@@ -14,11 +14,17 @@ const awilix = require("awilix");
 import { schema, resolvers } from "./gateway";
 //import initialize from "./initialize"
 
+import JsonDataDriver from "drivers/json";
 import LoggerDriver from "common/drivers/logger";
-import RestaurantController from "controllers/restaurants";
-import RestaurantUsecase from "usecases/restaurants";
-import RestaurantData from "data/restaurants";
-import RestaurantFactory from "factories/restaurants";
+import RestaurantController from "controllers/restaurant";
+import RestaurantUsecase from "usecases/restaurant";
+import RestaurantData from "data/restaurant";
+import RestaurantFactory from "factories/restaurant";
+
+import BorderPointController from "controllers/border-point";
+import BorderPointUsecase from "usecases/border-point";
+import BorderPointData from "data/border-point";
+import BorderPointFactory from "factories/border-point";
 
 //const PORT_SERVICE = 4700;
 
@@ -29,11 +35,16 @@ const container = awilix.createContainer({
 });
 
 container.register({
+  json: awilix.asClass(JsonDataDriver),
   logger: awilix.asClass(LoggerDriver),
   RestaurantController: awilix.asClass(RestaurantController),
   RestaurantData: awilix.asClass(RestaurantData),
   RestaurantFactory: awilix.asClass(RestaurantFactory),
   RestaurantUsecase: awilix.asClass(RestaurantUsecase),
+  BorderPointController: awilix.asClass(BorderPointController),
+  BorderPointData: awilix.asClass(BorderPointData),
+  BorderPointFactory: awilix.asClass(BorderPointFactory),
+  BorderPointUsecase: awilix.asClass(BorderPointUsecase),
 });
 
 const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {

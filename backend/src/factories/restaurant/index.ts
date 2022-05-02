@@ -1,5 +1,5 @@
-import { IRestaurant } from "interfaces/restaurants";
-import Restaurant from "entities/restaurants";
+import { IRestaurant } from "interfaces/restaurant";
+import Restaurant from "entities/restaurant";
 
 export class RestaurantFactory {
   constructor() {}
