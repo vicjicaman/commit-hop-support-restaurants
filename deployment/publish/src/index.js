@@ -4,11 +4,11 @@ const fs = require('fs').promises;
 const path = require("path");
 
 const FormationStep = require("./steps/formation")
-const FrontendStep = require("./steps/frontend")
+//const FrontendStep = require("./steps/frontend")
 const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
 const OriginRequestStep = require("./steps/origin-request")
-const ProxyStep = require("./steps/proxy")
+//const ProxyStep = require("./steps/proxy")
 //const ComposeAppStep = require("./steps/compose-app")
 //const ComposeDataStep = require("./steps/compose-data")
 //const ApplicationStep = require("./steps/application")
@@ -45,9 +45,9 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
 
     //await ComposeAppStep.step(cxt);
     //await ComposeDataStep.step(cxt);
-    await ProxyStep.step(cxt);
+    //await ProxyStep.step(cxt);
     await FormationStep.step(cxt);
-    await FrontendStep.step(cxt);
+    //await FrontendStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);

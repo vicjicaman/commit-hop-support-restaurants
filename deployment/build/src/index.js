@@ -8,7 +8,7 @@ const FormationStep = require("./steps/formation")
 const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
 const OriginRequestStep = require("./steps/origin-request")
-const ProxyStep = require("./steps/proxy")
+//const ProxyStep = require("./steps/proxy")
 //const ComposeAppStep = require("./steps/compose-app")
 //const ComposeDataStep = require("./steps/compose-data")
 //const ApplicationStep = require("./steps/application")
@@ -49,7 +49,7 @@ if(typeof String.prototype.replaceAll === "undefined") {
     // ENV
     await command(`mkdir -p ${outputPath}`);
 
-    await ProxyStep.step(cxt);
+    //await ProxyStep.step(cxt);
     await FormationStep.step(cxt);
     //await FrontendStep.step(cxt);
     await BackendStep.step(cxt);
