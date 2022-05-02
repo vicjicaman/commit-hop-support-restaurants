@@ -9,7 +9,7 @@ const logger = { info: msg => console.log(msg), debug: msg => console.log(msg) }
 const command = async (cmd, args, handler) => {
 
     logger.info(cmd);
-    const res = await exec(cmd, args);
+    const res = await exec(cmd, { maxBuffer: 1024 * 5000, ...args });
     logger.info(res.stdout);
     logger.info(res.stderr);
 
