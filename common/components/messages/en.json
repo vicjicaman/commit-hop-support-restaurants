@@ -30,5 +30,7 @@
   "msg.welcome": "Welcome!, This is an app to let you find nearby restaurants that are preparing free meals for refugees in the Ukrainian borders",
   "msg.search": "You can also do a text search in case that you have the address or details about your location.",
   "msg.admin": "You can add or edit a new restaurant to the list to help us expand the list!",
-  "msg.donate": "You will find information about how to contribute to those efforts with a donation!"
+  "msg.donate": "You will find information about how to contribute to those efforts with a donation!",
+  "app.restaurant": "restaurant",
+  "app.border-point": "border point"
 }
