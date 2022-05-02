@@ -6,6 +6,7 @@ const path = require("path");
 const FormationStep = require("./steps/formation")
 //const FrontendStep = require("./steps/frontend")
 const BackendStep = require("./steps/backend")
+const BackendStaticProxyStep = require("./steps/backend-static-proxy")
 const BackendStaticStep = require("./steps/backend-static")
 const OriginRequestStep = require("./steps/origin-request")
 //const ProxyStep = require("./steps/proxy")
@@ -51,7 +52,8 @@ if(typeof String.prototype.replaceAll === "undefined") {
 
     //await ProxyStep.step(cxt);
     await FormationStep.step(cxt);
-    //await FrontendStep.step(cxt);
+    //await FrontendStep.step(cxt)
+    await BackendStaticProxyStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
     await OriginRequestStep.step(cxt);

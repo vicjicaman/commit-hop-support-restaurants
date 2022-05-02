@@ -42,7 +42,7 @@
                 }
             }
         },
-        "BackendStaticHelperFunction": {
+        "BackendStaticProxyFunction": {
             "Type": "AWS::Serverless::Function",
             "Properties": {
                 "CodeUri": "../backend-static-proxy/dist",

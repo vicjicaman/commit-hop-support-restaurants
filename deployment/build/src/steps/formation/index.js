@@ -1,4 +1,4 @@
-const { logger, command, buildParamTemplate } = require("../../utils")
+const { logger, command, buildParamTemplate, overrideTemplate } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 const md5 = require("md5");
@@ -33,7 +33,38 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
         path.join(formationPath, "gateway-stack.json"),
         formationOutputPath,
         params
-    )
+    );
+
+    await overrideTemplate(
+        path.join(formationPath, "gateway-stack.json"),
+        formationOutputPath,
+        (json) => {
+            return {
+                ...json,
+                Resources: {
+                    ...json.Resources,
+                    BackendFunction: {
+                        ...json.Resources.BackendFunction,
+                        CodeUri: {
+                            Bucket: "ua-wck-utils",
+                            Key: {
+                                "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/backend/payload.zip"
+                            }
+                        }
+                    },
+                    BackendStaticProxyFunction: {
+                        ...json.Resources.BackendStaticProxyFunction,
+                        CodeUri: {
+                            Bucket: "ua-wck-utils",
+                            Key: {
+                                "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/backend-static-proxy/payload.zip"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    );
 
     //await buildParamTemplate(
     //    path.join(formationPath, "backend-stack.json"),

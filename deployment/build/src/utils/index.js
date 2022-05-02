@@ -31,6 +31,17 @@ const buildParamTemplate = async (inputFilename, outputFolder, params) => {
 }
 
 
+const overrideTemplate = async (inputFilename, outputFolder, fnc) => {
+    let input = await fs.readFile(inputFilename, 'utf8');
+    const basename = path.parse(inputFilename).base;
+
+    const json = JSON.parse(input);
+    const res = fnc(json);
+
+    await fs.writeFile(path.join(outputFolder, basename), JSON.stringify(res, null, 2), 'utf8');
+}
+
+
 const renderTemplate = async (filename, outputFilename, data) => {
     const input = await fs.readFile(filename, 'utf8');
     const res = ejs.render(input, data)
@@ -80,5 +91,6 @@ module.exports = {
     command,
     copyWithActiveSegment,
     buildParamTemplate,
-    renderTemplate
+    renderTemplate,
+    overrideTemplate
 }
