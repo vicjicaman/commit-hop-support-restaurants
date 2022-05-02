@@ -88,182 +88,39 @@ const deserialize = (inp: any): IRestaurant => {
 };
 
 class RestaurantData {
-  dataDriver: any;
-  searchDriver: any;
   RestaurantFactory: any;
 
   constructor(opts: any) {
-    this.dataDriver = opts.db;
-    this.searchDriver = opts.search;
     this.RestaurantFactory = opts.RestaurantFactory;
   }
 
-  async init() {
-    const settings = {
-      settings: {
-        index: {
-          number_of_shards: 4,
-          number_of_replicas: 1,
-        },
-      },
-    };
-
-    const response = await this.searchDriver.driver().indices.create({
-      index: SEARCH_INDEX,
-      body: settings,
-    });
-  }
+  async init() {}
 
   async list(): Promise<IRestaurant[]> {
-    const res = await this.dataDriver.query(
-      `SELECT ${FragmentFull} from restaurants order by "receivedDonations" asc`
-    );
-    return res.rows.map((row: any) =>
-      this.RestaurantFactory.create(deserialize(row))
-    );
+    return [];
   }
 
   async find({ latitude, longitude }: any): Promise<IRestaurant[]> {
-    const res = await this.dataDriver.query(
-      `SELECT ${FragmentFull} from restaurants ORDER BY ST_Distance(restaurants.location,  ST_SetSRID(ST_POINT($1, $2), 4326) ) asc limit 3 `,
-      [longitude, latitude]
-    );
-    return res.rows.map((row: any) =>
-      this.RestaurantFactory.create(deserialize(row))
-    );
+    return []
   }
 
   async search(term: string): Promise<IRestaurant[]> {
-    const res = await this.searchDriver.query(SEARCH_INDEX, {
-      size: 50,
-      query: {
-        multi_match: {
-          fields: ["name", "description"],
-          query: term,
-          type: "phrase_prefix",
-        },
-      },
-    });
-
-    return res.map((row: any) => this.RestaurantFactory.create(row));
+    return [];
   }
 
   async get(id: number): Promise<IRestaurant> {
-    const res = await this.dataDriver.query(
-      `SELECT ${FragmentFull} from restaurants where id = $1`,
-      [id]
-    );
-    return res.rows[0]
-      ? this.RestaurantFactory.create(deserialize(res.rows[0]))
-      : null;
+    return null;
   }
 
   async create(input: IRestaurantCreateInput) {
-    const text = `INSERT INTO restaurants(id, "userId", name, description, "supportedEmployees", "preparedMeals", "receivedDonations", owner, images, location)
-    VALUES ( nextval('restaurant_sequence'),  $1, $2, $3, $4, $5, $6, $7, $8, ST_SetSRID(ST_POINT($9, $10), 4326) ) RETURNING ${FragmentFull}`;
-
-    const {
-      name,
-      description,
-      supportedEmployees,
-      receivedDonations,
-      preparedMeals,
-      owner,
-      latitude,
-      longitude,
-      images,
-    } = serialize(input);
-
-    const values = [
-      1,
-      name,
-      description,
-      supportedEmployees,
-      preparedMeals,
-      receivedDonations,
-      owner,
-      images,
-      longitude,
-      latitude,
-    ];
-
-    try {
-      const res = await this.dataDriver.query(text, values);
-      const robj = this.RestaurantFactory.create(deserialize(res.rows[0]));
-
-      await this.searchDriver.index(SEARCH_INDEX, robj.id, robj);
-
-      return robj;
-    } catch (err) {
-      console.log(err.stack);
-      throw err;
-    }
+    return this.RestaurantFactory.create(deserialize(null));
   }
 
   async update(id: number, input: IRestaurantUpdateInput) {
-    const text = `UPDATE restaurants SET
-     name = $2, description = $3, "supportedEmployees" = $4, "preparedMeals" = $5, "receivedDonations" = $6, images = $7, location = ST_SetSRID(ST_POINT($8, $9), 4326)
-      WHERE id = $1 RETURNING ${FragmentFull}`;
-
-    const {
-      name,
-      description,
-      supportedEmployees,
-      receivedDonations,
-      preparedMeals,
-      latitude,
-      longitude,
-      images,
-    } = serialize(input);
-
-    const values = [
-      id,
-      name,
-      description,
-      supportedEmployees,
-      preparedMeals,
-      receivedDonations,
-      images,
-      longitude,
-      latitude,
-    ];
-
-    try {
-      const res = await this.dataDriver.query(text, values);
-      const robj = this.RestaurantFactory.create(deserialize(res.rows[0]));
-
-      await this.searchDriver.index(SEARCH_INDEX, id, robj);
-
-      return robj;
-    } catch (err) {
-      console.log(err.stack);
-      throw err;
-    }
+      return this.RestaurantFactory.create(deserialize(null));
   }
 
-  async remove(id: number) {
-    try {
-      await this.searchDriver.remove(SEARCH_INDEX, id);
-    } catch (err) {
-      console.log(err.stack);
-    }
-
-    const text = `DELETE FROM restaurants WHERE id = $1`;
-
-    try {
-      const res = await this.dataDriver.query(text, [id]);
-      return res;
-    } catch (err) {
-      console.log(err.stack);
-      throw err;
-    }
-  }
+  async remove(id: number) {}
 }
 
 export default RestaurantData;
-
-/*
-db: awilix.asClass(Database).classic(),
-connectionString: awilix.asValue(DATABASE_URL),
-timeout: awilix.asValue(1000),
-*/

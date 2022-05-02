@@ -5,24 +5,7 @@ networks:
     external: 
       name: ua-wck-network 
 services:
-  backend:
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "10m"
-  backend-static:
-    environment:
-      - DATA_URL=data:5432
-    logging:
-      driver: "json-file"
-      options:
-        max-file: "5"
-        max-size: "10m"
   nginx:
-    depends_on:
-      - backend
-      - backend-static
     ports:
       - "80:80"
       - "443:443"

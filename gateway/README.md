@@ -1,0 +1,1 @@
+curl 'http://127.0.0.1:4700/backend/graphql'   -X POST  -H 'content-type: application/json'  --data '{ "query":"query { __typedef }" }'

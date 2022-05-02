@@ -9,8 +9,6 @@
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.6.0",
     "@babel/runtime-corejs3": "^7.6.0",
-    "@opensearch-project/opensearch": "^1.0.2",
-    "@types/pg": "^8.6.5",
     "apollo-server-express": "^3.6.4",
     "awilix": "^7.0.0",
     "bcryptjs": "^2.4.3",
@@ -25,19 +23,15 @@
     "graphql-tools-types": "^1.3.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0",
-    "pg": "^8.7.3",
+    "serverless-http": "^3.0.1",
     "uuid": "^3.3.3",
-    "winston": "^3.6.0",
-    "node-pg-migrate": "^6.2.1"
+    "winston": "^3.6.0"
   },
   "scripts": {
-    "migrate": "node-pg-migrate",
     "clean": "rm -Rf ./dist*",
     "start": "NODE_ENV=\"development\" nodemon -L ./dist/index.js --watch dist",
     "build": "yarn clean && webpack --config webpack.config.js --mode=production ",
-    "build:dev": "yarn clean && webpack --config webpack.config.js --mode=development ",
+    "build:dev": "yarn clean && mkdir -p ./dist/node_modules && cp -r ./node_modules ./dist && webpack --config webpack.config.js --mode=development ",
     "build:watch": "yarn build:dev --watch"
   },
   "devDependencies": {

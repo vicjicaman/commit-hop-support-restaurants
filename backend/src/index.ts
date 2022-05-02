@@ -8,20 +8,19 @@ const { ApolloServer } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const { GraphQLDate, GraphQLDateTime } = require("graphql-iso-date");
 import GraphQLToolsTypes from "graphql-tools-types";
+import serverless from "serverless-http";
 const awilix = require("awilix");
 //import search from "utils/search";
 import { schema, resolvers } from "./gateway";
-import initialize from "./initialize"
+//import initialize from "./initialize"
 
 import LoggerDriver from "common/drivers/logger";
-import DatabaseDriver from "drivers/db";
-import SearchDriver from "drivers/search";
 import RestaurantController from "controllers/restaurants";
 import RestaurantUsecase from "usecases/restaurants";
 import RestaurantData from "data/restaurants";
 import RestaurantFactory from "factories/restaurants";
 
-const PORT_SERVICE = 4000;
+//const PORT_SERVICE = 4700;
 
 const cxt: any = {};
 
@@ -30,9 +29,7 @@ const container = awilix.createContainer({
 });
 
 container.register({
-  db: awilix.asClass(DatabaseDriver),
   logger: awilix.asClass(LoggerDriver),
-  search: awilix.asClass(SearchDriver),
   RestaurantController: awilix.asClass(RestaurantController),
   RestaurantData: awilix.asClass(RestaurantData),
   RestaurantFactory: awilix.asClass(RestaurantFactory),
@@ -86,6 +83,40 @@ export const prepare = (schema: any, resolvers: any) =>
 
 
 
+
+
+
+
+
+
+function requestHandler(req: any, event: any, context: any) {
+  context.callbackWaitsForEmptyEventLoop = false;
+  req.gateway = { context, event };
+}
+
+const app: any = express();
+
+app.use(bodyParser());
+app.use(cors());
+
+app.use((req: any, res: any, next: any) => {
+  next();
+});
+
+app.use(
+  "/backend/static",
+  express.static(path.join(__dirname, "app", "static"))
+);
+app.get("/backend/health", function (req: any, res: any) {
+  res.send("ok");
+});
+
+
+const serverHandler = serverless(app, {
+  request: requestHandler
+});
+
+
 try {
   (async () => {
 
@@ -100,75 +131,21 @@ try {
     });
     await server.start();
 
-    const app: any = express();
     server.applyMiddleware({ app, path: "/backend/graphql" });
 
-
-    app.use(bodyParser());
-    app.use(cors());
-
-    app.use((req: any, res: any, next: any) => {
-      next();
-    });
-
-    app.use(
-      "/backend/static",
-      express.static(path.join(__dirname, "app", "static"))
-    );
-    app.get("/backend/health", function (req: any, res: any) {
-      res.send("ok");
-    });
-
-    /*app.get("/backend/test", async function (req: any, res: any) {
-      const index_name = "restaurants";
-
-      const resOps = [];
-
-      const list = await container.cradle.RestaurantData.list();
-
-      for (const rs of list) {
-        await container.cradle.search.driver().index({
-          id: rs.id,
-          index: index_name,
-          body: rs,
-          refresh: true,
-        });
-      }
-
-      res.send(JSON.stringify(list));
-    });*/
-
-
-    await initialize(cxt);
-
-
-    console.log("Listen port " + PORT_SERVICE);
-    app.listen({ port: PORT_SERVICE }, () => console.log("Node running."));
+    //await initialize(cxt);
+    //console.log("Listen port " + PORT_SERVICE);
+    //app.listen({ port: PORT_SERVICE }, () => console.log("Node running."));
   })();
 } catch (e) {
   console.error("service.error: " + e.toString());
 }
 
-/*
-const formatName = (name: string, descriptor: any): any => {
-  const splat = descriptor.path.split("/");
 
-  console.log(splat);
-  const namespace = splat[splat.length - 2]; // `repository` or `service`
-  const upperNamespace =
-    namespace.charAt(0).toUpperCase() + namespace.substring(1);
-  return name + upperNamespace;
+export const handler = async (event: any, context: any) => {
+  const result = await serverHandler(event, context);
+  return result;
 };
 
-container.loadModules(
-  [
 
-  ],
 
-  {
-    formatName,
-    resolverOptions: {
-      register: awilix.asClass,
-    },
-  }
-);*/
