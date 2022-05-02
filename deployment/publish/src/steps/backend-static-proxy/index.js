@@ -1,4 +1,4 @@
-const { logger, command } = require("../../utils")
+const { logger, command, outputArtifact } = require("../../utils")
 
 const enabled = true;
 
