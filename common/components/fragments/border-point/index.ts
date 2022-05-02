@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
-export const RestaurantFragment = gql`
-  fragment RestaurantFragment on Restaurant {
+export const BorderPointFragment = gql`
+  fragment BorderPointFragment on BorderPoint {
     id
     name
     
@@ -17,8 +17,8 @@ export const RestaurantFragment = gql`
 `;
 
 
-export const RestaurantFullFragment = gql`
-  fragment RestaurantFullFragment on Restaurant {
+export const BorderPointFullFragment = gql`
+  fragment BorderPointFullFragment on BorderPoint {
     id
     name
 

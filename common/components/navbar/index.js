@@ -3,23 +3,17 @@ import React from "react";
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
+  NavLink
 } from "reactstrap";
 import { FormattedMessage } from "react-intl";
 import * as Lang from "common/lang";
 
 const NavItemCommon = ({ lang, id, tag, href: target, pathname, exact }) => {
   //const target = `/${lang}${href}`;
-  const active =
+  const active = 
     exact === true ? pathname === target : pathname.startsWith(target);
 
   return tag ? (
@@ -46,30 +40,17 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
-              id={"app.map"}
-              href={`/${lang}`}
+              id={"app.border-point"}
+              href={`/${lang}/border-point`}
               exact={true}
             />
           </NavItem>
           <NavItem>
             <NavItemCommon
               {...props}
-              id={"app.search"}
-              href={`/${lang}/search`}
-            />
-          </NavItem>
-          <NavItem>
-            <NavItemCommon
-              {...props}
-              id={"app.listing"}
-              href={`/listing/${lang}`}
-            />
-          </NavItem>
-          <NavItem>
-            <NavItemCommon
-              {...props}
-              id={"app.admin"}
-              href={`/${lang}/admin`}
+              id={"app.restaurant"}
+              href={`/${lang}/restaurant`}
+              exact={true}
             />
           </NavItem>
           <NavItem>

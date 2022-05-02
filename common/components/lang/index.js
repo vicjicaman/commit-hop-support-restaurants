@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
-} from "reactstrap";
+} from "reactstrap"; 
 
 const flagStyle = { width: "2em", border: 0 };
 const options = [
