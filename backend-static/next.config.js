@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/listing',
+  //basePath: '/listing',
   webpack: function (config, { dev }) {
     if (dev) {
       config.watchOptions = {
