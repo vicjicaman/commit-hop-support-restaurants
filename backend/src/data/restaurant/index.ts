@@ -25,14 +25,14 @@ class RestaurantData {
 
   async list(): Promise<IRestaurant[]> {
     const res = await this.jsonDriver.list("restaurants");
-    return res.rows.map((row: any) =>
+    return res.map((row: any) =>
       this.RestaurantFactory.create(deserialize(row))
     );
   }
 
   async get(id: number): Promise<IRestaurant> {
-    const res = await this.jsonDriver.get("restaurant", id);
-    return this.RestaurantFactory.create(deserialize(res.rows[0]))
+    const res = await this.jsonDriver.get("restaurants", id);
+    return this.RestaurantFactory.create(deserialize(res))
   }
 
 }
