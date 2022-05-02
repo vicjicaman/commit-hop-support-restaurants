@@ -13,7 +13,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
 
     logger.info("Backend step")
     const backendPath = path.join(rootPath, "backend")
-    const backendOutputPath = path.join(outputPath, "backend");
+    const backendOutputPath = path.join(outputPath, "backend", "output");
     await command(`rm -rf ${backendOutputPath}`);
     await command(`mkdir -p ${backendOutputPath}/dist`);
     await command(`yarn install`, { cwd: backendPath });

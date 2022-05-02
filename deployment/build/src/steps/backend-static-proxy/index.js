@@ -13,7 +13,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
 
     logger.info("Backend proxy step")
     const sourcePath = path.join(rootPath, "backend-static-proxy")
-    const targetPath = path.join(outputPath, "backend-static-proxy");
+    const targetPath = path.join(outputPath, "backend-static-proxy", "output");
     await command(`rm -rf ${targetPath}`);
     await command(`mkdir -p ${targetPath}/dist`);
     await command(`yarn install`, { cwd: sourcePath });
