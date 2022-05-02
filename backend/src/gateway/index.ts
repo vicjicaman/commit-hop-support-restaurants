@@ -1,4 +1,4 @@
-import * as RestaurantSchema from "./restaurants";
+import * as RestaurantSchema from "./restaurant";
 
 const schema = [
   ...RestaurantSchema.schema,
