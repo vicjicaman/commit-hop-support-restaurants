@@ -29,7 +29,7 @@ var markerIcon = new L.Icon({
   shadowSize: [41, 41],
 });
 
-const Tag = ({tag}) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
+const Tag = ({ tag }) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
 
 export default function ({ list }) {
   const initPosition = [52.012551077226085, 22.926438847190745];
@@ -46,6 +46,17 @@ export default function ({ list }) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
+      {
+        list.map(({ id, name, latitude, longitude, images }) => {
+          return <Marker key={id} position={[latitude, longitude]} icon={markerIcon} >
+            <Popup>
+              <img className='w-100' src={images[0]} />
+              <p><b>{name}</b></p>
+            </Popup>
+          </Marker>
+        })
+      }
 
 
     </MapContainer> : null
