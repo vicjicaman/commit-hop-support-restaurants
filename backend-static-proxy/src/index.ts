@@ -1,5 +1,6 @@
 require("dotenv").config();
 const path = require("path");
+const fs = require("fs");
 const express = require("express");
 const process = require('process');
 import serverless from "serverless-http";
@@ -9,9 +10,24 @@ const { spawn } = require('child_process');
 let appReady : boolean = false;
 
 console.log(process.cwd());
+
+fs.readdir("/var/task", function (err: any, files: any) {
+  //handling error
+  if (err) {
+      return console.log('Unable to scan directory: ' + err);
+  } 
+  //listing all files using forEach
+  files.forEach(function (file: any) {
+      // Do whatever you want to do with the file
+      console.log(file); 
+  });
+});
+
+
+
 const child = spawn('node', ['server.js'], { 
-env: { ...process.env, NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
-cwd: "./standalone" //path.join(process.cwd(), "standalone" )
+env: { NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
+cwd: "/var/task/standalone" //path.join(process.cwd(), "standalone" )
 });
 
 child.stdout.on('data', (data:any) => {
