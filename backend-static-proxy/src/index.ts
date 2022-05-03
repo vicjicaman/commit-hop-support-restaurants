@@ -1,14 +1,15 @@
 require("dotenv").config();
 const path = require("path");
 const express = require("express");
+const process = require('process');
 import serverless from "serverless-http";
 const { createProxyMiddleware,responseInterceptor } = require('http-proxy-middleware');
+const { spawn } = require('child_process');
 
 let appReady : boolean = false;
 
-const { spawn } = require('child_process');
-
-const child = spawn('node', ['server.js'], { cwd:"./standalone" });
+console.log(process.cwd());
+const child = spawn('node', ['server.js'], { cwd: path.join(process.cwd(), "standalone" )});
 
 child.stdout.on('data', (data:any) => {
 
