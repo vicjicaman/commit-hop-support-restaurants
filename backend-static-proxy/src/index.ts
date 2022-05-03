@@ -26,7 +26,7 @@ fs.readdir("/var/task", function (err: any, files: any) {
 
 
 const child = spawn('node', ['server.js'], { 
-env: { NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
+//env: { ...process.env, NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
 cwd: "/var/task/standalone" //path.join(process.cwd(), "standalone" )
 });
 
