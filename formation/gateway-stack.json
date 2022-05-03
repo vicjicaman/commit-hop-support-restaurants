@@ -89,5 +89,11 @@
         }
     },
     "Outputs": {
+    },
+    "Parameters": {
+        "ScopeName": {
+            "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
+            "Type": "String"
+        }
     }
 }
