@@ -38,7 +38,6 @@
                     "BackendApiCall": {
                         "Type": "Api",
                         "Properties": {
-                            "Type": "REGIONAL",
                             "Path": "/backend/{proxy+}",
                             "Method": "post",
                             "RestApiId": {
@@ -71,7 +70,6 @@
                     "RootBackendStaticApiCall": {
                         "Type": "Api",
                         "Properties": {
-                            "Type": "REGIONAL",
                             "Path": "/",
                             "Method": "get",
                             "RestApiId": {
@@ -82,7 +80,6 @@
                     "BackendStaticApiCall": {
                         "Type": "Api",
                         "Properties": {
-                            "Type": "REGIONAL",
                             "Path": "/{proxy+}",
                             "Method": "get",
                             "RestApiId": {
