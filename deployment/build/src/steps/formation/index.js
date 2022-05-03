@@ -5,7 +5,7 @@ const md5 = require("md5");
 
 const enabled = true;
 
-const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath, version }) => {
+const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath, version, scope }) => {
 
     if (!enabled) {
         return;
@@ -36,7 +36,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     );
 
     await overrideTemplate(
-        path.join(formationPath, "gateway-stack.json"),
+        path.join(formationOutputPath, "gateway-stack.json"),
         formationOutputPath,
         (json) => {
             return {
@@ -48,7 +48,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                         CodeUri: {
                             Bucket: "ua-wck-utils",
                             Key: {
-                                "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/backend/payload.zip"
+                                "Fn::Sub": `${scope}/${version}/backend/payload.zip`
                             }
                         }
                     },
@@ -57,7 +57,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                         CodeUri: {
                             Bucket: "ua-wck-utils",
                             Key: {
-                                "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/backend-static-proxy/payload.zip"
+                                "Fn::Sub": `${scope}/${version}/backend-static-proxy/payload.zip`
                             }
                         }
                     }
