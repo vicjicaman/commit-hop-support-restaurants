@@ -16,9 +16,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     const backendStaticOutputPath = path.join(outputPath, "backend-static");
 
     const backendStaticProxyOutputPath = path.join(outputPath, "backend-static-proxy", "output");
-    const backendProxyStandaloneOutput = `${path.join(backendStaticProxyOutputPath)}`;
-    const backendProxyStandaloneStaticOutput = `${path.join(backendProxyStandaloneOutput, ".next")}`;
-    const backendProxyStandalonePublicOutput = `${path.join(backendProxyStandaloneOutput)}`;
+    const backendProxyStandaloneOutput = `${path.join(backendStaticProxyOutputPath, "standalone")}`;
+    const backendProxyStandaloneStaticOutput = `${path.join(backendProxyStandaloneOutput, ".next", "static")}`;
+    const backendProxyStandaloneNextOutput = `${path.join(backendProxyStandaloneOutput, ".next")}`;
+    const backendProxyStandalonePublicOutput = `${path.join(backendProxyStandaloneOutput, "public")}`;
     
     
 
@@ -46,9 +47,9 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
 
     //backendStaticProxyOutputPath
     //await command(`cp ${path.join(backendStaticPath, "next.config.js")} ${backendStaticProxyOutputPath}`);
-    await command(`cp -r ${path.join(backendStaticPath, ".next", "standalone", ".")} ${backendProxyStandaloneOutput}`);
-    await command(`cp -r ${path.join(backendStaticPath, ".next", "static", ".")} ${backendProxyStandaloneStaticOutput}`);
-    await command(`cp -r ${path.join(backendStaticPath, "public", ".")} ${backendProxyStandalonePublicOutput}`);
+    await command(`cp -r ${path.join(backendStaticPath, ".next", "standalone", ".")} ${backendStaticProxyOutputPath}`);
+    await command(`cp -r ${path.join(backendStaticPath, ".next", "static", ".")} ${backendProxyStandaloneNextOutput}`);
+    await command(`cp -r ${path.join(backendStaticPath, "public", ".")} ${backendProxyStandaloneOutput}`);
 
 
 
