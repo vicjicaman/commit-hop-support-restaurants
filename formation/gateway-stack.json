@@ -21,6 +21,9 @@
         "BackendFunction": {
             "Type": "AWS::Serverless::Function",
             "Properties": {
+                "FunctionName": {
+                    "Fn::Sub": "ua-wck-backend-${ScopeName}"
+                },
                 "CodeUri": "../backend/dist",
                 "Handler": "index.handler",
                 "Runtime": "nodejs14.x",
@@ -45,6 +48,9 @@
         "BackendStaticProxyFunction": {
             "Type": "AWS::Serverless::Function",
             "Properties": {
+                "FunctionName": {
+                    "Fn::Sub": "ua-wck-backend-static-proxy-${ScopeName}"
+                },
                 "CodeUri": "../backend-static-proxy/dist",
                 "Handler": "index.handler",
                 "Runtime": "nodejs14.x",
