@@ -17,7 +17,7 @@
                     "AllowOrigin": "'*'"
                 },
                 "EndpointConfiguration": {
-                    "Types":  "REGIONAL"
+                    "Type":  "REGIONAL"
                 }
             }
         },
