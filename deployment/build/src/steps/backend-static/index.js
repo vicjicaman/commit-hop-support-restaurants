@@ -31,7 +31,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`mkdir -p ${backendProxyStandalonePublicOutput}`);
 
     await command(`mkdir -p ${backendStaticCommonPath}`);
-    await command(`cp -r ${componentsPath}/* ${backendStaticCommonPath}`);
+    await command(`cp -a ${componentsPath}/. ${backendStaticCommonPath}`);
 
     await command(`yarn install`, { cwd: backendStaticPath });
     await command(`yarn build`, { cwd: backendStaticPath });
@@ -46,9 +46,9 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
 
     //backendStaticProxyOutputPath
     await command(`cp ${path.join(backendStaticPath, "next.config.js")} ${backendStaticProxyOutputPath}`);
-    await command(`cp -r ${path.join(backendStaticPath, ".next", "standalone", "*")} ${backendProxyStandaloneOutput}`);
-    await command(`cp -r ${path.join(backendStaticPath, ".next", "static", "*")} ${backendProxyStandaloneStaticOutput}`);
-    await command(`cp -r ${path.join(backendStaticPath, "public", "*")} ${backendProxyStandalonePublicOutput}`);
+    await command(`cp -a ${path.join(backendStaticPath, ".next", "standalone", ".")} ${backendProxyStandaloneOutput}`);
+    await command(`cp -a ${path.join(backendStaticPath, ".next", "static", ".")} ${backendProxyStandaloneStaticOutput}`);
+    await command(`cp -a ${path.join(backendStaticPath, "public", ".")} ${backendProxyStandalonePublicOutput}`);
 
 
 
