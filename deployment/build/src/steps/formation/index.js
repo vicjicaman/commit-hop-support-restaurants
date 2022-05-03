@@ -45,19 +45,25 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                     ...json.Resources,
                     BackendFunction: {
                         ...json.Resources.BackendFunction,
-                        CodeUri: {
-                            Bucket: "ua-wck-utils",
-                            Key: {
-                                "Fn::Sub": `${scope}/${version}/backend/payload.zip`
+                        Properties: {
+                            ...json.Resources.BackendFunction.Properties,
+                            CodeUri: {
+                                Bucket: "ua-wck-utils",
+                                Key: {
+                                    "Fn::Sub": `${scope}/${version}/backend/payload.zip`
+                                }
                             }
                         }
                     },
                     BackendStaticProxyFunction: {
                         ...json.Resources.BackendStaticProxyFunction,
-                        CodeUri: {
-                            Bucket: "ua-wck-utils",
-                            Key: {
-                                "Fn::Sub": `${scope}/${version}/backend-static-proxy/payload.zip`
+                        Properties: {
+                            ...json.Resources.BackendStaticProxyFunction.Properties,
+                            CodeUri: {
+                                Bucket: "ua-wck-utils",
+                                Key: {
+                                    "Fn::Sub": `${scope}/${version}/backend-static-proxy/payload.zip`
+                                }
                             }
                         }
                     }
