@@ -8,13 +8,16 @@
     },
     "Resources": {
         "ApiGateway": {
-            "Type": "AWS::Serverless::Api",
+            "Type": "AWS::Serverless::RestApi",
             "Properties": {
                 "StageName": "www",
                 "TracingEnabled": true,
                 "Cors": {
                     "AllowHeaders": "'authorization, token-id, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'",
                     "AllowOrigin": "'*'"
+                },
+                "EndpointConfiguration": {
+                    "Types":  "REGIONAL"
                 }
             }
         },
@@ -35,6 +38,7 @@
                     "BackendApiCall": {
                         "Type": "Api",
                         "Properties": {
+                            "Type": "REGIONAL",
                             "Path": "/backend/{proxy+}",
                             "Method": "post",
                             "RestApiId": {
@@ -59,7 +63,7 @@
                     "x86_64"
                 ],
                 "Environment": {
-                    "Variables":{
+                    "Variables": {
                         "SERVER_NEXTJS": "http://172.17.0.1:4400/"
                     }
                 },
@@ -67,6 +71,7 @@
                     "RootBackendStaticApiCall": {
                         "Type": "Api",
                         "Properties": {
+                            "Type": "REGIONAL",
                             "Path": "/",
                             "Method": "get",
                             "RestApiId": {
@@ -77,6 +82,7 @@
                     "BackendStaticApiCall": {
                         "Type": "Api",
                         "Properties": {
+                            "Type": "REGIONAL",
                             "Path": "/{proxy+}",
                             "Method": "get",
                             "RestApiId": {
@@ -88,8 +94,7 @@
             }
         }
     },
-    "Outputs": {
-    },
+    "Outputs": {},
     "Parameters": {
         "ScopeName": {
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
