@@ -8,7 +8,7 @@
     },
     "Resources": {
         "ApiGateway": {
-            "Type": "AWS::Serverless::RestApi",
+            "Type": "AWS::Serverless::Api",
             "Properties": {
                 "StageName": "www",
                 "TracingEnabled": true,
