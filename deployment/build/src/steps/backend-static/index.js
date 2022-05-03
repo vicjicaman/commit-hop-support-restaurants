@@ -16,9 +16,9 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     const backendStaticOutputPath = path.join(outputPath, "backend-static");
 
     const backendStaticProxyOutputPath = path.join(outputPath, "backend-static-proxy", "output");
-    const backendProxyStandaloneOutput = `${path.join(backendStaticProxyOutputPath, "standalone")}`;
-    const backendProxyStandaloneStaticOutput = `${path.join(backendProxyStandaloneOutput, ".next", "static")}`;
-    const backendProxyStandalonePublicOutput = `${path.join(backendProxyStandaloneOutput, "public")}`;
+    const backendProxyStandaloneOutput = `${path.join(backendStaticProxyOutputPath)}`;
+    const backendProxyStandaloneStaticOutput = `${path.join(backendProxyStandaloneOutput, ".next")}`;
+    const backendProxyStandalonePublicOutput = `${path.join(backendProxyStandaloneOutput)}`;
     
     
 
