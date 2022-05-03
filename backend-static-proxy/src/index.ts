@@ -9,7 +9,10 @@ const { spawn } = require('child_process');
 let appReady : boolean = false;
 
 console.log(process.cwd());
-const child = spawn('node', ['server.js'], { cwd: path.join(process.cwd(), "standalone" )});
+const child = spawn('node', ['server.js'], { 
+env: { ...process.env, NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
+cwd: path.join(process.cwd(), "standalone" )
+});
 
 child.stdout.on('data', (data:any) => {
 
