@@ -24,9 +24,10 @@ fs.readdir("/var/task", function (err: any, files: any) {
 });
 
 
-
+const innerServerEnv = { ...process.env, NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 };
+console.log(JSON.stringify(innerServerEnv));
 const child = spawn('node', ['server.js'], { 
-env: { ...process.env, NODE_ENV: 'production', NEXT_TELEMETRY_DISABLED: 1 },
+env: innerServerEnv,
 cwd: "/var/task/standalone" //path.join(process.cwd(), "standalone" )
 });
 
