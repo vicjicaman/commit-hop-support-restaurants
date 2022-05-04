@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  env: {
+    SCOPE: process.env.SCOPE
+  },
   reactStrictMode: true,
   //basePath: '/listing',
   webpack: function (config, { dev }) {
