@@ -70,7 +70,7 @@
                     "Ref": "ApiGateway"
                 },
                 "Stage": {
-                    "Ref": "ScopeName"
+                    "Ref": "ApiGateway.Stage"
                 }
             },
             "Metadata": {
@@ -82,7 +82,9 @@
         "ApiGateway": {
             "Type": "AWS::Serverless::Api",
             "Properties": {
-                "StageName": "www",
+                "StageName": {
+                    "Ref": "ScopeName"
+                },
                 "TracingEnabled": true,
                 "Cors": {
                     "AllowHeaders": "'authorization, token-id, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'",
