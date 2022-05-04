@@ -58,7 +58,7 @@
             "Type": "AWS::ApiGateway::BasePathMapping",
             "Properties": {
                 "BasePath": {
-                    "Ref": "/"
+                    "Ref": ""
                 },
                 "DomainName": {
                     "Ref": "ApiDomainName"
