@@ -72,10 +72,22 @@ app.get("/health", function (req: any, res: any) {
   res.send("ok");
 });
 
-app.use('*', createProxyMiddleware({
+
+app.get('/flags/*', createProxyMiddleware({
   target: SERVER_NEXTJS,
   selfHandleResponse: true,
-  onProxyRes: responseInterceptor(async (responseBuffer: any) => {
+  onProxyRes: responseInterceptor(async (responseBuffer: any, proxyRes: any, req: any, res: any) => {
+    res.setHeader( 'content-type', "image/png" );
+    return responseBuffer;
+   })
+ 
+}));
+
+app.get('*', createProxyMiddleware({
+  target: SERVER_NEXTJS,
+  selfHandleResponse: true,
+  onProxyRes: responseInterceptor(async (responseBuffer: any, proxyRes: any) => {
+    console.log(proxyRes.headers);
      return responseBuffer;
    })
  
