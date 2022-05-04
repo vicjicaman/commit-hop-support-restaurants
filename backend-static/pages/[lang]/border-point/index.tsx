@@ -39,6 +39,10 @@ export async function getServerSideProps(cxt: any) {
 const Home: NextPage = (props) => {
   const { list, lang } = props as any;
   const router = useRouter();
+
+  console.log("CHECK PUBLIC ENV")
+  console.log(JSON.stringify(process.env));
+
   return (
     <PageHandler lang={lang}>
       <Head>
