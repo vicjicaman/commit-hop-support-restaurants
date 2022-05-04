@@ -90,6 +90,9 @@
                     "AllowHeaders": "'authorization, token-id, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'",
                     "AllowOrigin": "'*'"
                 },
+                "BinaryMediaTypes": [
+                    "*/*"
+                ],
                 "EndpointConfiguration": {
                     "Type": "REGIONAL"
                 }
