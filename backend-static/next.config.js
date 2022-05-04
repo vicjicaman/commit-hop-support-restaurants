@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-    SCOPE: process.env.SCOPE
+    NEXT_PUBLIC_SCOPE: "www"
   },
   reactStrictMode: true,
   //basePath: '/listing',
