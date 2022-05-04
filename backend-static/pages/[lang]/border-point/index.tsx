@@ -41,15 +41,16 @@ export async function getServerSideProps(cxt: any) {
     props: {
       list: data.viewer.account.borderPoints.list,
       lang: cxt.params.lang,
+      scope: NEXT_PUBLIC_SCOPE
     },
   };
 }
 
 const Home: NextPage = (props) => {
-  const { list, lang } = props as any;
+  const { list, lang, scope } = props as any;
   const router = useRouter();
 
-  console.log("CHECK PUBLIC ENV")
+  console.log("CHECK PUBLIC ENV " + scope)
   console.log(JSON.stringify(process.env));
 
   return (
