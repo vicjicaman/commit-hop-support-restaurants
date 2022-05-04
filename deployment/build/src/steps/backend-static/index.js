@@ -38,8 +38,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     SERVER_GRAPHQL=https://www-api.ua-wck.com/backend/graphql
     NEXT_PUBLIC_SCOPE=www
     */
-    await fs.writeFile(path.join(backendStaticPath, ".env.local"), `SERVER_GRAPHQL=https://www-api.ua-wck.com/backend/graphql
-    NEXT_PUBLIC_SCOPE=www`, 'utf8');
+    await fs.writeFile(path.join(backendStaticPath, ".env.local"), `
+    SERVER_GRAPHQL=https://www-api.ua-wck.com/backend/graphql
+    NEXT_PUBLIC_SCOPE=www
+    `, 'utf8');
 
     await command(`yarn install`, { cwd: backendStaticPath });
     await command(`yarn build`, { cwd: backendStaticPath });

@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Will be available on both server and client
+  publicRuntimeConfig: {
+    NEXT_PUBLIC_SCOPE: "www",
+  },
   env: {
     NEXT_PUBLIC_SCOPE: "www"
   },
