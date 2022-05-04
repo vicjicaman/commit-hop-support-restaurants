@@ -46,7 +46,7 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     //await command(`docker build --no-cache -t ua-wck-backend-static .`, { cwd: backendStaticOutputPath });
 
     //backendStaticProxyOutputPath
-    //await command(`cp ${path.join(backendStaticPath, "next.config.js")} ${backendStaticProxyOutputPath}`);
+    await command(`cp ${path.join(backendStaticPath, "next.config.js")} ${backendProxyStandaloneOutput}`);
     await command(`cp -r ${path.join(backendStaticPath, ".next", "standalone", ".")} ${backendStaticProxyOutputPath}`);
     await command(`cp -r ${path.join(backendStaticPath, ".next", "static", ".")} ${backendProxyStandaloneNextOutput}`);
     await command(`cp -r ${path.join(backendStaticPath, "public", ".")} ${backendProxyStandaloneOutput}`);
