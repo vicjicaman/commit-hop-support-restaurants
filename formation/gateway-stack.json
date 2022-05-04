@@ -147,7 +147,7 @@
                 ],
                 "Environment": {
                     "Variables": {
-                        "SCOPE": {
+                        "NEXT_PUBLIC_SCOPE": {
                             "Ref": "ScopeName"
                         },
                         "SERVER_NEXTJS": "http://172.17.0.1:4400/",
