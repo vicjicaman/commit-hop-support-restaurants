@@ -14,7 +14,7 @@
                     "Ref": "HostedZoneId"
                 },
                 "Name": {
-                    "Ref": "ApiDomainName"
+                    "Ref": "ApiDomain"
                 },
                 "AliasTarget": {
                     "HostedZoneId": {
@@ -45,7 +45,7 @@
                     "Ref": "AcmCertificate"
                 },
                 "DomainName": {
-                    "Ref": "ApiDomainName"
+                    "Ref": "ApiDomain"
                 }
             },
             "Metadata": {
@@ -181,7 +181,7 @@
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
             "Type": "String"
         },
-        "ApiDomainName": {
+        "ApiDomain": {
             "Description": "scope + -api. +Apex domain (always ua-wck.com)",
             "Type": "String"
         },
@@ -227,7 +227,7 @@
                     "height": 60
                 },
                 "position": {
-                    "x": -20,
+                    "x": -10,
                     "y": 150
                 },
                 "z": 1,
@@ -239,8 +239,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 70,
-                    "y": 80
+                    "x": 100,
+                    "y": 150
                 },
                 "z": 1,
                 "embeds": []
@@ -251,8 +251,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 140,
-                    "y": 180
+                    "x": 200,
+                    "y": 120
                 },
                 "z": 1,
                 "embeds": []
@@ -263,8 +263,8 @@
                     "height": 60
                 },
                 "position": {
-                    "x": 230,
-                    "y": 80
+                    "x": 200,
+                    "y": 190
                 },
                 "z": 1,
                 "embeds": []
