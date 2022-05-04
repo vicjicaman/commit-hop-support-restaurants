@@ -106,21 +106,6 @@
                 "Architectures": [
                     "x86_64"
                 ],
-                "Environment": {
-                    "Variables": {
-                        "SERVER_GRAPHQL": {
-                            "Fn::Join": [
-                                "",
-                                [
-                                    "https://",
-                                    {
-                                        "Ref": "ApiDomain"
-                                    }
-                                ]
-                            ]
-                        }
-                    }
-                },
                 "Events": {
                     "BackendApiCall": {
                         "Type": "Api",
@@ -155,7 +140,19 @@
                 ],
                 "Environment": {
                     "Variables": {
-                        "SERVER_NEXTJS": "http://172.17.0.1:4400/"
+                        "SERVER_NEXTJS": "http://172.17.0.1:4400/",
+                        "SERVER_GRAPHQL": {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "https://",
+                                    {
+                                        "Ref": "ApiDomain"
+                                    },
+                                    "/backend/graphql"
+                                ]
+                            ]
+                        }
                     }
                 },
                 "Events": {
