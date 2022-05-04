@@ -1,6 +1,7 @@
 require("dotenv").config();
 const path = require("path");
 const fs = require("fs");
+import cors from "cors";
 const express = require("express");
 const process = require('process');
 import serverless from "serverless-http";
@@ -64,6 +65,8 @@ function requestHandler(req: any, event: any, context: any) {
 }
 
 const app: any = express();
+
+app.use(cors());
 
 app.get("/health", function (req: any, res: any) {
   res.send("ok");
