@@ -20,8 +20,8 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     const backendProxyStandaloneStaticOutput = `${path.join(backendProxyStandaloneOutput, ".next", "static")}`;
     const backendProxyStandaloneNextOutput = `${path.join(backendProxyStandaloneOutput, ".next")}`;
     const backendProxyStandalonePublicOutput = `${path.join(backendProxyStandaloneOutput, "public")}`;
-    
-    
+
+
 
     await command(`rm -rf ${backendStaticOutputPath}`);
     await command(`mkdir -p ${backendStaticOutputPath}`);
@@ -33,6 +33,13 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
 
     await command(`mkdir -p ${backendStaticCommonPath}`);
     await command(`cp -a ${componentsPath}/. ${backendStaticCommonPath}`);
+
+    /*
+    SERVER_GRAPHQL=https://www-api.ua-wck.com/backend/graphql
+    NEXT_PUBLIC_SCOPE=www
+    */
+    await fs.writeFile(path.join(backendStaticPath, ".env.local"), `SERVER_GRAPHQL=https://www-api.ua-wck.com/backend/graphql
+    NEXT_PUBLIC_SCOPE=www`, 'utf8');
 
     await command(`yarn install`, { cwd: backendStaticPath });
     await command(`yarn build`, { cwd: backendStaticPath });
