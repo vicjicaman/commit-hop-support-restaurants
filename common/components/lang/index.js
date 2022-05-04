@@ -28,7 +28,7 @@ const options = [
   { lang: "hu", flag: "hu", label: "Hungarian" },
 ];
 
-const SCOPE = process.env.REACT_APP_SCOPE || process.env.NEXT_PUBLIC_SCOPE || "dev";
+const SCOPE = process.env.NEXT_PUBLIC_SCOPE || "dev";
 const flagUrl = (flag) => `https://${SCOPE}.ua-wck.com/flags/${flag}.png`;
 
 export const Selector = ({ lang: current }) => {

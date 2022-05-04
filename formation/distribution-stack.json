@@ -138,17 +138,7 @@
                         "Compress": true
                     },
                     "Enabled": true,
-                    "Origins": [
-                        {
-                            "DomainName": {
-                                "Fn::GetAtt": [
-                                    "PublicBucket",
-                                    "RegionalDomainName"
-                                ]
-                            },
-                            "Id": "PublicBucketOrigin",
-                            "S3OriginConfig": {}
-                        },
+                    "Origins": [                       
                         {
                             "DomainName": {
                                 "Fn::Join": [
