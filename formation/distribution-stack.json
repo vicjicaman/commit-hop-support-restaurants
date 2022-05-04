@@ -127,12 +127,6 @@
                         "DefaultTTL": 900,
                         "MaxTTL": 900,
                         "MinTTL": 900,
-                        "ForwardedValues": {
-                            "QueryString": false,
-                            "Headers": [
-                                "Host"
-                            ]
-                        },
                         "TargetOriginId": "BackendStaticOrigin",
                         "ViewerProtocolPolicy": "redirect-to-https",
                         "Compress": true
