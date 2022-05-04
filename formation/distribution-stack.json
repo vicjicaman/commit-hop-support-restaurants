@@ -124,9 +124,9 @@
                             "GET",
                             "HEAD"
                         ],
-                        "DefaultTTL": 900,
-                        "MaxTTL": 900,
-                        "MinTTL": 900,
+                        "DefaultTTL": 120,
+                        "MaxTTL": 120,
+                        "MinTTL": 120,
                         "ForwardedValues": {
                             "QueryString": false,
                             "Headers": []
