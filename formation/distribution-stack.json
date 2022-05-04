@@ -115,27 +115,7 @@
                             ]
                         }
                     ],
-                    "CacheBehaviors": [
-                        {
-                            "PathPattern": "listing/*",
-                            "AllowedMethods": [
-                                "GET",
-                                "HEAD"
-                            ],
-                            "DefaultTTL": 900,
-                            "MaxTTL": 900,
-                            "MinTTL": 900,
-                            "ForwardedValues": {
-                                "QueryString": false,
-                                "Headers": [
-                                    "Host"
-                                ]
-                            },
-                            "TargetOriginId": "BackendStaticOrigin",
-                            "ViewerProtocolPolicy": "redirect-to-https",
-                            "Compress": true
-                        }
-                    ],
+                    "CacheBehaviors": [],
                     "Comment": {
                         "Ref": "ScopeName"
                     },
@@ -144,35 +124,18 @@
                             "GET",
                             "HEAD"
                         ],
-                        "DefaultTTL": 0,
-                        "MaxTTL": 0,
-                        "MinTTL": 0,
+                        "DefaultTTL": 900,
+                        "MaxTTL": 900,
+                        "MinTTL": 900,
                         "ForwardedValues": {
                             "QueryString": false,
-                            "Headers": []
+                            "Headers": [
+                                "Host"
+                            ]
                         },
-                        "TargetOriginId": "PublicBucketOrigin",
+                        "TargetOriginId": "BackendStaticOrigin",
                         "ViewerProtocolPolicy": "redirect-to-https",
-                        "Compress": true,
-                        "LambdaFunctionAssociations": [
-                            {
-                                "EventType": "origin-request",
-                                "LambdaFunctionARN": {
-                                    "Ref": "OriginRequestServerlessFunction.Version"
-                                }
-                            }
-                        ],
-                        "FunctionAssociations": [
-                            {
-                                "EventType": "viewer-request",
-                                "FunctionARN": {
-                                    "Fn::GetAtt": [
-                                        "ViewerRequest",
-                                        "FunctionMetadata.FunctionARN"
-                                    ]
-                                }
-                            }
-                        ]
+                        "Compress": true
                     },
                     "Enabled": true,
                     "Origins": [
