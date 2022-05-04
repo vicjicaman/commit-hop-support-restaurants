@@ -41,9 +41,6 @@
         "ApiDomainName": {
             "Type": "AWS::ApiGateway::DomainName",
             "Properties": {
-                "CertificateArn": {
-                    "Ref": "AcmCertificate"
-                },
                 "DomainName": {
                     "Ref": "ApiDomain"
                 },
