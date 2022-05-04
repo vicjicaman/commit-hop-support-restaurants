@@ -7,6 +7,75 @@
         }
     },
     "Resources": {
+        "ApiRoute": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+                "HostedZoneId": {
+                    "Ref": "HostedZoneId"
+                },
+                "Name": {
+                    "Ref": "ApiDomainName"
+                },
+                "AliasTarget": {
+                    "HostedZoneId": {
+                        "Fn::GetAtt": [
+                            "ApiDomainName",
+                            "DistributionHostedZoneId"
+                        ]
+                    },
+                    "DNSName": {
+                        "Fn::GetAtt": [
+                            "ApiDomainName",
+                            "DistributionDomainName"
+                        ]
+                    }
+                },
+                "Type": "A"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4c2bdb35-f695-4401-97c0-1956e808a89c"
+                }
+            }
+        },
+        "ApiDomainName": {
+            "Type": "AWS::ApiGateway::DomainName",
+            "Properties": {
+                "CertificateArn": {
+                    "Ref": "AcmCertificate"
+                },
+                "DomainName": {
+                    "Ref": "ApiDomainName"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a1927fcc-0817-47c7-bc2b-9b9d2b322bea"
+                }
+            }
+        },
+        "ApiMapping": {
+            "Type": "AWS::ApiGateway::BasePathMapping",
+            "Properties": {
+                "BasePath": {
+                    "Ref": "/"
+                },
+                "DomainName": {
+                    "Ref": "ApiDomainName"
+                },
+                "RestApiId": {
+                    "Ref": "ApiGateway"
+                },
+                "Stage": {
+                    "Ref": "ScopeName"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "598b05b4-d12f-494b-8409-6219d6448973"
+                }
+            }
+        },
         "ApiGateway": {
             "Type": "AWS::Serverless::Api",
             "Properties": {
@@ -17,7 +86,12 @@
                     "AllowOrigin": "'*'"
                 },
                 "EndpointConfiguration": {
-                    "Type":  "REGIONAL"
+                    "Type": "REGIONAL"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "3a4ea5d2-4472-4f87-83fd-8537b31ca7e1"
                 }
             }
         },
@@ -45,6 +119,11 @@
                             }
                         }
                     }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "cd7bd850-cfdb-4a16-b6a6-b5c987591838"
                 }
             }
         },
@@ -88,6 +167,11 @@
                         }
                     }
                 }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c6f4a0f6-770f-44ea-ba79-3d03b2f1226a"
+                }
             }
         }
     },
@@ -96,6 +180,95 @@
         "ScopeName": {
             "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
             "Type": "String"
+        },
+        "ApiDomainName": {
+            "Description": "scope + -api. +Apex domain (always ua-wck.com)",
+            "Type": "String"
+        },
+        "AcmCertificate": {
+            "AllowedPattern": "^$|(arn:aws:acm:)([a-z0-9/:-])*([a-z0-9])$",
+            "Description": "[ Optional ] The AWS Certification Manager certificate ARN for the CloudFront distribution certificate - this certificate should be created in the us-east-1 (N. Virginia) region and must reference the WordPress domain name you use below.",
+            "Type": "String"
+        },
+        "HostedZoneId": {
+            "Description": "Hosted Zone ID for ua-wck.com",
+            "Type": "String"
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "4c2bdb35-f695-4401-97c0-1956e808a89c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -210,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "a1927fcc-0817-47c7-bc2b-9b9d2b322bea": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -110,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "598b05b4-d12f-494b-8409-6219d6448973": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -20,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "3a4ea5d2-4472-4f87-83fd-8537b31ca7e1": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 70,
+                    "y": 80
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "cd7bd850-cfdb-4a16-b6a6-b5c987591838": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 140,
+                    "y": 180
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "c6f4a0f6-770f-44ea-ba79-3d03b2f1226a": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 230,
+                    "y": 80
+                },
+                "z": 1,
+                "embeds": []
+            }
         }
     }
 }
