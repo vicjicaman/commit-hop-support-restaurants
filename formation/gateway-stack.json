@@ -20,13 +20,13 @@
                     "HostedZoneId": {
                         "Fn::GetAtt": [
                             "ApiDomainName",
-                            "DistributionHostedZoneId"
+                            "RegionalHostedZoneId"
                         ]
                     },
                     "DNSName": {
                         "Fn::GetAtt": [
                             "ApiDomainName",
-                            "DistributionDomainName"
+                            "RegionalDomainName"
                         ]
                     }
                 },
@@ -46,6 +46,14 @@
                 },
                 "DomainName": {
                     "Ref": "ApiDomain"
+                },
+                "EndpointConfiguration": {
+                    "Types": [
+                        "REGIONAL"
+                    ]
+                },
+                "RegionalCertificateArn": {
+                    "Ref": "AcmCertificate"
                 }
             },
             "Metadata": {
@@ -140,7 +148,7 @@
                 ],
                 "Environment": {
                     "Variables": {
-                        "NEXT_PUBLIC_SCOPE" : {
+                        "NEXT_PUBLIC_SCOPE": {
                             "Ref": "ScopeName"
                         },
                         "SERVER_NEXTJS": "http://172.17.0.1:4400/",
