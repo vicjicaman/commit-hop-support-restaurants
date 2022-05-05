@@ -28,8 +28,9 @@ const options = [
   { lang: "hu", flag: "hu", label: "Hungarian" },
 ];
 
-const SCOPE = process.env.REACT_APP_SCOPE || process.env.NEXT_PUBLIC_SCOPE || "dev";
-const flagUrl = (flag) => `https://${SCOPE}.ua-wck.com/flags/${flag}.png`;
+// Remove... made it work within getProps method, but I will use a relative url for simplicity from now
+//const SCOPE = process.env.NEXT_PUBLIC_SCOPE || "dev";
+const flagUrl = (flag) => `/flags/${flag}.png`;
 
 export const Selector = ({ lang: current }) => {
   const currFlag = _.find(options, { lang: current });

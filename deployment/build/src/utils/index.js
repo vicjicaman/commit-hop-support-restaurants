@@ -9,7 +9,7 @@ const logger = { info: msg => console.log(msg), debug: msg => console.log(msg) }
 const command = async (cmd, args, handler) => {
 
     logger.info(cmd);
-    const res = await exec(cmd, args);
+    const res = await exec(cmd, { maxBuffer: 1024 * 5000, ...args });
     logger.info(res.stdout);
     logger.info(res.stderr);
 
@@ -28,6 +28,17 @@ const buildParamTemplate = async (inputFilename, outputFolder, params) => {
     }
 
     await fs.writeFile(path.join(outputFolder, basename), input, 'utf8');
+}
+
+
+const overrideTemplate = async (inputFilename, outputFolder, fnc) => {
+    let input = await fs.readFile(inputFilename, 'utf8');
+    const basename = path.parse(inputFilename).base;
+
+    const json = JSON.parse(input);
+    const res = fnc(json);
+
+    await fs.writeFile(path.join(outputFolder, basename), JSON.stringify(res, null, 2), 'utf8');
 }
 
 
@@ -80,5 +91,6 @@ module.exports = {
     command,
     copyWithActiveSegment,
     buildParamTemplate,
-    renderTemplate
+    renderTemplate,
+    overrideTemplate
 }

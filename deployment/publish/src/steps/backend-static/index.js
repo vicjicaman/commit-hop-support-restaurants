@@ -2,7 +2,8 @@ const { logger, command } = require("../../utils")
 
 const enabled = true;
 
-const step = async ({ version, scope }) => {
+const step = async (cxt) => {
+    const { outputPath, s3Target } = cxt;
 
     if (!enabled) {
         return

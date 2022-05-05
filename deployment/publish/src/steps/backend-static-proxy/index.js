@@ -14,7 +14,8 @@ const step = async (cxt) => {
     //await command(`docker push repoflow/ua-wck-backend:${scope}-${version}`);
 
 
-    const currentAsset = "backend";
+
+    const currentAsset = "backend-static-proxy";
 
     const buildOutputPath = `${outputPath}/${currentAsset}`
     const s3OriginTarget = `${s3Target}/${currentAsset}`;
@@ -28,6 +29,8 @@ const step = async (cxt) => {
     );
 
     await outputArtifact(currentAsset, cxt);
+
+
 }
 
 module.exports = { step }

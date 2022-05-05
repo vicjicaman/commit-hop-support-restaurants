@@ -1,0 +1,298 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Transform": "AWS::Serverless-2016-10-31",
+    "Globals": {
+        "Function": {
+            "Timeout": 30
+        }
+    },
+    "Resources": {
+        "ApiRoute": {
+            "Type": "AWS::Route53::RecordSet",
+            "Properties": {
+                "HostedZoneId": {
+                    "Ref": "HostedZoneId"
+                },
+                "Name": {
+                    "Ref": "ApiDomain"
+                },
+                "AliasTarget": {
+                    "HostedZoneId": {
+                        "Fn::GetAtt": [
+                            "ApiDomainName",
+                            "RegionalHostedZoneId"
+                        ]
+                    },
+                    "DNSName": {
+                        "Fn::GetAtt": [
+                            "ApiDomainName",
+                            "RegionalDomainName"
+                        ]
+                    }
+                },
+                "Type": "A"
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "4c2bdb35-f695-4401-97c0-1956e808a89c"
+                }
+            }
+        },
+        "ApiDomainName": {
+            "Type": "AWS::ApiGateway::DomainName",
+            "Properties": {
+                "DomainName": {
+                    "Ref": "ApiDomain"
+                },
+                "EndpointConfiguration": {
+                    "Types": [
+                        "REGIONAL"
+                    ]
+                },
+                "RegionalCertificateArn": {
+                    "Ref": "AcmCertificate"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "a1927fcc-0817-47c7-bc2b-9b9d2b322bea"
+                }
+            }
+        },
+        "ApiMapping": {
+            "Type": "AWS::ApiGateway::BasePathMapping",
+            "Properties": {
+                "BasePath": "",
+                "DomainName": {
+                    "Ref": "ApiDomainName"
+                },
+                "RestApiId": {
+                    "Ref": "ApiGateway"
+                },
+                "Stage": {
+                    "Ref": "ApiGateway.Stage"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "598b05b4-d12f-494b-8409-6219d6448973"
+                }
+            }
+        },
+        "ApiGateway": {
+            "Type": "AWS::Serverless::Api",
+            "Properties": {
+                "StageName": {
+                    "Ref": "ScopeName"
+                },
+                "TracingEnabled": true,
+                "Cors": {
+                    "AllowHeaders": "'authorization, token-id, Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'",
+                    "AllowOrigin": "'*'"
+                },
+                "BinaryMediaTypes": [
+                    "*/*"
+                ],
+                "EndpointConfiguration": {
+                    "Type": "REGIONAL"
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "3a4ea5d2-4472-4f87-83fd-8537b31ca7e1"
+                }
+            }
+        },
+        "BackendFunction": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "FunctionName": {
+                    "Fn::Sub": "ua-wck-backend-${ScopeName}"
+                },
+                "CodeUri": "../backend/dist",
+                "Handler": "index.handler",
+                "Runtime": "nodejs14.x",
+                "MemorySize": 256,
+                "Architectures": [
+                    "x86_64"
+                ],
+                "Events": {
+                    "BackendApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/backend/{proxy+}",
+                            "Method": "post",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "cd7bd850-cfdb-4a16-b6a6-b5c987591838"
+                }
+            }
+        },
+        "BackendStaticProxyFunction": {
+            "Type": "AWS::Serverless::Function",
+            "Properties": {
+                "FunctionName": {
+                    "Fn::Sub": "ua-wck-backend-static-proxy-${ScopeName}"
+                },
+                "CodeUri": "../backend-static-proxy/dist",
+                "Handler": "index.handler",
+                "Runtime": "nodejs14.x",
+                "MemorySize": 256,
+                "Architectures": [
+                    "x86_64"
+                ],
+                "Environment": {
+                    "Variables": {
+                        "NODE_ENV": "development",
+                        "NEXT_PUBLIC_SCOPE": {
+                            "Ref": "ScopeName"
+                        },
+                        "SERVER_NEXTJS": "http://172.17.0.1:4400/",
+                        "SERVER_GRAPHQL": {
+                            "Fn::Join": [
+                                "",
+                                [
+                                    "https://",
+                                    {
+                                        "Ref": "ApiDomain"
+                                    },
+                                    "/backend/graphql"
+                                ]
+                            ]
+                        }
+                    }
+                },
+                "Events": {
+                    "RootBackendStaticApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/",
+                            "Method": "get",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    },
+                    "BackendStaticApiCall": {
+                        "Type": "Api",
+                        "Properties": {
+                            "Path": "/{proxy+}",
+                            "Method": "get",
+                            "RestApiId": {
+                                "Ref": "ApiGateway"
+                            }
+                        }
+                    }
+                }
+            },
+            "Metadata": {
+                "AWS::CloudFormation::Designer": {
+                    "id": "c6f4a0f6-770f-44ea-ba79-3d03b2f1226a"
+                }
+            }
+        }
+    },
+    "Outputs": {},
+    "Parameters": {
+        "ScopeName": {
+            "Description": "Name of the current scope (<<ScopeName>>.ua-wck.com)",
+            "Type": "String"
+        },
+        "ApiDomain": {
+            "Description": "scope + -api. +Apex domain (always ua-wck.com)",
+            "Type": "String"
+        },
+        "AcmCertificate": {
+            "AllowedPattern": "^$|(arn:aws:acm:)([a-z0-9/:-])*([a-z0-9])$",
+            "Description": "[ Optional ] The AWS Certification Manager certificate ARN for the CloudFront distribution certificate - this certificate should be created in the us-east-1 (N. Virginia) region and must reference the WordPress domain name you use below.",
+            "Type": "String"
+        },
+        "HostedZoneId": {
+            "Description": "Hosted Zone ID for ua-wck.com",
+            "Type": "String"
+        }
+    },
+    "Metadata": {
+        "AWS::CloudFormation::Designer": {
+            "4c2bdb35-f695-4401-97c0-1956e808a89c": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -210,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "a1927fcc-0817-47c7-bc2b-9b9d2b322bea": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -110,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "598b05b4-d12f-494b-8409-6219d6448973": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": -10,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "3a4ea5d2-4472-4f87-83fd-8537b31ca7e1": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 100,
+                    "y": 150
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "cd7bd850-cfdb-4a16-b6a6-b5c987591838": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 200,
+                    "y": 120
+                },
+                "z": 1,
+                "embeds": []
+            },
+            "c6f4a0f6-770f-44ea-ba79-3d03b2f1226a": {
+                "size": {
+                    "width": 60,
+                    "height": 60
+                },
+                "position": {
+                    "x": 200,
+                    "y": 190
+                },
+                "z": 1,
+                "embeds": []
+            }
+        }
+    }
+}

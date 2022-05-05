@@ -1,11 +1,11 @@
-const { logger, command, buildParamTemplate } = require("../../utils")
+const { logger, command, buildParamTemplate, overrideTemplate } = require("../../utils")
 const fs = require('fs').promises;
 const path = require("path");
 const md5 = require("md5");
 
 const enabled = true;
 
-const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath, version }) => {
+const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath, version, scope }) => {
 
     if (!enabled) {
         return;
@@ -22,12 +22,66 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     logger.info("Version hash " + versionHash);
 
     const params = { "SCOPExVERSIONxHASH": versionHash, "SCOPExVERSION": version };
-    
+
     await buildParamTemplate(
         path.join(formationPath, "distribution-stack.json"),
         formationOutputPath,
         params
-        )
+    )
+
+    await buildParamTemplate(
+        path.join(formationPath, "gateway-stack.json"),
+        formationOutputPath,
+        params
+    );
+
+    await overrideTemplate(
+        path.join(formationOutputPath, "gateway-stack.json"),
+        formationOutputPath,
+        (json) => {
+            return {
+                ...json,
+                Resources: {
+                    ...json.Resources,
+                    BackendFunction: {
+                        ...json.Resources.BackendFunction,
+                        Properties: {
+                            ...json.Resources.BackendFunction.Properties,
+                            CodeUri: {
+                                Bucket: "ua-wck-utils",
+                                Key: `${scope}/${version}/backend/payload.zip`
+                            },
+                            Environment: {
+                                ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
+                                Variables: {
+                                    ...json.Resources.BackendStaticProxyFunction.Properties.Environment.Variables,
+                                    NODE_ENV: "production"
+                                }
+                            }
+                        }
+                    },
+                    BackendStaticProxyFunction: {
+                        ...json.Resources.BackendStaticProxyFunction,
+                        Properties: {
+                            ...json.Resources.BackendStaticProxyFunction.Properties,
+                            CodeUri: {
+                                Bucket: "ua-wck-utils",
+                                Key: `${scope}/${version}/backend-static-proxy/payload.zip`
+                            },
+                            Environment: {
+                                ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
+                                Variables: {
+                                    ...json.Resources.BackendStaticProxyFunction.Properties.Environment.Variables,
+                                    NODE_ENV: "production"
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    );
 
     //await buildParamTemplate(
     //    path.join(formationPath, "backend-stack.json"),

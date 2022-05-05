@@ -32,7 +32,7 @@ var markerIcon = new L.Icon({
 const Tag = ({ tag }) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
 
 export default function ({ list }) {
-  const initPosition = [52.012551077226085, 22.926438847190745];
+  const initPosition = [49, 22];
   const size = useWindowSize();
 
   return (
@@ -40,7 +40,7 @@ export default function ({ list }) {
       key={size.height}
       style={{ height: size.height - 70 + "px" }}
       center={initPosition}
-      zoom={8}
+      zoom={7}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

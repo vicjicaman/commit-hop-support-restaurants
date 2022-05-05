@@ -1,41 +1,55 @@
 require("dotenv").config();
 const path = require("path");
+const fs = require("fs");
+import cors from "cors";
 const express = require("express");
+const process = require('process');
+const bodyParser = require('body-parser');
 import serverless from "serverless-http";
 const { createProxyMiddleware,responseInterceptor } = require('http-proxy-middleware');
-
-let appReady : boolean = false;
-
 const { spawn } = require('child_process');
 
-const child = spawn('node', ['server.js'], { cwd:"./standalone" });
+const NODE_ENV = process.env.NODE_ENV;
 
-child.stdout.on('data', (data:any) => {
+let appReady : boolean = NODE_ENV === "production" ? false : true;
+console.log("ENV " + NODE_ENV)
 
-  const str = data.toString()
+if(NODE_ENV === "production"){
+  const innerServerEnv = { ...process.env, NEXT_TELEMETRY_DISABLED: 1 };
+  //console.log(JSON.stringify(innerServerEnv));
+  const child = spawn('node', ['server.js'], { 
+  env: innerServerEnv,
+  cwd: "/var/task/standalone" //path.join(process.cwd(), "standalone" )
+  });
 
-  if(str.indexOf("Listening on port") !== -1){
-    appReady = true;
-  }
+  child.stdout.on('data', (data:any) => {
 
-  console.log(`stdout:\n${data}`);
-});
+    const str = data.toString()
 
-child.stderr.on('data', (data:any) => {
-  console.error(`stderr: ${data}`);
-});
+    if(str.indexOf("Listening on port") !== -1){
+      appReady = true;
+    }
 
-child.on('error', (error:any) => {
-  console.error(`error: ${error.message}`);
-});
+    console.log(`stdout:\n${data}`);
+  });
 
-child.on('close', (code:any) => {
-  console.log(`child process exited with code ${code}`);
-});
+  child.stderr.on('data', (data:any) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  child.on('error', (error:any) => {
+    console.error(`error: ${error.message}`);
+  });
+
+  child.on('close', (code:any) => {
+    console.log(`child process exited with code ${code}`);
+  });
+}
+
+
 
 const cxt: any = {};
-
-const SERVER_NEXTJS = "http://127.0.0.1:3000";
+const SERVER_NEXTJS = NODE_ENV === "production" ? "http://127.0.0.1:3000" : "http://172.19.0.1:4400";
 
 function requestHandler(req: any, event: any, context: any) {
   context.callbackWaitsForEmptyEventLoop = false;
@@ -44,17 +58,19 @@ function requestHandler(req: any, event: any, context: any) {
 
 const app: any = express();
 
-app.get("/health", function (req: any, res: any) {
-  res.send("ok");
-});
-
-app.use('*', createProxyMiddleware({
+//"http-proxy-middleware": "^2.0.6",
+//"http-proxy-middleware": "3.0.0-beta.0",
+app.get('*', createProxyMiddleware({
   target: SERVER_NEXTJS,
   selfHandleResponse: true,
-  onProxyRes: responseInterceptor(async (responseBuffer: any) => {
-     return responseBuffer;
-   })
- 
+  onProxyRes: responseInterceptor(async (responseBuffer: any, proxyRes: any, req: any, res: any) => {
+      if(proxyRes.headers['content-type'] && proxyRes.headers['content-type'].startsWith("image/") ){
+        return responseBuffer.toString('base64');
+      }else{
+        return responseBuffer;
+      }
+     })
+  
 }));
 
 
@@ -77,7 +93,10 @@ export const handler = async (event: any, context: any) => {
     await wait(1)
   }
 
-  const result = await serverHandler(event, context);
+  const result :any = await serverHandler(event, context);
+  if(result.headers['content-type'] && result.headers['content-type'].startsWith("image/") ){
+    result.isBase64Encoded = true;
+  }
   return result;
 };
 

@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import getConfig from 'next/config';
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -22,23 +23,36 @@ const Map = dynamic(() => import("../../../components/map"), {
   ssr: false
 });
 
+
+
 export async function getServerSideProps(cxt: any) {
   const { data } = await client.query({
     query: BORDERPOINT_LIST,
     fetchPolicy: "no-cache"
   });
 
+  const {
+    publicRuntimeConfig: { NEXT_PUBLIC_SCOPE },
+  } = getConfig()
+
+  console.log('NEXT_PUBLIC_SCOPE!', NEXT_PUBLIC_SCOPE) // Here project API is available
+
   return {
     props: {
       list: data.viewer.account.borderPoints.list,
       lang: cxt.params.lang,
+      scope: NEXT_PUBLIC_SCOPE
     },
   };
 }
 
 const Home: NextPage = (props) => {
-  const { list, lang } = props as any;
+  const { list, lang, scope } = props as any;
   const router = useRouter();
+
+  console.log("CHECK PUBLIC ENV " + scope)
+  console.log(JSON.stringify(process.env));
+
   return (
     <PageHandler lang={lang}>
       <Head>
