@@ -24,14 +24,14 @@ class BorderPointData {
   }
 
   async list(): Promise<IBorderPoint[]> {
-    const res = await this.jsonDriver.list("restaurants");
+    const res = await this.jsonDriver.list("border-points");
     return res.map((row: any) => 
       this.BorderPointFactory.create(deserialize(row))
     );
   }
 
   async get(id: number): Promise<IBorderPoint> {
-    const res = await this.jsonDriver.get("restaurants", id);
+    const res = await this.jsonDriver.get("border-points", id);
     return this.BorderPointFactory.create(deserialize(res))
   }
 

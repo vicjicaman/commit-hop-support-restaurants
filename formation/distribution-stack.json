@@ -279,90 +279,6 @@
                     "id": "226ca93a-77d5-4e77-912f-4beb15b268c5"
                 }
             }
-        },
-        "ViewerRequest": {
-            "Type": "AWS::CloudFront::Function",
-            "Properties": {
-                "AutoPublish": true,
-                "FunctionCode": "\n/* See https://medium.com/@chrispointon/default-files-in-s3-subdirectories-using-cloudfront-and-lambda-edge-941100a3c629\n Register this as the viewer-request trigger handler */\n\n\"use strict\";\n\n\nfunction objectToQueryString(obj) {\n  var str = [];\n  for (var param in obj)\n    if (obj[param].multiValue)\n      str.push(param + \"=\" + obj[param].multiValue.map((item) => item.value).join(','));\n    else if (obj[param].value == '')\n      str.push(param);\n    else\n      str.push(param + \"=\" + obj[param].value);\n\n  return str.join(\"&\");\n}\n\n\nfunction handler(event) {\n  // Extract the request from the CloudFront event that is sent to Lambda@Edge\n  var request = event.request;\n\n  var host = request.headers.host.value;\n\n  request.headers[\"x-forwarded-host\"] = { value: host };\n\n  // Extract the URI and params from the request\n  var olduri = request.uri;\n  //console.log(olduri)\n\n  // Match any uri that ends with some combination of\n  // [0-9][a-z][A-Z]_- and append a slash\n  var endslashuri = olduri.replace(/(\\/[\\w\\-]+)$/, \"$1/\");\n\n  //console.log(\"Old URI: \" + olduri);\n  //console.log(\"End slash URI: \" + endslashuri);\n\n  if (endslashuri != olduri) {\n    // If we changed the uri, 301 to the version with a slash, appending querystring\n    /*var params = \"\";\n    console.log(request.querystring)\n    if (\"querystring\" in request && request.querystring.length > 0) {\n      params = \"?\" + request.querystring;\n    }\n    var newuri = endslashuri + params;*/\n\n    var newuri = endslashuri\n\n    if (Object.keys(request.querystring).length) {\n      newuri = `${endslashuri}?${objectToQueryString(request.querystring)}`\n    }\n\n    //console.log(\"Params: \" + params);\n    //console.log(\"New URI: \" + newuri);\n    //console.log(newuri)\n\n    var response = {\n      statusCode: 301,\n      statusDescription: \"Permanently moved\",\n      headers: {\n        location: {\n          value: newuri\n        }\n\n      }\n    };\n\n    //console.log(\"redirect\")\n    return response;\n  } else {\n    //console.log(\"bypass\")\n    // Return to CloudFront\n    return request;\n  }\n};\n",
-                "FunctionConfig": {
-                    "Comment": {
-                        "Fn::Sub": "Viewer request handler for ${ScopeName}"
-                    },
-                    "Runtime": "cloudfront-js-1.0"
-                },
-                "Name": {
-                    "Fn::Sub": "viewer-request-${ScopeName}"
-                }
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "0e4c86c0-c19f-4e5e-a75b-9a4b83bb66e6"
-                }
-            }
-        },
-        "OriginRequestServerlessFunction": {
-            "Type": "AWS::Serverless::Function",
-            "Properties": {
-                "FunctionName": {
-                    "Fn::Sub": "origin-request-serverless-${ScopeName}"
-                },
-                "AutoPublishAlias": {
-                    "Ref": "ScopeName"
-                },
-                "Description": "Request origin resolver for SPA and static resources.\n",
-                "CodeUri": {
-                    "Bucket": "ua-wck-utils",
-                    "Key": {
-                        "Fn::Sub": "${ScopeName}/xPARAMxSCOPExVERSION/origin-request/payload.zip"
-                    }
-                },
-                "Handler": "index.handler",
-                "MemorySize": 128,
-                "Timeout": 5,
-                "Role": {
-                    "Fn::Sub": "${LambdaFunctionExecRole.Arn}"
-                },
-                "Runtime": "nodejs14.x"
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "461dca28-584d-4393-a39c-33d6c1553f58"
-                }
-            },
-            "DependsOn": [
-                "LambdaFunctionExecRole"
-            ]
-        },
-        "LambdaFunctionExecRole": {
-            "Type": "AWS::IAM::Role",
-            "Properties": {
-                "AssumeRolePolicyDocument": {
-                    "Version": "2012-10-17",
-                    "Statement": [
-                        {
-                            "Effect": "Allow",
-                            "Principal": {
-                                "Service": [
-                                    "edgelambda.amazonaws.com",
-                                    "lambda.amazonaws.com"
-                                ]
-                            },
-                            "Action": [
-                                "sts:AssumeRole"
-                            ]
-                        }
-                    ]
-                },
-                "ManagedPolicyArns": [
-                    "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
-                ]
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "d7e88c58-b23d-4069-a554-5843f359a26b"
-                }
-            }
         }
     },
     "Parameters": {
@@ -385,11 +301,5 @@
         }
     },
     "Outputs": {
-        "OriginRequestVersion": {
-            "Description": "Origin request Function ARN with Version",
-            "Value": {
-                "Ref": "OriginRequestServerlessFunction.Version"
-            }
-        }
     }
 }

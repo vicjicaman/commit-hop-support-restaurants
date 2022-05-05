@@ -1,7 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, Row, Col, Button } from "reactstrap";
-import { RESTAURANT_FIND } from "common/queries/restaurant";
-import { useParams, Link, useNavigate } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 
 export const Component = () => {
