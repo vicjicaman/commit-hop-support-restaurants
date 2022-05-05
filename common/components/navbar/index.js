@@ -58,6 +58,7 @@ export default ({ lang, tag, pathname }) => {
               {...props}
               id={"app.donate"}
               href={`/${lang}/donate`}
+              exact={true}
             />
           </NavItem>
           <Lang.Selector lang={lang} />
