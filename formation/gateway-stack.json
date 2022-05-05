@@ -150,6 +150,7 @@
                 ],
                 "Environment": {
                     "Variables": {
+                        "NODE_ENV": "development",
                         "NEXT_PUBLIC_SCOPE": {
                             "Ref": "ScopeName"
                         },

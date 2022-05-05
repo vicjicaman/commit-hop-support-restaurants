@@ -50,6 +50,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                             CodeUri: {
                                 Bucket: "ua-wck-utils",
                                 Key: `${scope}/${version}/backend/payload.zip`
+                            },
+                            Environment: {
+                                ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
+                                NODE_ENV: "production"
                             }
                         }
                     },
@@ -60,8 +64,13 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                             CodeUri: {
                                 Bucket: "ua-wck-utils",
                                 Key: `${scope}/${version}/backend-static-proxy/payload.zip`
+                            },
+                            Environment: {
+                                ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
+                                NODE_ENV: "production"
                             }
                         }
+
                     }
                 }
             }
