@@ -41,7 +41,7 @@ export default {
             "description": "If you CAN and WANT to support Ukraine ukraine and Ukrainian army, here is a tweet with instructions from OFFICIAL account of Ukraine"
         }
     ],
-    "opensource": [
+    "opensources": [
         {
             "id": "leaflet",
             "name": "Leaflet",
@@ -55,6 +55,13 @@ export default {
             "repository": "https://github.com/pavlobu/deskreen",
             "logo": "https://raw.githubusercontent.com/pavlobu/deskreen/master/resources/icon.png",
             "description": "Deskreen turns any device with a web browser into a secondary screen for your computer"
+        },
+        {
+            "id": "vicjicama-commit-hop",
+            "name": "Vicjicama Commit HOP",
+            "repository": "https://github.com/vicjicaman/commit-hop-support-restaurants",
+            "logo": "https://avatars.githubusercontent.com/u/36018976?v=4",
+            "description": "The repository for this project, please feel free to reach out if you have any idea or data change to implement"
         }
     ],
     "tweets": [

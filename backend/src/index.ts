@@ -59,9 +59,9 @@ container.register({
 
 const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {
   const logger = cxt.container.cradle.logger;
-  logger.debug(`args for ${info.fieldName}: ${JSON.stringify(args)}`);
+  logger.debug(` --- args for ${info.fieldName}: ${JSON.stringify(args)}`);
   const result = await resolve(root, args, cxt, info);
-  logger.debug(`result for ${info.fieldName}: ${JSON.stringify(result)}`);
+  logger.debug(` - result for ${info.fieldName}: ${JSON.stringify(result)}`);
   return result
 }
 

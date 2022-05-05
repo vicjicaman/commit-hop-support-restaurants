@@ -9,13 +9,8 @@ const schema = [
     id: ID!
     name: String!
     description: String
-    latitude: Float!
-    longitude: Float!
-
-    images: [String]!
-
-    country: String
-    address: String
+    repository: String!
+    logo: String!
   }
 
   type OpensourceQueries {

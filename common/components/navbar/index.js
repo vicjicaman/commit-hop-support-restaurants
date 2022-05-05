@@ -56,6 +56,14 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
+              id={"app.opensource"}
+              href={`/${lang}/opensource`}
+              exact={true}
+            />
+          </NavItem>
+          <NavItem>
+            <NavItemCommon
+              {...props}
               id={"app.donate"}
               href={`/${lang}/donate`}
               exact={true}
