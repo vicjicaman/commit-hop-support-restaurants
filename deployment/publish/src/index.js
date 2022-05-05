@@ -8,7 +8,7 @@ const FormationStep = require("./steps/formation")
 const BackendStep = require("./steps/backend")
 const BackendStaticStep = require("./steps/backend-static")
 const BackendStaticProxyStep = require("./steps/backend-static-proxy")
-const OriginRequestStep = require("./steps/origin-request")
+//const OriginRequestStep = require("./steps/origin-request")
 //const ProxyStep = require("./steps/proxy")
 //const ComposeAppStep = require("./steps/compose-app")
 //const ComposeDataStep = require("./steps/compose-data")
@@ -53,7 +53,7 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
     await BackendStaticStep.step(cxt);
     await BackendStaticProxyStep.step(cxt);
 
-    await OriginRequestStep.step(cxt);
+    //await OriginRequestStep.step(cxt);
     //await ApplicationStep.step(cxt);
 
 })()

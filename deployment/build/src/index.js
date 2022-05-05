@@ -8,7 +8,7 @@ const FormationStep = require("./steps/formation")
 const BackendStep = require("./steps/backend")
 const BackendStaticProxyStep = require("./steps/backend-static-proxy")
 const BackendStaticStep = require("./steps/backend-static")
-const OriginRequestStep = require("./steps/origin-request")
+//const OriginRequestStep = require("./steps/origin-request")
 //const ProxyStep = require("./steps/proxy")
 //const ComposeAppStep = require("./steps/compose-app")
 //const ComposeDataStep = require("./steps/compose-data")
@@ -56,7 +56,7 @@ if(typeof String.prototype.replaceAll === "undefined") {
     await BackendStaticProxyStep.step(cxt);
     await BackendStep.step(cxt);
     await BackendStaticStep.step(cxt);
-    await OriginRequestStep.step(cxt);
+    //await OriginRequestStep.step(cxt);
     //await ComposeAppStep.step(cxt);
     //await ComposeDataStep.step(cxt);
     //await ApplicationStep.step(cxt);
