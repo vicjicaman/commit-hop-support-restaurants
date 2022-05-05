@@ -53,7 +53,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                             },
                             Environment: {
                                 ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
-                                NODE_ENV: "production"
+                                Variables: {
+                                    ...json.Resources.BackendStaticProxyFunction.Properties.Environment.Variables,
+                                    NODE_ENV: "production"
+                                }
                             }
                         }
                     },
@@ -67,7 +70,10 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
                             },
                             Environment: {
                                 ...json.Resources.BackendStaticProxyFunction.Properties.Environment,
-                                NODE_ENV: "production"
+                                Variables: {
+                                    ...json.Resources.BackendStaticProxyFunction.Properties.Environment.Variables,
+                                    NODE_ENV: "production"
+                                }
                             }
                         }
 
