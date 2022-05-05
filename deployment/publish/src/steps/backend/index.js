@@ -20,7 +20,7 @@ const step = async (cxt) => {
     const s3OriginTarget = `${s3Target}/${currentAsset}`;
 
     await command(
-        `zip -r ../payload.zip ./* `, { cwd: `${buildOutputPath}/output` }
+        `zip -q -r ../payload.zip ./* `, { cwd: `${buildOutputPath}/output` }
     );
 
     await command(
