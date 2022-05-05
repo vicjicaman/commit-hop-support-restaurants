@@ -16,6 +16,7 @@ import { schema, resolvers } from "./gateway";
 
 import JsonDataDriver from "drivers/json";
 import LoggerDriver from "common/drivers/logger";
+
 import RestaurantController from "controllers/restaurant";
 import RestaurantUsecase from "usecases/restaurant";
 import RestaurantData from "data/restaurant";
@@ -25,6 +26,11 @@ import BorderPointController from "controllers/border-point";
 import BorderPointUsecase from "usecases/border-point";
 import BorderPointData from "data/border-point";
 import BorderPointFactory from "factories/border-point";
+
+import OpensourceController from "controllers/opensource";
+import OpensourceUsecase from "usecases/opensource";
+import OpensourceData from "data/opensource";
+import OpensourceFactory from "factories/opensource";
 
 //const PORT_SERVICE = 4700;
 
@@ -45,6 +51,10 @@ container.register({
   BorderPointData: awilix.asClass(BorderPointData),
   BorderPointFactory: awilix.asClass(BorderPointFactory),
   BorderPointUsecase: awilix.asClass(BorderPointUsecase),
+  OpensourceController: awilix.asClass(OpensourceController),
+  OpensourceData: awilix.asClass(OpensourceData),
+  OpensourceFactory: awilix.asClass(OpensourceFactory),
+  OpensourceUsecase: awilix.asClass(OpensourceUsecase),
 });
 
 const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {
