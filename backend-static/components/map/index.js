@@ -1,6 +1,7 @@
 import { useWindowSize } from '../useWindowSize';
 import { Container, Row, Col, Badge } from "reactstrap";
 import "leaflet/dist/leaflet.css";
+import { FormattedMessage } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 
@@ -31,7 +32,7 @@ var markerIcon = new L.Icon({
 
 const Tag = ({ tag }) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
 
-export default function ({ list }) {
+export default function ({ list, title, description }) {
   const initPosition = [49, 22];
   const size = useWindowSize();
 
@@ -57,6 +58,34 @@ export default function ({ list }) {
           </Marker>
         })
       }
+
+      <div
+        style={{
+          position: "absolute",
+          width: size.width > 500 ? 500 : size.width,
+          height: 500,
+          top: 0,
+          right: 20,
+          zIndex: 500,
+        }}
+      >
+        <Container className="bg-white m-2 p-2">
+          <Row className="p-1 text-center text-capitalize">
+            <Col>
+              <h5>
+                <FormattedMessage id={title} />
+              </h5>
+            </Col>
+          </Row>
+          <Row className="p-1 text-center">
+            <Col>
+              <p>
+                <FormattedMessage id={description} />
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
 
 
     </MapContainer> : null
