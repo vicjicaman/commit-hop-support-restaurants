@@ -21,14 +21,9 @@ config.autoAddCss = false;
 
 export async function getServerSideProps(cxt: any) {
 
-  const { data } = await client.query({
-    query: OPENSOURCE_LIST,
-    fetchPolicy: "no-cache"
-  });
-
   return {
     props: {
-      list: data.viewer.account.opensources.list,
+      list: [],
       lang: cxt.params.lang,
     },
   };
@@ -50,21 +45,18 @@ const Page: NextPage = (props) => {
       <Container>
         <Row className="m-4">
           <Col>
-            <Alert color="info"><FormattedMessage id={"app.opensource-description"} /></Alert>
+            <Alert color="info"><FormattedMessage id={"app.projects-description"} /></Alert>
           </Col>
         </Row>
 
-        {list.map((opensource: any) => {
-          const {
-            id
-          } = opensource;
-          return (
-            <Row key={id} className="m-4">
-              <OpensourceContent opensource={opensource} />
 
-            </Row>
-          );
-        })}
+        <Row className="m-4">
+          <Col>
+            UNDER CONSTRUCTION
+          </Col>
+        </Row>
+
+
       </Container>
 
     </PageHandler>

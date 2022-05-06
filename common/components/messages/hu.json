@@ -1,5 +1,5 @@
 {
-  "app.title": "támogató éttermek",
+  "app.title": "Támogassa az Ukrajna + WCK éttermeit",
   "app.map": "térkép",
   "app.search": "keresés",
   "app.listing": "tőzsdei jegyzés",
@@ -32,5 +32,13 @@
   "msg.admin": "Hozzáadhat vagy szerkeszthet egy új éttermet a listához, hogy elősegítse a lista kibővítését!",
   "msg.donate": "Információkat talál arról, hogyan lehet hozzájárulni ezekhez az erőfeszítésekhez adományozással!",
   "app.restaurant": "étterem",
-  "app.border-point": "határpont"
+  "app.border-point": "határpont",
+  "app.restaurants": "éttermek",
+  "app.restaurants-description": "Ez az éttermek listája, amelyek elősegítik a WCK -t az ukrán menekültek számára ingyenes ételek elkészítésére irányuló erőfeszítéseivel.",
+  "app.distribution-points": "elosztási pontok",
+  "app.distribution-points-description": "Ebben a térképen Ukrajnával a határ menti országok egész területén található elosztási pontok találhatók.",
+  "app.projects": "projektek",
+  "app.projects-description": "Itt található az Ukrajnát vagy a hivatalos helyeket támogató projektek és kezdeményezések listája, ahol adományozhat és hozzájárulhat az ukrán erőfeszítések támogatásához.",
+  "app.opensource": "nyílt forráskód",
+  "app.opensource-description": "Ez néhány nyílt forráskódú projekt felsorolása, amely Ukrajnát támogatja és/vagy terjeszti az Ukrajnának a kezdeményezésekről szóló szót."
 }

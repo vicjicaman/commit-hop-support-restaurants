@@ -1,5 +1,5 @@
 {
-  "app.title": "Wspieraj restauracje",
+  "app.title": "Wspieraj restauracje Ukrainy + WCK",
   "app.map": "mapa",
   "app.search": "Szukaj",
   "app.listing": "wymienianie kolejno",
@@ -25,12 +25,20 @@
   "app.confirm-remove": "Czy naprawdę chcesz usunąć wejście do restauracji",
   "app.nearest-restaurants": "Najbliższe restauracje",
   "msg.intro": "Podczas badań zaangażowanych restauracji zobaczyłem, że koordynacja restauracji przygotowujących bezpłatne posiłki dla uchodźców jest przeznaczone przez",
-  "msg.goal": "Rozpocząłem małą kampanię pozyskiwania funduszy, aby rozpowszechniać to słowo, dopóki cel nie zostanie osiągnięty i być w jakiś sposób pomocny w trudnej sytuacji na Ukrainie.",
+  "msg.goal": "Rozpocząłem małą kampanię pozyskiwania funduszy, aby nadal rozpowszechniać to słowo, dopóki cel nie zostanie osiągnięty i być w jakiś sposób pomocny w trudnej sytuacji na Ukrainie.",
   "msg.cta": "Proszę wnieść wkład w darowiznę lub pomóż nam rozpowszechniać informacje.",
   "msg.welcome": "Witamy!, Jest to aplikacja, która pozwala znaleźć pobliskie restauracje, które przygotowują bezpłatne posiłki dla uchodźców na granicach ukraińskich",
   "msg.search": "Możesz także przeprowadzić wyszukiwanie tekstowe na wypadek, gdyby masz adres lub szczegóły dotyczące swojej lokalizacji.",
   "msg.admin": "Możesz dodać lub edytować nową restaurację na listę, aby pomóc nam rozwinąć listę!",
   "msg.donate": "Znajdziesz informacje o tym, jak przyczynić się do tych wysiłków z darowizną!",
   "app.restaurant": "restauracja",
-  "app.border-point": "punkt graniczny"
+  "app.border-point": "punkt graniczny",
+  "app.restaurants": "Restauracje",
+  "app.restaurants-description": "Jest to lista restauracji, które pomagają WCK w przygotowaniu bezpłatnych posiłków dla uchodźców Ukrainy.",
+  "app.distribution-points": "Punkty dystrybucji",
+  "app.distribution-points-description": "Na tej mapie niektóre punkty dystrybucji w krajach przygranicznych z Ukrainą.",
+  "app.projects": "projektowanie",
+  "app.projects-description": "Oto lista projektów i inicjatyw, które wspierają Ukrainę lub oficjalne miejsca, w których można przekazać darowiznę i przyczynić się do wspierania wysiłków Ukrainy.",
+  "app.opensource": "otwarte źródło",
+  "app.opensource-description": "Jest to lista niektórych projektów open source, które wspierają Ukrainę i/lub rozpowszechniają informacje o inicjatywach pomagających Ukrainie."
 }
