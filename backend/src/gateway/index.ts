@@ -1,10 +1,12 @@
 import * as RestaurantSchema from "./restaurant";
 import * as OpensourceSchema from "./opensource";
+import * as ProjectSchema from "./project";
 import * as BorderPointSchema from "./border-point";
 
 const schema = [
   ...RestaurantSchema.schema,
   ...OpensourceSchema.schema,
+  ...ProjectSchema.schema,
   ...BorderPointSchema.schema,
   `
   type Viewer {
@@ -20,6 +22,7 @@ const schema = [
     id: ID
     restaurants: RestaurantQueries!
     opensources: OpensourceQueries!
+    projects: ProjectQueries!
     borderPoints: BorderPointQueries!
   }
 
@@ -32,6 +35,7 @@ const schema = [
 const resolvers = {
   ...RestaurantSchema.resolvers,
   ...OpensourceSchema.resolvers,
+  ...ProjectSchema.resolvers,
   ...BorderPointSchema.resolvers,
   Viewer: {
     account: () => ({ id: "vicjicama" }),
@@ -42,6 +46,7 @@ const resolvers = {
   Account: {
     restaurants: () => ({ id: "restaurants" }),
     opensources: () => ({ id: "opensources" }),
+    projects: () => ({ id: "projects" }),
     borderPoints: () => ({ id: "border-point" }),
   },
   AccountMutations: {

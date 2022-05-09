@@ -5,11 +5,11 @@ import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Container, Row, Col, Alert } from "reactstrap";
-import { OPENSOURCE_LIST } from "common/queries/opensource";
+import { PROJECT_LIST } from "common/queries/project";
 import client from "utils/client";
 import PageHandler from "common/page";
 import Navbar from "common/navbar";
-import OpensourceContent from "common/opensource/content";
+import ProjectCard from "common/content/project/card";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
 
@@ -21,9 +21,14 @@ config.autoAddCss = false;
 
 export async function getServerSideProps(cxt: any) {
 
+  const { data } = await client.query({
+    query: PROJECT_LIST,
+    fetchPolicy: "no-cache"
+  });
+
   return {
     props: {
-      list: [],
+      list: data.viewer.account.projects.list,
       lang: cxt.params.lang,
     },
   };
@@ -49,14 +54,16 @@ const Page: NextPage = (props) => {
           </Col>
         </Row>
 
-
-        <Row className="m-4">
-          <Col>
-            UNDER CONSTRUCTION
-          </Col>
-        </Row>
-
-
+        {list.map((project: any) => {
+          const {
+            id
+          } = project;
+          return (
+            <Row key={id} className="m-4">
+              <ProjectCard project={project} />
+            </Row>
+          );
+        })}
       </Container>
 
     </PageHandler>
