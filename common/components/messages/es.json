@@ -1,5 +1,5 @@
 {
-  "app.title": "apoyo a los restaurantes",
+  "app.title": "Apoyo a Ucrania + restaurantes WCK",
   "app.map": "mapa",
   "app.search": "búsqueda",
   "app.listing": "listado",
@@ -32,5 +32,13 @@
   "msg.admin": "¡Puede agregar o editar un nuevo restaurante a la lista para ayudarnos a expandir la lista!",
   "msg.donate": "¡Encontrará información sobre cómo contribuir a esos esfuerzos con una donación!",
   "app.restaurant": "restaurante",
-  "app.border-point": "punto fronterizo"
+  "app.border-point": "punto fronterizo",
+  "app.restaurants": "restaurantes",
+  "app.restaurants-description": "Esta es una lista de restaurantes que están ayudando a WCK con sus esfuerzos para preparar comidas gratis para los refugiados de Ucrania.",
+  "app.distribution-points": "puntos de distribución",
+  "app.distribution-points-description": "En este mapa encontrará algunos de los puntos de distribución en todos los países fronterizos con Ucrania.",
+  "app.projects": "proyectos",
+  "app.projects-description": "Aquí hay una lista de proyectos e iniciativas que apoyan a Ucrania o lugares oficiales donde puede donar y contribuir a apoyar los esfuerzos de Ucrania.",
+  "app.opensource": "fuente abierta",
+  "app.opensource-description": "Esta es una lista de algunos proyectos de código abierto que apoyan a Ucrania y/o difunden la palabra sobre iniciativas para ayudar a Ucrania."
 }

@@ -4,39 +4,31 @@ import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
 
-import { Container, Row, Col, Badge } from "reactstrap";
-import { RESTAURANT_LIST } from "common/queries/restaurant";
+import { Container, Row, Col, Alert } from "reactstrap";
+import { OPENSOURCE_LIST } from "common/queries/opensource";
 import client from "utils/client";
 import PageHandler from "common/page";
 import Navbar from "common/navbar";
-import RestaurantContent from "common/restaurant/content";
+import OpensourceContent from "common/opensource/content";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
-
-import dynamic from "next/dynamic";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
-const Map = dynamic(() => import("../../../components/map"), {
-  ssr: false
-});
-
-
 
 
 export async function getServerSideProps(cxt: any) {
+
   const { data } = await client.query({
-    query: RESTAURANT_LIST,
+    query: OPENSOURCE_LIST,
     fetchPolicy: "no-cache"
   });
 
-  
-
   return {
     props: {
-      list: data.viewer.account.restaurants.list,
+      list: data.viewer.account.opensources.list,
       lang: cxt.params.lang,
     },
   };
@@ -53,7 +45,28 @@ const Page: NextPage = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar lang={lang} pathname={router.asPath} tag={null} />
-      <Map list={list} title={"app.restaurants"} description={"app.restaurants-description"} />
+
+
+      <Container>
+        <Row className="m-4">
+          <Col>
+            <Alert color="info"><FormattedMessage id={"app.opensource-description"} /></Alert>
+          </Col>
+        </Row>
+
+        {list.map((opensource: any) => {
+          const {
+            id
+          } = opensource;
+          return (
+            <Row key={id} className="m-4">
+              <OpensourceContent opensource={opensource} />
+
+            </Row>
+          );
+        })}
+      </Container>
+
     </PageHandler>
   );
 };

@@ -32,6 +32,12 @@ import OpensourceUsecase from "usecases/opensource";
 import OpensourceData from "data/opensource";
 import OpensourceFactory from "factories/opensource";
 
+
+import ProjectController from "controllers/project";
+import ProjectUsecase from "usecases/project";
+import ProjectData from "data/project";
+import ProjectFactory from "factories/project";
+
 //const PORT_SERVICE = 4700;
 
 const cxt: any = {};
@@ -47,21 +53,28 @@ container.register({
   RestaurantData: awilix.asClass(RestaurantData),
   RestaurantFactory: awilix.asClass(RestaurantFactory),
   RestaurantUsecase: awilix.asClass(RestaurantUsecase),
+
   BorderPointController: awilix.asClass(BorderPointController),
   BorderPointData: awilix.asClass(BorderPointData),
   BorderPointFactory: awilix.asClass(BorderPointFactory),
   BorderPointUsecase: awilix.asClass(BorderPointUsecase),
+
   OpensourceController: awilix.asClass(OpensourceController),
   OpensourceData: awilix.asClass(OpensourceData),
   OpensourceFactory: awilix.asClass(OpensourceFactory),
   OpensourceUsecase: awilix.asClass(OpensourceUsecase),
+
+  ProjectController: awilix.asClass(ProjectController),
+  ProjectData: awilix.asClass(ProjectData),
+  ProjectFactory: awilix.asClass(ProjectFactory),
+  ProjectUsecase: awilix.asClass(ProjectUsecase),
 });
 
 const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {
   const logger = cxt.container.cradle.logger;
-  logger.debug(`args for ${info.fieldName}: ${JSON.stringify(args)}`);
+  logger.debug(` --- args for ${info.fieldName}: ${JSON.stringify(args)}`);
   const result = await resolve(root, args, cxt, info);
-  logger.debug(`result for ${info.fieldName}: ${JSON.stringify(result)}`);
+  logger.debug(` - result for ${info.fieldName}: ${JSON.stringify(result)}`);
   return result
 }
 

@@ -1,5 +1,5 @@
 {
-  "app.title": "support restaurants",
+  "app.title": "support Ukraine + WCK restaurants",
   "app.map": "map",
   "app.search": "search",
   "app.listing": "listing",
@@ -32,5 +32,13 @@
   "msg.admin": "You can add or edit a new restaurant to the list to help us expand the list!",
   "msg.donate": "You will find information about how to contribute to those efforts with a donation!",
   "app.restaurant": "restaurant",
-  "app.border-point": "border point"
+  "app.border-point": "border point",
+  "app.restaurants": "restaurants",
+  "app.restaurants-description": "This is a list of restaurants that are helping WCK with its efforts to prepare free meals for the Ukraine refugees.",
+  "app.distribution-points": "distribution points",
+  "app.distribution-points-description": "In this map you will find some of the distribution points all across the border countries with Ukraine.",
+  "app.projects": "projects",
+  "app.projects-description": "Here is a list of projects and initiatives that are supporting Ukraine or official places where you can donate and contribute to support Ukraine efforts.",
+  "app.opensource": "opensource",
+  "app.opensource-description": "This is a list of some open source projects that are supporting Ukraine and/or spreading the word about initiatives to help Ukraine."
 }
