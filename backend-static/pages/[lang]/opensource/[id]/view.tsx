@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Badge } from "reactstrap";
 import { RESTAURANT_GET } from "common/queries/restaurant";
 import client from "utils/client";
-import PageHandler from "common/page";
+import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
 import RestaurantContent from "common/restaurant/content";
 import { FormattedMessage } from "react-intl";
@@ -18,6 +18,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 export async function getServerSideProps(cxt: any) {
+  pageConfig(cxt);
+
   const { data } = await client.query({
     query: RESTAURANT_GET,
     variables: { id: cxt.params.id },

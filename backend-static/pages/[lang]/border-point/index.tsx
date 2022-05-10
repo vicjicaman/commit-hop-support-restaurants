@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Badge } from "reactstrap";
 import { BORDERPOINT_LIST } from "common/queries/border-point";
 import client from "utils/client";
-import PageHandler from "common/page";
+import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
@@ -26,6 +26,8 @@ const Map = dynamic(() => import("../../../components/map"), {
 
 
 export async function getServerSideProps(cxt: any) {
+  pageConfig(cxt);
+  
   const { data } = await client.query({
     query: BORDERPOINT_LIST,
     fetchPolicy: "no-cache"

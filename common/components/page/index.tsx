@@ -33,3 +33,13 @@ export default ({ lang, children }: any) => {
     </IntlProvider>
   );
 };
+
+export const pageConfig = (cxt: any) => {
+  const { res } = cxt;
+
+  res.setHeader(
+    'Cache-Control',
+    'public, s-maxage=900, stale-while-revalidate=59'
+  );
+
+}

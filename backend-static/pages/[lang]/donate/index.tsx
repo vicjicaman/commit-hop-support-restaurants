@@ -3,7 +3,7 @@ import Head from "next/head";
 import "bootstrap/dist/css/bootstrap.css";
 
 import { Container, Row, Col, Button } from "reactstrap";
-import PageHandler from "common/page";
+import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
@@ -13,7 +13,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 config.autoAddCss = false;
 
 export async function getServerSideProps(cxt: any) {
-
+  pageConfig(cxt);
+  
   return {
     props: {
 

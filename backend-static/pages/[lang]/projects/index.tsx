@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Alert } from "reactstrap";
 import { PROJECT_LIST } from "common/queries/project";
 import client from "utils/client";
-import PageHandler from "common/page";
+import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
 import ProjectCard from "common/content/project/card";
 import { FormattedMessage } from "react-intl";
@@ -20,7 +20,8 @@ config.autoAddCss = false;
 
 
 export async function getServerSideProps(cxt: any) {
-
+  pageConfig(cxt);
+  
   const { data } = await client.query({
     query: PROJECT_LIST,
     fetchPolicy: "no-cache"
