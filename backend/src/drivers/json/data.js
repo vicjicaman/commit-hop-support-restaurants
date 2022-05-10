@@ -10,6 +10,105 @@ export default {
             "longitude": 23.116611,
             "contact": "",
             "description": ""
+        },
+        {
+            "id": "dorohusk-pl",
+            "name": "Dorohusk",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Dorohusk_zesp%C3%B3%C5%82_pa%C5%82acowy_%28XVIII%29_pa%C5%82ac_Suchodolskich_03_JoannaPyka.JPG/800px-Dorohusk_zesp%C3%B3%C5%82_pa%C5%82acowy_%28XVIII%29_pa%C5%82ac_Suchodolskich_03_JoannaPyka.JPG"],
+            "latitude": 51.166667,
+            "longitude": 23.816667,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "hrebenne-tomaszow-lubelski-county-pl",
+            "name": "Hrebenne, Tomaszów Lubelski County",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Cerkiew_od_str_wschodniej_Hrebenne.JPG/800px-Cerkiew_od_str_wschodniej_Hrebenne.JPG"],
+            "latitude": 50.283056,
+            "longitude": 23.5761117,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "kroscienko-bieszczady-county-pl",
+            "name": "Krościenko, Bieszczady County",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/6/61/Kroscienko_Orthodox_Church_2005.jpg"],
+            "latitude": 49.466667,
+            "longitude": 22.666667,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "medyka-pl",
+            "name": "Medyka",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Manor_house_in_Medyka_%284%29.jpg/736px-Manor_house_in_Medyka_%284%29.jpg"],
+            "latitude": 49.804167,
+            "longitude": 22.931944,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "mostyska-pl",
+            "name": "Mostyska II",
+            "country": "pl",
+            "address": "",
+            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "latitude": 49.816667,
+            "longitude": 23.032778,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "rava-ruska-pl",
+            "name": "Rava-Ruska",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Hrebenne-RawaRuska.jpg/800px-Hrebenne-RawaRuska.jpg"],
+            "latitude": 49.798889,
+            "longitude": 22.972778,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "shehyni-pl",
+            "name": "Shehyni",
+            "country": "pl",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/Wej%C5%9Bcie_na_przej%C5%9Bcie_graniczne_Szeginie-Medyka_dla_ruchu_pieszego_i_rowerowego.jpg/800px-Wej%C5%9Bcie_na_przej%C5%9Bcie_graniczne_Szeginie-Medyka_dla_ruchu_pieszego_i_rowerowego.jpg"],
+            "latitude": 49.798889,
+            "longitude": 22.972778,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "werchrata-pl",
+            "name": "Werchrata",
+            "country": "pl",
+            "address": "",
+            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "latitude": 50.25,
+            "longitude": 23.466667,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "zosin-hrubieszow-county-pl",
+            "name": "Zosin, Hrubieszów County",
+            "country": "pl",
+            "address": "",
+            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "latitude": 50.85,
+            "longitude": 24.1,
+            "contact": "",
+            "description": ""
         }
     ],
     "restaurants": [
