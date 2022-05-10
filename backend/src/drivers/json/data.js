@@ -109,6 +109,39 @@ export default {
             "longitude": 24.1,
             "contact": "",
             "description": ""
+        },
+        {
+            "id": "velke-slemence-sk",
+            "name": "Veľké Slemence",
+            "country": "sk",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ve%C4%BEk%C3%A9_Slemence_Nagyszelmenc_church.jpg/800px-Ve%C4%BEk%C3%A9_Slemence_Nagyszelmenc_church.jpg"],
+            "latitude": 48.509444,
+            "longitude": 22.146944,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "vysne-nemecke-sk",
+            "name": "Vyšné Nemecké",
+            "country": "sk",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Border_Uzhhorod-Vy%C5%A1n%C3%A9_Nemeck%C3%A9_-_Slovak_side-114045.jpg/800px-Border_Uzhhorod-Vy%C5%A1n%C3%A9_Nemeck%C3%A9_-_Slovak_side-114045.jpg"],
+            "latitude": 48.661111, 
+            "longitude": 22.263611,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "ubla",
+            "name": "Ubľa",
+            "country": "sk",
+            "address": "",
+            "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Kostol%2C_ubla.JPG/450px-Kostol%2C_ubla.JPG"],
+            "latitude": 48.883333, 
+            "longitude": 22.383333, 
+            "contact": "",
+            "description": ""
         }
     ],
     "restaurants": [
