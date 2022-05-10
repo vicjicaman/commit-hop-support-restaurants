@@ -13,9 +13,9 @@ import {
   DropdownMenu,
   DropdownItem,
   NavbarText,
-} from "reactstrap"; 
+} from "reactstrap";
 
-const flagStyle = { width: "2em", border: 0 };
+export const flagStyle = { width: "2em", border: 1, borderColor: "black", borderStyle: "solid" };
 const options = [
   { lang: "en", flag: "us", label: "English" },
   { lang: "pl", flag: "pl", label: "Polish" },

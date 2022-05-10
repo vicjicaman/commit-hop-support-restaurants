@@ -4,6 +4,7 @@ import "leaflet/dist/leaflet.css";
 import { FormattedMessage } from "react-intl";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
+import { flagStyle } from "common/lang";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -49,12 +50,18 @@ export default function ({ list, title, description }) {
       />
 
       {
-        list.map(({ id, name, latitude, longitude, images }) => {
+        list.map(({ id, name, country, latitude, longitude, images }) => {
+          const flag = <img style={flagStyle} src={`/flags/${country}.png`} />
           return <Marker key={id} position={[latitude, longitude]} icon={markerIcon} >
             <Popup>
               <img className='w-100' src={images[0]} />
-              <p><b>{name}</b></p>
+              <p><b>{name}</b>  {flag}</p>
             </Popup>
+
+            <Tooltip>
+              {name} {flag}
+            </Tooltip>
+
           </Marker>
         })
       }
