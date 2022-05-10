@@ -21,6 +21,18 @@ const nextConfig = {
   },
   experimental: {
     outputStandalone: true,
+  },
+  async headers() {
+    return [
+      {
+        source: '/flags',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public,max-age=31536000,immutable',
+          },
+        ]
+      }]
   }
 };
 
