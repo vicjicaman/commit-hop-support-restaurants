@@ -22,15 +22,18 @@ const nextConfig = {
   experimental: {
     outputStandalone: true,
   },
+  //check:
+  //https://github.com/vercel/next.js/issues/1791
   async headers() {
     return [
       {
-        source: '/flags',
+        source: '/:all*(svg|jpg|png)',
+        locale: false,
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public,max-age=31536000,immutable',
-          },
+            value: 'public, max-age=9999999999, must-revalidate',
+          }
         ]
       }]
   }
