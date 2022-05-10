@@ -33,10 +33,21 @@ var markerIcon = new L.Icon({
 
 const Tag = ({ tag }) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
 
+const countries = [{ code: "pl", latitude: 52.23, longitude: 21.011111 },
+{ code: "sk", latitude: 48.143889, longitude: 17.109722 },
+{ code: "hu", latitude: 47.4925, longitude: 19.051389 },
+{ code: "ro", latitude: 44.4325, longitude: 26.103889 },
+{ code: "md", latitude: 47.022778, longitude: 28.835278 },
+{ code: "ua", latitude: 50.45, longitude: 30.523333 }]
+
 export default function ({ list, title, description }) {
   const initPosition = [49, 22];
   const size = useWindowSize();
-
+/*
+  <Tooltip direction="top" permanent>
+            <img style={flagStyle} src={`/flags/${code}.png`} />
+          </Tooltip>
+*/
   return (
     size ? <MapContainer
       key={size.height}
@@ -50,6 +61,16 @@ export default function ({ list, title, description }) {
       />
 
       {
+        countries.map(({ code, latitude, longitude }) => <Marker key={code} position={[latitude, longitude]} icon={new L.Icon({
+          iconUrl:
+          `/flags/${code}.png`,
+          iconSize: [40, 25]
+        })} >
+        
+        </Marker>)
+      }
+
+      {
         list.map(({ id, name, country, latitude, longitude, images }) => {
           const flag = <img style={flagStyle} src={`/flags/${country}.png`} />
           return <Marker key={id} position={[latitude, longitude]} icon={markerIcon} >
@@ -57,7 +78,6 @@ export default function ({ list, title, description }) {
               <img className='w-100' src={images[0]} />
               <p><b>{name}</b>  {flag}</p>
             </Popup>
-
             <Tooltip>
               {name} {flag}
             </Tooltip>
