@@ -49,21 +49,29 @@ The next steps will let you replicate the complete stack in local environment wi
 
 Clone this repository
 
-Add 127.0.0.1 dev.ua-wck.com to you local /etc/hosts file
+Add 
+127.0.0.1 dev.ua-wck.com 
+to you local /etc/hosts file
 
 ```
-  cd ./formation sam local start-api -p 4700 --host 0.0.0.0 --template gateway-stack.json
+cd ./formation 
+sam local start-api -p 4700 --host 0.0.0.0 --template gateway-stack.json
 ```
 
 ```
-  cd ./compose/appdocker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+cd ./compose/app
+docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
 ``` 
 
 ```
-  cd ./backendyarn build:watch
+cd ./backend
+yarn build:watch
 ```
 
-```cd ./backend-staticyarn dev```
+```
+cd ./backend-static
+yarn dev
+```
 
 Visit dev.ua-wck.com on your local browser
 
