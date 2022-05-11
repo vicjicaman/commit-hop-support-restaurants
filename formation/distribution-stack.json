@@ -179,33 +179,6 @@
                 "AWS::CloudFormation::Designer": {
                     "id": "c564a3a4-6892-44ce-b147-125a225bd011"
                 }
-            },
-            "DependsOn": [
-                "PublicBucket"
-            ]
-        },
-        "PublicBucket": {
-            "Type": "AWS::S3::Bucket",
-            "Properties": {
-                "BucketName": {
-                    "Fn::Join": [
-                        ".",
-                        [
-                            {
-                                "Ref": "ScopeName"
-                            },
-                            {
-                                "Ref": "ApexDomainName"
-                            }
-                        ]
-                    ]
-                },
-                "AccessControl": "PublicRead"
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "31c64eb2-a22a-4f39-89e8-8149003f750c"
-                }
             }
         },
         "CdnRoute": {
@@ -241,42 +214,6 @@
             "Metadata": {
                 "AWS::CloudFormation::Designer": {
                     "id": "4c2bdb35-f695-4401-97c0-1956e808a89c"
-                }
-            }
-        },
-        "PublicBucketPolicy": {
-            "Type": "AWS::S3::BucketPolicy",
-            "Properties": {
-                "Bucket": {
-                    "Ref": "PublicBucket"
-                },
-                "PolicyDocument": {
-                    "Statement": [
-                        {
-                            "Action": [
-                                "s3:GetObject"
-                            ],
-                            "Effect": "Allow",
-                            "Resource": {
-                                "Fn::Join": [
-                                    "",
-                                    [
-                                        "arn:aws:s3:::",
-                                        {
-                                            "Ref": "PublicBucket"
-                                        },
-                                        "/*"
-                                    ]
-                                ]
-                            },
-                            "Principal": "*"
-                        }
-                    ]
-                }
-            },
-            "Metadata": {
-                "AWS::CloudFormation::Designer": {
-                    "id": "226ca93a-77d5-4e77-912f-4beb15b268c5"
                 }
             }
         }
