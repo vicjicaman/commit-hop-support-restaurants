@@ -260,7 +260,7 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Campulung_la_Tisa_o.JPG/800px-Campulung_la_Tisa_o.JPG"],
-            "latitude": 47.985, 
+            "latitude": 47.985,
             "longitude": 23.7658,
             "contact": "",
             "description": ""
@@ -271,8 +271,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://www.ua-wck.com/flags/ro.png"],
-            "latitude": 45.416667, 
-            "longitude": 29.283333, 
+            "latitude": 45.416667,
+            "longitude": 29.283333,
             "contact": "",
             "description": ""
         },
@@ -282,8 +282,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://www.ua-wck.com/flags/ro.png"],
-            "latitude": 47.966667, 
-            "longitude": 23.016667, 
+            "latitude": 47.966667,
+            "longitude": 23.016667,
             "contact": "",
             "description": ""
         },
@@ -293,8 +293,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/%D0%A1%D1%82%D0%B0%D1%80%D0%BE%D0%B2%D0%B8%D0%BD%D0%BD%D0%B0_%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F.jpg/800px-%D0%A1%D1%82%D0%B0%D1%80%D0%BE%D0%B2%D0%B8%D0%BD%D0%BD%D0%B0_%D0%B2%D1%83%D0%BB%D0%B8%D1%86%D1%8F.jpg"],
-            "latitude": 45.45, 
-            "longitude": 29.266667, 
+            "latitude": 45.45,
+            "longitude": 29.266667,
             "contact": "",
             "description": ""
         },
@@ -304,8 +304,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/a/ae/Bainet1.jpg"],
-            "latitude": 47.966667, 
-            "longitude": 26, 
+            "latitude": 47.966667,
+            "longitude": 26,
             "contact": "",
             "description": ""
         },
@@ -315,8 +315,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/4/4b/Zentrum_Sighet_3.jpg"],
-            "latitude": 47.928611, 
-            "longitude": 23.8925, 
+            "latitude": 47.928611,
+            "longitude": 23.8925,
             "contact": "",
             "description": ""
         },
@@ -326,8 +326,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Fosta_prim%C4%83rie_a_ora%C8%99ului_Siret.JPG/800px-Fosta_prim%C4%83rie_a_ora%C8%99ului_Siret.JPG"],
-            "latitude": 47.953056, 
-            "longitude": 26.0725,  
+            "latitude": 47.953056,
+            "longitude": 26.0725,
             "contact": "",
             "description": ""
         },
@@ -337,8 +337,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Administra%C8%9Bia_Pesc%C4%83riei_Statului.jpg/800px-Administra%C8%9Bia_Pesc%C4%83riei_Statului.jpg"],
-            "latitude": 45.19,  
-            "longitude": 28.8,  
+            "latitude": 45.19,
+            "longitude": 28.8,
             "contact": "",
             "description": ""
         },
@@ -348,8 +348,8 @@ export default {
             "country": "ro",
             "address": "",
             "images": ["https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/%D0%92%D0%B8%D0%BB%D0%BA%D0%BE%D0%B2%D0%B5.jpg/250px-%D0%92%D0%B8%D0%BB%D0%BA%D0%BE%D0%B2%D0%B5.jpg"],
-            "latitude": 45.399167, 
-            "longitude": 29.593611,  
+            "latitude": 45.399167,
+            "longitude": 29.593611,
             "contact": "",
             "description": ""
         }
@@ -366,7 +366,165 @@ export default {
             "longitude": 22.77360414628525,
             "contact": "",
             "description": ""
+        },
+        {
+            "id": "restauracja-willa-anna-pl",
+            "name": "Restauracja Willa Anna",
+            "country": "pl",
+            "address": "Stefana Okrzei 1, 37-700 Przemyśl, Polonia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/0ba2e82f9d7fcb8d4524fb9b7d062938/a7936121"],
+            "latitude": 49.79071536345232,
+            "longitude": 22.764527262920794,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "restauracja-cuda-wianki-pl",
+            "name": "Restauracja Cuda Wianki",
+            "country": "pl",
+            "address": "Rynek 5, 37-700 Przemyśl, Polonia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/0ec6278d07598a16074a345287aeaf82/39bac28c"],
+            "latitude": 49.78340059887154,
+            "longitude": 22.769333781299967,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "hotel-jaroslaw-restauracja-pl",
+            "name": "Hotel Jarosław i Restauracja ADM",
+            "country": "pl",
+            "address": "Pruchnicka 65, 37-500 Jarosław, Polonia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/48c81aa2ccfedacd0c83f1a924f30bd9/d7544c80"],
+            "latitude": 50.0039442559936,
+            "longitude": 22.67268475120667,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "le-colonial-pl",
+            "name": "Le Colonial",
+            "country": "sk",
+            "address": "Hlavná 7, 040 01 Košice, Eslovaquia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/87afb238f8c1e10bac487a7d0070c0b4/5afc92f5"],
+            "latitude": 48.71958523005233,
+            "longitude": 21.258930921756747,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "med-malina",
+            "name": "Med Malina",
+            "country": "sk",
+            "address": "Hlavná 81, 040 01 Košice, Eslovaquia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/41abbad411edea1e6e517fe8c9f38e54/b2b86205"],
+            "latitude": 48.72437646300518,
+            "longitude": 21.256733593205176,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "party-etterem-hu",
+            "name": "Party Étterem",
+            "country": "hu",
+            "address": "Kisvárda, Simonyi u. 2, 4600 Hungría",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/12c41e7cd1da44637dc00266bb2711d8/c8bf4ed2"],
+            "latitude": 48.22588970457599,
+            "longitude": 22.08681752761201,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "vendeglo-hu",
+            "name": "4*4*2 Vendéglő",
+            "country": "hu",
+            "address": "Kisvárda, 4600 Hungría",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/20a1a821610249b0c2bc39f1ccfd921b/2eb21627"],
+            "latitude": 48.23302814733715,
+            "longitude": 22.067790473858516,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "restaurante-antique",
+            "name": "Restaurante Antique",
+            "country": "ro",
+            "address": "Al Primaverii 12, Rădăuți 725400, Rumanía",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/60986336858848edffab6ece62ac2fde/335c522e"],
+            "latitude": 47.84702024167328,
+            "longitude": 25.912718069898126,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "restaurant-national",
+            "name": "Restaurant Naţional",
+            "country": "ro",
+            "address": "Municipiul, Strada Piața Unirii, Rădăuți 725400, Rumanía",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/c0db4a9937dd892db9e88dac465e975c/32c2332e"],
+            "latitude": 47.84730997671653, 
+            "longitude": 25.91759657995336,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "restaurant-miorita",
+            "name": "Restaurant Miorița",
+            "country": "ro",
+            "address": "Strada Mihai Viteazul 3, Satu Mare 440037, Rumanía",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/74379d4631ba8b1ef89408748f361bc6/e07831a6"],
+            "latitude": 47.79584815946945, 
+            "longitude": 22.877439263785977,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "restaurant-capricci",
+            "name": "Restaurant Capricci",
+            "country": "ro",
+            "address": "Str. Careiului 17, Satu Mare, Rumanía",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/44d52a84d4ca014e09976d64d0eed745/161dc7fd"],
+            "latitude": 47.78702258670306, 
+            "longitude": 22.870391696932096,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "santa-maria",
+            "name": "Santa Maria",
+            "country": "md",
+            "address": "Ocnița, Moldavia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/1e2e9117864c71d8fe44f72e770b4245/a1385f3f"],
+            "latitude": 48.41864934714103, 
+            "longitude": 27.46321705014662,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "vivat",
+            "name": " Vivat",
+            "country": "md",
+            "address": "R11 64A, Ocniţa, Moldavia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/918be5688513df28dabb1ab3e7861d34/3affe4cf"],
+            "latitude": 48.41802591502206, 
+            "longitude": 27.471644487061603,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "penzio-mana",
+            "name": "Reštaurácia - Penzión Maňa",
+            "country": "sk",
+            "address": "Štefánikova 29, 073 01 Sobrance, Eslovaquia",
+            "images": ["https://dl.airtable.com/.attachmentThumbnails/76c6ee1bee83e97518c11abef3b0b2dd/2407f389"],
+            "latitude": 48.74601313837805, 
+            "longitude": 22.180716311811484,
+            "contact": "",
+            "description": ""
         }
+
+
+
+
     ],
     "projects": [
         {
