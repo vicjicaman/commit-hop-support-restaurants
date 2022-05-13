@@ -3,14 +3,14 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
+import L from "leaflet";
 
 import { Container, Row, Col, Badge } from "reactstrap";
 import { RESTAURANT_LIST } from "common/queries/restaurant";
+import { BORDERPOINT_LIST } from "common/queries/border-point";
 import client from "utils/client";
 import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
-import RestaurantContent from "common/restaurant/content";
-import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
 
 import dynamic from "next/dynamic";
@@ -24,28 +24,44 @@ const Map = dynamic(() => import("../../../components/map"), {
 });
 
 
-
-
 export async function getServerSideProps(cxt: any) {
   pageConfig(cxt);
 
-  const { data } = await client.query({
+  const restaurantPromise = client.query({
     query: RESTAURANT_LIST,
     fetchPolicy: "no-cache"
   });
 
+  const borderPromise = client.query({
+    query: BORDERPOINT_LIST,
+    fetchPolicy: "no-cache"
+  });
 
+  const [{ data: restaurantData }, { data: borderData }] = await Promise.all([restaurantPromise, borderPromise]);
+
+  const markers = [{
+    list: restaurantData.viewer.account.restaurants.list,
+    icon: "blue",
+    title: "app.restaurants",
+    description: "app.restaurants-description"
+  },
+  {
+    list: borderData.viewer.account.borderPoints.list,
+    icon: "red",
+    title: "app.distribution-points",
+    description: "app.distribution-points-description"
+  }]
 
   return {
     props: {
-      list: data.viewer.account.restaurants.list,
+      markers,
       lang: cxt.params.lang,
     },
   };
 }
 
 const Page: NextPage = (props) => {
-  const { list, lang } = props as any;
+  const { markers, lang } = props as any;
   const router = useRouter();
   return (
     <PageHandler lang={lang}>
@@ -55,7 +71,7 @@ const Page: NextPage = (props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar lang={lang} pathname={router.asPath} tag={null} />
-      <Map list={list} title={"app.restaurants"} description={"app.restaurants-description"} />
+      <Map markers={markers} />
     </PageHandler>
   );
 };

@@ -40,16 +40,8 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
-              id={"app.distribution-points"}
-              href={`/${lang}/border-point`}
-              exact={true}
-            />
-          </NavItem>
-          <NavItem>
-            <NavItemCommon
-              {...props}
-              id={"app.restaurants"}
-              href={`/${lang}/restaurant`}
+              id={"app.map"}
+              href={`/${lang}/map`}
               exact={true}
             />
           </NavItem>

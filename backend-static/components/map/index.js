@@ -2,8 +2,6 @@ import { useWindowSize } from '../useWindowSize';
 import { Container, Row, Col, Badge } from "reactstrap";
 import "leaflet/dist/leaflet.css";
 import { FormattedMessage } from "react-intl";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { flagStyle } from "common/lang";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -15,21 +13,36 @@ import {
   Tooltip,
   Marker,
   Popup,
-  TileLayer,
-  useMapEvents,
+  TileLayer
 } from "react-leaflet";
-import { LatLngTuple, LatLng } from "leaflet";
 import L from "leaflet";
 
-var markerIcon = new L.Icon({
-  iconUrl:
-    "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
-  shadowUrl:
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  shadowSize: [41, 41],
-});
+const iconsUrl = {
+  red: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png",
+  blue: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png"
+}
+
+const icons = {
+  red: new L.Icon({
+    iconUrl:
+      iconsUrl.red,
+    shadowUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    shadowSize: [41, 41],
+  }),
+  blue: new L.Icon({
+    iconUrl:
+      iconsUrl.blue,
+    shadowUrl:
+      "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
+    iconSize: [25, 41],
+    iconAnchor: [12, 41],
+    shadowSize: [41, 41],
+  })
+}
+
 
 const Tag = ({ tag }) => <Badge className="text-white mr-1" color={"primary"} key={tag}>{tag}</Badge>
 
@@ -40,14 +53,14 @@ const countries = [{ code: "pl", latitude: 52.23, longitude: 21.011111 },
 { code: "md", latitude: 47.022778, longitude: 28.835278 },
 { code: "ua", latitude: 50.45, longitude: 30.523333 }]
 
-export default function ({ list, title, description }) {
+export default function ({ markers }) {
   const initPosition = [49, 22];
   const size = useWindowSize();
-/*
-  <Tooltip direction="top" permanent>
-            <img style={flagStyle} src={`/flags/${code}.png`} />
-          </Tooltip>
-*/
+  /*
+    <Tooltip direction="top" permanent>
+              <img style={flagStyle} src={`/flags/${code}.png`} />
+            </Tooltip>
+  */
   return (
     size ? <MapContainer
       key={size.height}
@@ -63,28 +76,32 @@ export default function ({ list, title, description }) {
       {
         countries.map(({ code, latitude, longitude }) => <Marker key={code} position={[latitude, longitude]} icon={new L.Icon({
           iconUrl:
-          `/flags/${code}.png`,
+            `/flags/${code}.png`,
           iconSize: [40, 25]
         })} >
-        
+
         </Marker>)
       }
 
       {
-        list.map(({ id, name, country, latitude, longitude, images }) => {
-          const flag = <img style={flagStyle} src={`/flags/${country}.png`} />
-          return <Marker key={id} position={[latitude, longitude]} icon={markerIcon} >
-            <Popup>
-              <img className='w-100' src={images[0]} />
-              <p><b>{name}</b>  {flag}</p>
-            </Popup>
-            <Tooltip>
-              {name} {flag}
-            </Tooltip>
-
-          </Marker>
+        markers.map(({ list, icon }) => {
+          return list.map(({ id, name, country, latitude, longitude, images }) => {
+            const flag = <img style={flagStyle} src={`/flags/${country}.png`} />
+            return <Marker key={id} position={[latitude, longitude]} icon={icons[icon]} >
+              <Popup>
+                <img className='w-100' src={images[0]} />
+                <p><b>{name}</b>  {flag}</p>
+              </Popup>
+              <Tooltip>
+                {name} {flag}
+              </Tooltip>
+            </Marker>
+          })
         })
       }
+
+
+
 
       <div
         style={{
@@ -97,20 +114,23 @@ export default function ({ list, title, description }) {
         }}
       >
         <Container className="bg-white m-2 p-2">
-          <Row className="p-1 text-center text-capitalize">
-            <Col>
-              <h5>
-                <FormattedMessage id={title} />
-              </h5>
-            </Col>
-          </Row>
-          <Row className="p-1 text-center">
-            <Col>
-              <p>
-                <FormattedMessage id={description} />
-              </p>
-            </Col>
-          </Row>
+
+          {
+            markers.map(({ title, description, icon }, idx) => {
+              return <Row key={idx} className="text-center">
+                <Col>
+                  <p>
+                    <img style={{
+                      width: 15,
+                    }} src={iconsUrl[icon]} />{" "}
+                    <b className="text-capitalize">
+                      <FormattedMessage id={title} />
+                    </b>  <FormattedMessage id={description} />
+                  </p>
+                </Col>
+              </Row>
+            })
+          }
         </Container>
       </div>
 
