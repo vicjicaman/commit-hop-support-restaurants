@@ -1,8 +1,9 @@
 import { useWindowSize } from '../useWindowSize';
 import { Container, Row, Col, Badge } from "reactstrap";
 import "leaflet/dist/leaflet.css";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import { flagStyle } from "common/lang";
+import Donate from "components/donate";
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
@@ -56,6 +57,8 @@ const countries = [{ code: "pl", latitude: 52.23, longitude: 21.011111 },
 export default function ({ markers }) {
   const initPosition = [49, 22];
   const size = useWindowSize();
+  const intl = useIntl();
+  const lang = intl.locale;
   /*
     <Tooltip direction="top" permanent>
               <img style={flagStyle} src={`/flags/${code}.png`} />
@@ -100,9 +103,6 @@ export default function ({ markers }) {
         })
       }
 
-
-
-
       <div
         style={{
           position: "absolute",
@@ -131,6 +131,15 @@ export default function ({ markers }) {
               </Row>
             })
           }
+
+          <Row className="text-center">
+            <Col>
+              <p>
+                <FormattedMessage id={"msg.fundraising"} />{" "}
+              </p>
+              <Donate/>
+            </Col>
+          </Row>
         </Container>
       </div>
 

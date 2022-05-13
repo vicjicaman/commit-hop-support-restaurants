@@ -31,10 +31,6 @@ for (const idx in lines) {
 
 console.log(JSON.stringify([res, index], null, 2));
 
-if (!fs.existsSync("./dist")){
-  fs.mkdirSync("./dist");
-}
-
 for (const code in res) {
-  fs.writeFileSync(`./dist/${code}.json`, JSON.stringify(res[code], null, 2));
+  fs.writeFileSync(`../../common/components/messages/${code}.json`, JSON.stringify(res[code], null, 2));
 }

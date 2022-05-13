@@ -34,11 +34,12 @@
   "app.restaurant": "le restaurant",
   "app.border-point": "point de frontière",
   "app.restaurants": "Restaurants",
-  "app.restaurants-description": "Il s'agit d'une liste de restaurants qui aident WCK dans ses efforts pour préparer des repas gratuits aux réfugiés ukrainiens.",
+  "app.restaurants-description": "Des restaurants qui aident WCK dans ses efforts pour préparer des repas gratuits aux réfugiés ukrainiens.",
   "app.distribution-points": "points de distribution",
-  "app.distribution-points-description": "Dans cette carte, vous trouverez certains des points de distribution dans les pays frontaliers avec l'Ukraine.",
+  "app.distribution-points-description": "Des points de distribution dans tous les pays frontaliers avec l'Ukraine.",
   "app.projects": "projets",
   "app.projects-description": "Voici une liste de projets et d'initiatives qui soutiennent les endroits ukrainiens ou officiels où vous pouvez faire un don et contribuer à soutenir les efforts ukrainiens.",
   "app.opensource": "Open source",
-  "app.opensource-description": "Il s'agit d'une liste de certains projets open source qui soutiennent l'Ukraine et / ou de la diffusion des initiatives pour aider l'Ukraine."
+  "app.opensource-description": "Il s'agit d'une liste de certains projets open source qui soutiennent l'Ukraine et / ou de la diffusion des initiatives pour aider l'Ukraine.",
+  "msg.fundraising": "Veuillez faire un don à cette campagne de collecte de fonds WCK"
 }

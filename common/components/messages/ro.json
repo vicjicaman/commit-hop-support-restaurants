@@ -34,11 +34,12 @@
   "app.restaurant": "restaurant",
   "app.border-point": "punct de frontieră",
   "app.restaurants": "Restaurante",
-  "app.restaurants-description": "Aceasta este o listă de restaurante care ajută WCK cu eforturile sale de a pregăti mese gratuite pentru refugiații din Ucraina.",
+  "app.restaurants-description": "Restaurante care ajută WCK cu eforturile sale de a pregăti mese gratuite pentru refugiații din Ucraina.",
   "app.distribution-points": "Puncte de distribuție",
-  "app.distribution-points-description": "În această hartă veți găsi unele dintre punctele de distribuție în toate țările de frontieră cu Ucraina.",
+  "app.distribution-points-description": "Puncte de distribuție în toate țările de frontieră cu Ucraina.",
   "app.projects": "proiecte",
   "app.projects-description": "Iată o listă de proiecte și inițiative care susțin Ucraina sau locuri oficiale unde puteți dona și contribui la sprijinirea eforturilor Ucrainei.",
   "app.opensource": "sursa deschisa",
-  "app.opensource-description": "Aceasta este o listă a unor proiecte open source care susțin Ucraina și/sau răspândesc cuvântul despre inițiative pentru a ajuta Ucraina."
+  "app.opensource-description": "Aceasta este o listă a unor proiecte open source care susțin Ucraina și/sau răspândesc cuvântul despre inițiative pentru a ajuta Ucraina.",
+  "msg.fundraising": "Vă rugăm să donați acestei campanii de strângere de fonduri WCK"
 }

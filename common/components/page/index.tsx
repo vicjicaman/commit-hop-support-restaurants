@@ -1,6 +1,11 @@
 import React from "react";
+import "bootstrap/dist/css/bootstrap.css";
 
-import { IntlProvider, FormattedMessage } from "react-intl";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
+
+import { IntlProvider } from "react-intl";
 import fr from "common/messages/fr.json";
 import pl from "common/messages/pl.json";
 import en from "common/messages/en.json";

@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../../styles/Home.module.css";
-import "bootstrap/dist/css/bootstrap.css";
+import Donate from "components/donate";
 
 import { Container, Row, Col, Alert } from "reactstrap";
 import { OPENSOURCE_LIST } from "common/queries/opensource";
@@ -13,15 +11,10 @@ import OpensourceContent from "common/opensource/content";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
 
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false;
-
-
 
 export async function getServerSideProps(cxt: any) {
   pageConfig(cxt);
-  
+
   const { data } = await client.query({
     query: OPENSOURCE_LIST,
     fetchPolicy: "no-cache"
@@ -51,7 +44,7 @@ const Page: NextPage = (props) => {
       <Container>
         <Row className="m-4">
           <Col>
-            <Alert color="info"><FormattedMessage id={"app.opensource-description"} /></Alert>
+            <FormattedMessage id={"app.opensource-description"} />
           </Col>
         </Row>
 
@@ -66,6 +59,17 @@ const Page: NextPage = (props) => {
             </Row>
           );
         })}
+
+        <Row className="text-center">
+          <Col>
+            <Alert color="info">
+              <p>
+                <FormattedMessage id={"msg.fundraising"} />{" "}
+              </p>
+              <Donate />
+            </Alert>
+          </Col>
+        </Row>
       </Container>
 
     </PageHandler>

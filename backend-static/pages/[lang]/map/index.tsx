@@ -1,11 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.css";
-import L from "leaflet";
 
-import { Container, Row, Col, Badge } from "reactstrap";
 import { RESTAURANT_LIST } from "common/queries/restaurant";
 import { BORDERPOINT_LIST } from "common/queries/border-point";
 import client from "utils/client";

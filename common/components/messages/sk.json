@@ -34,11 +34,12 @@
   "app.restaurant": "reštaurácia",
   "app.border-point": "hraničný bod",
   "app.restaurants": "reštaurácie",
-  "app.restaurants-description": "Toto je zoznam reštaurácií, ktoré pomáhajú WCK s úsilím pripraviť bezplatné jedlá pre utečencov z Ukrajiny.",
+  "app.restaurants-description": "Reštaurácie, ktoré pomáhajú WCK s úsilím o prípravu bezplatných jedál pre utečencov z Ukrajiny.",
   "app.distribution-points": "distribučné body",
-  "app.distribution-points-description": "Na tejto mape nájdete niektoré distribučné body po celom pohraničných krajinách s Ukrajinou.",
+  "app.distribution-points-description": "Distribučné body po celom pohraničných krajinách s Ukrajinou.",
   "app.projects": "projekty",
   "app.projects-description": "Tu je zoznam projektov a iniciatív, ktoré podporujú Ukrajinu alebo oficiálne miesta, kde môžete darovať a prispievať na podporu úsilia Ukrajiny.",
   "app.opensource": "openoudsource",
-  "app.opensource-description": "Toto je zoznam niektorých projektov s otvoreným zdrojom, ktoré podporujú Ukrajinu a/alebo šíria slovo o iniciatívach na pomoc Ukrajine."
+  "app.opensource-description": "Toto je zoznam niektorých projektov s otvoreným zdrojom, ktoré podporujú Ukrajinu a/alebo šíria slovo o iniciatívach na pomoc Ukrajine.",
+  "msg.fundraising": "Darujte prosím túto kampaň zameranú na získavanie finančných prostriedkov WCK"
 }

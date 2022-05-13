@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { Container, Row, Col, Button } from "reactstrap";
 import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
+import Donate from "components/donate";
 import { FormattedMessage } from "react-intl";
 import { useRouter } from "next/router";
 
@@ -55,18 +56,7 @@ const Page: NextPage = (props) => {
         </Row>
         <Row>
           <Col className="text-center">
-            <Button
-              className="text-capitalize"
-              color="success"
-              onClick={() => {
-                window.open(
-                  `https://donate.wck.org/give/f3789323/#!/donation/checkout`,
-                  "_blank"
-                );
-              }}
-            >
-              <FormattedMessage id="app.donate" />
-            </Button>
+            <Donate/>
           </Col>
         </Row>
       </Container>

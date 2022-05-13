@@ -34,11 +34,12 @@
   "app.restaurant": "étterem",
   "app.border-point": "határpont",
   "app.restaurants": "éttermek",
-  "app.restaurants-description": "Ez az éttermek listája, amelyek elősegítik a WCK -t az ukrán menekültek számára ingyenes ételek elkészítésére irányuló erőfeszítéseivel.",
+  "app.restaurants-description": "Azok az éttermek, amelyek segítenek a WCK -nak az ukrán menekültek számára ingyenes ételek elkészítésére irányuló erőfeszítéseivel.",
   "app.distribution-points": "elosztási pontok",
-  "app.distribution-points-description": "Ebben a térképen Ukrajnával a határ menti országok egész területén található elosztási pontok találhatók.",
+  "app.distribution-points-description": "Disztribúciós pontok az egész határ menti országokban Ukrajnával.",
   "app.projects": "projektek",
   "app.projects-description": "Itt található az Ukrajnát vagy a hivatalos helyeket támogató projektek és kezdeményezések listája, ahol adományozhat és hozzájárulhat az ukrán erőfeszítések támogatásához.",
   "app.opensource": "nyílt forráskód",
-  "app.opensource-description": "Ez néhány nyílt forráskódú projekt felsorolása, amely Ukrajnát támogatja és/vagy terjeszti az Ukrajnának a kezdeményezésekről szóló szót."
+  "app.opensource-description": "Ez néhány nyílt forráskódú projekt felsorolása, amely Ukrajnát támogatja és/vagy terjeszti az Ukrajnának a kezdeményezésekről szóló szót.",
+  "msg.fundraising": "Kérjük, adományozzon a WCK adománygyűjtő kampányához"
 }
