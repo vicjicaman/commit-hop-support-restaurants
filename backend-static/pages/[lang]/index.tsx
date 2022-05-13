@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (cxt: any) => {
   return {
     redirect: {
       permanent: true,
-      destination: '/en'
+      destination: `/${cxt.params.lang}/map`
     }
   }
 }

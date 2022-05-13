@@ -5,10 +5,6 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { flagStyle } from "common/lang";
 import Donate from "components/donate";
 
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
-config.autoAddCss = false;
-
 import {
   MapContainer,
   Tooltip,
@@ -88,12 +84,13 @@ export default function ({ markers }) {
 
       {
         markers.map(({ list, icon }) => {
-          return list.map(({ id, name, country, latitude, longitude, images }) => {
+          return list.map(({ id, name, country, latitude, longitude, images, address }) => {
             const flag = <img style={flagStyle} src={`/flags/${country}.png`} />
             return <Marker key={id} position={[latitude, longitude]} icon={icons[icon]} >
               <Popup>
                 <img className='w-100' src={images[0]} />
                 <p><b>{name}</b>  {flag}</p>
+                {address && <p>{address}</p>}
               </Popup>
               <Tooltip>
                 {name} {flag}

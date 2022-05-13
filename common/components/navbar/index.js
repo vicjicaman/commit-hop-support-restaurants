@@ -1,5 +1,5 @@
 import React from "react";
-
+import { flagStyle } from "common/lang";
 import {
   Collapse,
   Navbar,
@@ -11,17 +11,23 @@ import {
 import { FormattedMessage } from "react-intl";
 import * as Lang from "common/lang";
 
-const NavItemCommon = ({ lang, id, tag, href: target, pathname, exact }) => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faMapMarkerAlt, faHeart, faStar } from "@fortawesome/free-solid-svg-icons";
+
+const NavItemCommon = ({ icon, lang, id, tag, href: target, pathname, exact }) => {
   //const target = `/${lang}${href}`;
-  const active = 
+  const active =
     exact === true ? pathname === target : pathname.startsWith(target);
 
   return tag ? (
     <NavLink className="text-capitalize" tag={tag} to={target} active={active}>
+      <FontAwesomeIcon icon={icon} /> {" "}
       <FormattedMessage id={id} />
     </NavLink>
   ) : (
     <NavLink className="text-capitalize" href={target} active={active}>
+      <FontAwesomeIcon icon={icon} /> {" "}
       <FormattedMessage id={id} />
     </NavLink>
   );
@@ -32,7 +38,7 @@ export default ({ lang, tag, pathname }) => {
   return (
     <Navbar color="light" light expand="md">
       <NavbarBrand className="text-capitalize" href={`/${lang}`}>
-        <FormattedMessage id="app.title" />
+        <img style={flagStyle} src={`/flags/ua.png`} />{" "}<FormattedMessage id="app.title" />
       </NavbarBrand>
 
       <Collapse isOpen={true} navbar>
@@ -40,6 +46,7 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
+              icon={faMapMarkerAlt}
               id={"app.map"}
               href={`/${lang}/map`}
               exact={true}
@@ -48,6 +55,7 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
+              icon={faGithub}
               id={"app.opensource"}
               href={`/${lang}/opensource`}
               exact={true}
@@ -56,6 +64,7 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
+              icon={faStar}
               id={"app.projects"}
               href={`/${lang}/projects`}
               exact={true}
@@ -64,6 +73,7 @@ export default ({ lang, tag, pathname }) => {
           <NavItem>
             <NavItemCommon
               {...props}
+              icon={faHeart}
               id={"app.donate"}
               href={`/${lang}/donate`}
               exact={true}
