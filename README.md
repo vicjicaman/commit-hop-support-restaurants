@@ -26,7 +26,7 @@ The HOP for commit is focused on learning new things while working on a project,
 An honorable mention is the fontawesome package, I have used fontawesome, but not in its package form :)
 
 
-# Original HOP Backend Legacy version vs Live version
+# Original HOP Demo version vs Live version
 There are some big and fundamental changes to the architecture that we need to do from the HOP demo to a live version.
 - Container for the GraphQL server is now a Lambda function, we are going to continue using the Clan Architecture patterns.
 - The Nginx container is replaced by an API Gateway to expose the backend functionality. (But we will keep just a part for our local env)
@@ -102,7 +102,7 @@ The expected resources to be created in CloudFormation, the scope will be based 
 All the changes that are pushed to the branch *codepipeline-test* will be automatically build and deployed.
 
 
-# Stack and Architecture *LEGACY*
+# Stack and Architecture *DEMO/LEGACY*
 This project is just for the local development, one of the goals with this setup is to be able to integrate all the services.When a real domain is used we will be able to easily generate a letsencrypt certs and have a good env to test without issues of the cookies or domain auths on the browser
 - **docker-compose**: This is to have everything running on a single script, with the network and volumes support, it will be very easy to move this to another container envs like Kubernetes. 
 - **nginx**: This is to proxy the internal and localhost services into the different base paths for the backend, cra and static nextjs frontend.
@@ -112,7 +112,7 @@ This project is just for the local development, one of the goals with this setup
 - **Postgres**: One of the main features was to search for the nearest restaurants, this is accomplished with the PostGIS extension. 
 - **Opensearch**: We are using opensearch for the full text search functionality.
 
-# Getting started *LEGACY*
+# Getting started *DEMO/LEGACY*
 
 Clone this repository
 
@@ -136,7 +136,7 @@ Run
   docker compose up
 ```
 
-# Deployment resources *LEGACY*
+# Deployment resources *DEMO/LEGACY*
 
 The project will be deployed to a very simple stack to be able to focus on explore CloudFormation and CodePipeline, overall we will use a EC2 node (with docker compose inside) and a CloudFront distribution helper.
 
@@ -159,6 +159,15 @@ The expected resources to be created in CloudFormation, the scope will be based 
  - EC2 instance
    - Volume to attach
 
+
+# Video of the demo
+
+Watch the HOP walkthrough/presentation here:
+https://www.youtube.com/watch?v=5m2pxz0URqY
+
+This is the video of the HOP presentation that I did during my first weeks at commit. The features and state of the current project are different as the project evolves.
+
+
 # Utility resources
 
  - Certificate - *.ua-wck.com, create and destroy certificated limits are very narrow, I hope that this will cover all certificate needs.
@@ -174,12 +183,6 @@ Only the scopes {{www}} will be have an automated CD/CI pipeline as {{www}} will
 You should be able to checkout any dev branch and easily start the local docker-compose.
 Please let me know any feedback about the approach.
 
-# Video
-
-Watch the HOP walkthrough/presentation here:
-https://www.youtube.com/watch?v=5m2pxz0URqY
-
-This is the video of the HOP presentation that I did during my first weeks at commit. The features and state of the current project are different as the project evolves.
 
 # For the future
 
