@@ -41,5 +41,7 @@
   "app.projects-description": "Tu je zoznam projektov a iniciatív, ktoré podporujú Ukrajinu alebo oficiálne miesta, kde môžete darovať a prispievať na podporu úsilia Ukrajiny.",
   "app.opensource": "openoudsource",
   "app.opensource-description": "Toto je zoznam niektorých projektov s otvoreným zdrojom, ktoré podporujú Ukrajinu a/alebo šíria slovo o iniciatívach na pomoc Ukrajine.",
-  "msg.fundraising": "Darujte prosím túto kampaň zameranú na získavanie finančných prostriedkov WCK"
+  "msg.fundraising": "Darujte prosím túto kampaň zameranú na získavanie finančných prostriedkov WCK",
+  "app.info-locations": "Informácie a pomocné centrá",
+  "app.info-locations-description": "Oficiálne informačné miesta a pomocné centrá pre utečencov"
 }

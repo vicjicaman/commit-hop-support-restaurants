@@ -36,10 +36,12 @@
   "app.restaurants": "Restaurante",
   "app.restaurants-description": "Restaurante care ajută WCK cu eforturile sale de a pregăti mese gratuite pentru refugiații din Ucraina.",
   "app.distribution-points": "Puncte de distribuție",
-  "app.distribution-points-description": "Puncte de distribuție în toate țările de frontieră cu Ucraina.",
+  "app.distribution-points-description": "Puncte de distribuție din toate țările de frontieră cu Ucraina.",
   "app.projects": "proiecte",
   "app.projects-description": "Iată o listă de proiecte și inițiative care susțin Ucraina sau locuri oficiale unde puteți dona și contribui la sprijinirea eforturilor Ucrainei.",
   "app.opensource": "sursa deschisa",
   "app.opensource-description": "Aceasta este o listă a unor proiecte open source care susțin Ucraina și/sau răspândesc cuvântul despre inițiative pentru a ajuta Ucraina.",
-  "msg.fundraising": "Vă rugăm să donați acestei campanii de strângere de fonduri WCK"
+  "msg.fundraising": "Vă rugăm să donați acestei campanii de strângere de fonduri WCK",
+  "app.info-locations": "Informații și centre de ajutor",
+  "app.info-locations-description": "Locuri de informații oficiale și centre de ajutor pentru refugiați"
 }

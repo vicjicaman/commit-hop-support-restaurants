@@ -41,5 +41,7 @@
   "app.projects-description": "Oto lista projektów i inicjatyw, które wspierają Ukrainę lub oficjalne miejsca, w których można przekazać darowiznę i przyczynić się do wspierania wysiłków Ukrainy.",
   "app.opensource": "otwarte źródło",
   "app.opensource-description": "Jest to lista niektórych projektów open source, które wspierają Ukrainę i/lub rozpowszechniają informacje o inicjatywach pomagających Ukrainie.",
-  "msg.fundraising": "Proszę przekazać darowiznę na tę kampanię zbierania funduszy WCK"
+  "msg.fundraising": "Proszę przekazać darowiznę na tę kampanię zbierania funduszy WCK",
+  "app.info-locations": "Informacje i centra pomocy",
+  "app.info-locations-description": "Oficjalne miejsca informacyjne i centra pomocy dla uchodźców"
 }

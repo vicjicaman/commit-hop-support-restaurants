@@ -38,8 +38,12 @@ import ProjectUsecase from "usecases/project";
 import ProjectData from "data/project";
 import ProjectFactory from "factories/project";
 
-//const PORT_SERVICE = 4700;
+import InfoLocationController from "controllers/info-location";
+import InfoLocationUsecase from "usecases/info-location";
+import InfoLocationData from "data/info-location";
+import InfoLocationFactory from "factories/info-location";
 
+//const PORT_SERVICE = 4700;
 const cxt: any = {};
 
 const container = awilix.createContainer({
@@ -68,6 +72,11 @@ container.register({
   ProjectData: awilix.asClass(ProjectData),
   ProjectFactory: awilix.asClass(ProjectFactory),
   ProjectUsecase: awilix.asClass(ProjectUsecase),
+
+  InfoLocationController: awilix.asClass(InfoLocationController),
+  InfoLocationData: awilix.asClass(InfoLocationData),
+  InfoLocationFactory: awilix.asClass(InfoLocationFactory),
+  InfoLocationUsecase: awilix.asClass(InfoLocationUsecase),
 });
 
 const logResolver = async (resolve: any, root: any, args: any, cxt: any, info: any) => {

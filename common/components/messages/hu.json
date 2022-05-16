@@ -41,5 +41,7 @@
   "app.projects-description": "Itt található az Ukrajnát vagy a hivatalos helyeket támogató projektek és kezdeményezések listája, ahol adományozhat és hozzájárulhat az ukrán erőfeszítések támogatásához.",
   "app.opensource": "nyílt forráskód",
   "app.opensource-description": "Ez néhány nyílt forráskódú projekt felsorolása, amely Ukrajnát támogatja és/vagy terjeszti az Ukrajnának a kezdeményezésekről szóló szót.",
-  "msg.fundraising": "Kérjük, adományozzon a WCK adománygyűjtő kampányához"
+  "msg.fundraising": "Kérjük, adományozzon a WCK adománygyűjtő kampányához",
+  "app.info-locations": "információk és segítőközpontok",
+  "app.info-locations-description": "Hivatalos információs helyek és segítőközpontok a menekültek számára"
 }

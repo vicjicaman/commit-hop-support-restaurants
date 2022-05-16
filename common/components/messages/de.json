@@ -41,5 +41,7 @@
   "app.projects-description": "Hier finden Sie eine Liste von Projekten und Initiativen, die die Ukraine oder offizielle Orte unterstützen, an denen Sie spenden und zur Unterstützung der Ukraine -Bemühungen beitragen können.",
   "app.opensource": "Open Source",
   "app.opensource-description": "Dies ist eine Liste einiger Open -Source -Projekte, die die Ukraine unterstützen und/oder das Wort über Initiativen zur Unterstützung der Ukraine verteilen.",
-  "msg.fundraising": "Bitte spenden Sie für diese WCK -Fundraising -Kampagne"
+  "msg.fundraising": "Bitte spenden Sie für diese WCK -Fundraising -Kampagne",
+  "app.info-locations": "Informations- und Hilfezentren",
+  "app.info-locations-description": "Offizielle Informationsplätze und Hilfszentren für Flüchtlinge"
 }

@@ -3,6 +3,7 @@ import Head from "next/head";
 
 import { RESTAURANT_LIST } from "common/queries/restaurant";
 import { BORDERPOINT_LIST } from "common/queries/border-point";
+import { INFOLOCATION_LIST } from "common/queries/info-location";
 import client from "utils/client";
 import PageHandler, { pageConfig } from "common/page";
 import Navbar from "common/navbar";
@@ -28,20 +29,31 @@ export async function getServerSideProps(cxt: any) {
     fetchPolicy: "no-cache"
   });
 
-  const [{ data: restaurantData }, { data: borderData }] = await Promise.all([restaurantPromise, borderPromise]);
+  const infoPromise = client.query({
+    query: INFOLOCATION_LIST,
+    fetchPolicy: "no-cache"
+  });
 
-  const markers = [{
-    list: restaurantData.viewer.account.restaurants.list,
-    icon: "blue",
-    title: "app.restaurants",
-    description: "app.restaurants-description"
-  },
-  {
-    list: borderData.viewer.account.borderPoints.list,
-    icon: "red",
-    title: "app.distribution-points",
-    description: "app.distribution-points-description"
-  }]
+  const [{ data: restaurantData }, { data: borderData }, { data: infoData }] = await Promise.all([restaurantPromise, borderPromise, infoPromise]);
+
+  const markers = [
+    {
+      list: infoData.viewer.account.infoLocations.list,
+      icon: "green",
+      title: "app.info-locations",
+      description: "app.info-locations-description"
+    }, {
+      list: restaurantData.viewer.account.restaurants.list,
+      icon: "blue",
+      title: "app.restaurants",
+      description: "app.restaurants-description"
+    },
+    {
+      list: borderData.viewer.account.borderPoints.list,
+      icon: "red",
+      title: "app.distribution-points",
+      description: "app.distribution-points-description"
+    }]
 
   return {
     props: {

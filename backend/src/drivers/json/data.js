@@ -1,4 +1,164 @@
+
+
+
+
 export default {
+    "info-locations": [
+        {
+            "id": "punkt-informacji-bialystok-pl",
+            "name": "Punkt informacji dla uchodźców: Dworzec PKP Białystok",
+            "country": "pl",
+            "address": "Kolejowa 9, 15-701 Białystok, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipMMd1-zzWWOy9QvjNkCxOnC4WYBsv0xRgO_5FkQ=w408-h725-k-no"],
+            "latitude": 53.13883368784418,
+            "longitude": 23.134637443672165,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "punkt-pomocy-dla-uchodzcow-pl",
+            "name": "Punkt pomocy dla uchodźców: Kompleks Hotelowy JARD „Nad Zalewem”",
+            "country": "pl",
+            "address": "Białostocka 94/98, 16-010 Wasilków, Poland",
+            "images": ["/flags/pl.png"],
+            "latitude": 53.19715959534708, 
+            "longitude": 23.192815889705855,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "szkola-podstawowa-pl",
+            "name": "Punkt pomocy dla uchodźców: Szkoła Podstawowa im. Jana Twardowskiego",
+            "country": "pl",
+            "address": "Krowica Sama 183, 37-625 Krowica Sam, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipPKM9g68gP--En2Wh8TSh4Ka9vLndlloP_m6p9C=w480-h240-k-no"],
+            "latitude": 50.12354531812777, 
+            "longitude": 23.234111164283842,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "centrum-handlu-pl",
+            "name": "Punkt pomocy dla uchodźców: Centrum Handlu i Magazynowania Korczowa Dolina - Hala Kijowska",
+            "country": "pl",
+            "address": "Młyny 90, 37-552, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipP9pwUWn1ClloPRltctuuDQB7LZLO5kbTeGt0NL=w408-h306-k-no"],
+            "latitude": 49.980900025188305, 
+            "longitude": 23.03771907029003,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "swietlica-wiejska-w-korczowej-pl",
+            "name": "Punkt pomocy dla uchodźców: Świetlica Wiejska w Korczowej",
+            "country": "pl",
+            "address": "Korczowa 155, 37-552 Korczowa, Poland",
+            "images": ["/flags/pl.png"],
+            "latitude": 49.96538563159935, 
+            "longitude": 23.07998396654178, 
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "hala-sportowa-pl",
+            "name": "Punkt pomocy dla uchodźców: Hala Sportowa w Medyce",
+            "country": "pl",
+            "address": "Medyka 285, 37-732 Medyka, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipPvT5l-LZpqq-r7qnODAsyIcz41gsEATfHdYlkX=w408-h725-k-no"],
+            "latitude": 49.829943907332414,
+            "longitude":  22.92629447302499,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "dworzec-kolejowy-pl",
+            "name": "Punkt pomocy dla uchodźców: Dworzec Kolejowy Przemyśl",
+            "country": "pl",
+            "address": "plac Legionów 1, 37-700 Przemyśl, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipOklhkY7b30KxmsPFbhprziqUNl_RJZq-QPFRw=w425-h240-k-no"],
+            "latitude": 49.800701926170355, 
+            "longitude": 22.78209891803535,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "byla-szkola-podstawowa-pl",
+            "name": "Punkt pomocy dla uchodźców: Była Szkoła Podstawowa w Łodynie",
+            "country": "pl",
+            "address": "Łodyna 41, 38-700 Łodyna, Poland",
+            "images": ["/flags/pl.png"],
+            "latitude": 49.478765428362244, 
+            "longitude": 22.595331342048773,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "dworzec-pkp-pl",
+            "name": "Punkt informacji dla uchodźców: Dworzec PKP Chełm",
+            "country": "pl",
+            "address": "Kolejowa 89, 22-100 Chełm, Poland",
+            "images": ["https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=JPcPHw32CeoTj_Z4sj2yOw&cb_client=search.gws-prod.gps&w=408&h=240&yaw=0.0042015165&pitch=0&thumbfov=100"],
+            "latitude": 51.15363680386917, 
+            "longitude": 23.49158467573622,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "miejski-osrodek-pl",
+            "name": "Punkt pomocy dla uchodźców: Miejski Ośrodek Sportu i Rekreacji w Chełmie",
+            "country": "pl",
+            "address": "Graniczna 2A, 22-100 Chełm, Poland",
+            "images": ["https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=iBlo22uwzsTe6gQPiKyrug&cb_client=search.gws-prod.gps&w=408&h=240&yaw=11.341246&pitch=0&thumbfov=100"],
+            "latitude": 51.14185523568246,  
+            "longitude": 23.494850930592325,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "palac-suchodolskich-pl",
+            "name": "Punkt pomocy dla uchodźców: Pałac Suchodolskich Gminny Ośrodek Kultury i Turystyki",
+            "country": "pl",
+            "address": "Parkowa 5, 22-175 Dorohusk-Osada, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipNZBSo-H2qKjX316p7kkn0syuES0naKiYmEmZd4=w408-h306-k-no"],
+            "latitude": 51.1812860583693, 
+            "longitude": 23.80024575963801, 
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "zespol-szkol-pl",
+            "name": "Punkt pomocy dla uchodźców: Zespół Szkół w Horodle",
+            "country": "pl",
+            "address": "Piłsudskiego 58, 22-523 Horodło, Poland",
+            "images": ["https://lh5.googleusercontent.com/p/AF1QipMBj6Gd58LgvjwTlKE41YfOkde-0ZJ6l_YxWqIF=w408-h306-k-no"],
+            "latitude": 50.90353216754328, 
+            "longitude": 24.04113205527566, 
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "hrubieszowski-osrodek-pl",
+            "name": "Punkt pomocy dla uchodźców: Hrubieszowski Ośrodek Sportu i Rekreacji",
+            "country": "pl",
+            "address": "Ciesielczuka 2, 22-500 Hrubieszów, Poland",
+            "images": ["/flags/pl.png"],
+            "latitude": 50.81848821513742, 
+            "longitude": 23.87945243989853,
+            "contact": "",
+            "description": ""
+        },
+        {
+            "id": "zespol-szkol-pl",
+            "name": "Punkt pomocy dla uchodźców: Zespół Szkół Nr 4 w Hrubieszowie",
+            "country": "pl",
+            "address": "Uściług PL, Grabowiecka 18J, 22-500 Hrubieszów, Poland",
+            "images": ["https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid=wHS5nqu9BMrRnyMTY3Y20A&cb_client=search.gws-prod.gps&w=408&h=240&yaw=330.30917&pitch=0&thumbfov=100"],
+            "latitude": 50.82519427723748,  
+            "longitude": 23.86557085676009,
+            "contact": "",
+            "description": ""
+        }
+    ],
     "border-points": [
         {
             "id": "korczowa-krakovets-pl",
@@ -60,7 +220,7 @@ export default {
             "name": "Mostyska II",
             "country": "pl",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "images": ["/flags/pl.png"],
             "latitude": 49.816667,
             "longitude": 23.032778,
             "contact": "",
@@ -93,7 +253,7 @@ export default {
             "name": "Werchrata",
             "country": "pl",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "images": ["/flags/pl.png"],
             "latitude": 50.25,
             "longitude": 23.466667,
             "contact": "",
@@ -104,7 +264,7 @@ export default {
             "name": "Zosin, Hrubieszów County",
             "country": "pl",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/pl.png"],
+            "images": ["/flags/pl.png"],
             "latitude": 50.85,
             "longitude": 24.1,
             "contact": "",
@@ -148,7 +308,7 @@ export default {
             "name": "Barabás",
             "country": "hu",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/hu.png"],
+            "images": ["/flags/hu.png"],
             "latitude": 48.23,
             "longitude": 22.43,
             "contact": "",
@@ -160,7 +320,7 @@ export default {
             "name": "Beregsurány",
             "country": "hu",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/hu.png"],
+            "images": ["/flags/hu.png"],
             "latitude": 48.166667,
             "longitude": 22.55,
             "contact": "",
@@ -226,7 +386,7 @@ export default {
             "name": "Solovka railway station",
             "country": "hu",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/hu.png"],
+            "images": ["/flags/hu.png"],
             "latitude": 48.381192,
             "longitude": 22.278748,
             "contact": "",
@@ -270,7 +430,7 @@ export default {
             "name": "Chilia Veche",
             "country": "ro",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/ro.png"],
+            "images": ["/flags/ro.png"],
             "latitude": 45.416667,
             "longitude": 29.283333,
             "contact": "",
@@ -281,7 +441,7 @@ export default {
             "name": "Halmeu",
             "country": "ro",
             "address": "",
-            "images": ["https://www.ua-wck.com/flags/ro.png"],
+            "images": ["/flags/ro.png"],
             "latitude": 47.966667,
             "longitude": 23.016667,
             "contact": "",
@@ -461,7 +621,7 @@ export default {
             "country": "ro",
             "address": "Municipiul, Strada Piața Unirii, Rădăuți 725400, Rumanía",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/c0db4a9937dd892db9e88dac465e975c/32c2332e"],
-            "latitude": 47.84730997671653, 
+            "latitude": 47.84730997671653,
             "longitude": 25.91759657995336,
             "contact": "",
             "description": ""
@@ -472,7 +632,7 @@ export default {
             "country": "ro",
             "address": "Strada Mihai Viteazul 3, Satu Mare 440037, Rumanía",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/74379d4631ba8b1ef89408748f361bc6/e07831a6"],
-            "latitude": 47.79584815946945, 
+            "latitude": 47.79584815946945,
             "longitude": 22.877439263785977,
             "contact": "",
             "description": ""
@@ -483,7 +643,7 @@ export default {
             "country": "ro",
             "address": "Str. Careiului 17, Satu Mare, Rumanía",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/44d52a84d4ca014e09976d64d0eed745/161dc7fd"],
-            "latitude": 47.78702258670306, 
+            "latitude": 47.78702258670306,
             "longitude": 22.870391696932096,
             "contact": "",
             "description": ""
@@ -494,7 +654,7 @@ export default {
             "country": "md",
             "address": "Ocnița, Moldavia",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/1e2e9117864c71d8fe44f72e770b4245/a1385f3f"],
-            "latitude": 48.41864934714103, 
+            "latitude": 48.41864934714103,
             "longitude": 27.46321705014662,
             "contact": "",
             "description": ""
@@ -505,7 +665,7 @@ export default {
             "country": "md",
             "address": "R11 64A, Ocniţa, Moldavia",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/918be5688513df28dabb1ab3e7861d34/3affe4cf"],
-            "latitude": 48.41802591502206, 
+            "latitude": 48.41802591502206,
             "longitude": 27.471644487061603,
             "contact": "",
             "description": ""
@@ -516,7 +676,7 @@ export default {
             "country": "sk",
             "address": "Štefánikova 29, 073 01 Sobrance, Eslovaquia",
             "images": ["https://dl.airtable.com/.attachmentThumbnails/76c6ee1bee83e97518c11abef3b0b2dd/2407f389"],
-            "latitude": 48.74601313837805, 
+            "latitude": 48.74601313837805,
             "longitude": 22.180716311811484,
             "contact": "",
             "description": ""
@@ -540,7 +700,16 @@ export default {
             "webpage": "https://twitter.com/Ukraine/status/1497294840110977024",
             "logo": "https://pbs.twimg.com/profile_images/1011852346232631296/gw8Yp3dG_400x400.jpg",
             "description": "If you CAN and WANT to support Ukraine ukraine and Ukrainian army, here is a tweet with instructions from OFFICIAL account of Ukraine"
+        },
+        {
+            "id": "refugeesupporteu",
+            "name": "Refugee Support EU",
+            "webpage": "https://www.refugeesupporteu.com",
+            "logo": "https://www.refugeesupporteu.com/wp-content/uploads/2018/03/Refugee-Support-logo-large.png",
+            "description": "Refugee Support was founded in 2016 in response to governmental failure across Europe to protect and support people who had fled violent conflict, a failure which continues to this day."
         }
+
+        
     ],
     "opensources": [
         {
