@@ -53,7 +53,10 @@ The next steps will let you replicate the complete stack in local environment wi
 Clone this repository
 
 Add 
+```
 127.0.0.1 dev.ua-wck.com 
+127.0.0.1 dev-api.ua-wck.com 
+```
 to you local /etc/hosts file
 
 ```
