@@ -38,6 +38,9 @@ All those changes are focused now on cost reduction, expansion simplicity and ea
 You can find the original functionality and CloudFormation in this branch:
 https://github.com/vicjicaman/commit-hop-support-restaurants/tree/original-hop-backend
 
+For the live web visit:
+https://www.ua-wck.com/
+
 # Stack and Architecture *LIVE*
 - CloudFront:A CDN will be used to cache all the pages rendered dynamically by the NextJS backend.
 - API GatewayWe are going to use the API gateway to route the request to the lambdas, right now the endpoints are public, but we are going to work on the configuration to only allow access by the CDN origin
@@ -133,7 +136,7 @@ Run
   docker compose up
 ```
 
-# Deployment resources for experimental phase *LEGACY*
+# Deployment resources *LEGACY*
 
 The project will be deployed to a very simple stack to be able to focus on explore CloudFormation and CodePipeline, overall we will use a EC2 node (with docker compose inside) and a CloudFront distribution helper.
 
