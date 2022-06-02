@@ -44,7 +44,7 @@ export const pageConfig = (cxt: any) => {
 
   res.setHeader(
     'Cache-Control',
-    'public, s-maxage=14400, stale-while-revalidate=59'
+    'public, s-maxage=28800, stale-while-revalidate=59'
   );
 
 }
