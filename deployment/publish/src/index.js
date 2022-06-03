@@ -42,7 +42,7 @@ const artifactOutputPath = `${BUILD_TARGET_PATH}/artifact-output`;
 
     // ENV
     await command(`mkdir -p ${artifactOutputPath}`);
-    await command(`docker login`);
+    //await command(`docker login`);
 
     //await ComposeAppStep.step(cxt);
     //await ComposeDataStep.step(cxt);
