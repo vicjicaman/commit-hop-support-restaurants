@@ -17,7 +17,8 @@ const step = async ({ outputPath, rootPath, commonPath, componentsPath, libsPath
     await command(`rm -rf ${backendOutputPath}`);
     await command(`mkdir -p ${backendOutputPath}`);
     await command(`yarn install`, { cwd: backendPath });
-    await command(`yarn build`, { cwd: backendPath });
+    await command(`yarn run webpack --config webpack.config.js --mode=production`, { cwd: backendPath });
+    //await command(`yarn build`, { cwd: backendPath });
     //await command(`cp -r ${path.join(backendPath, "migrations")} ${path.join(backendOutputPath, "migrations")} `);
     await command(`cp ${path.join(backendPath, "package.json")} ${path.join(backendOutputPath, "package.json")} `);
     await command(`cp ${path.join(backendPath, "yarn.lock")} ${path.join(backendOutputPath, "yarn.lock")} `);
