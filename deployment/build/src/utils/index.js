@@ -11,7 +11,7 @@ const command = async (cmd, args, handler) => {
 
     try {
         logger.info(cmd);
-        const res = await exec(cmd, { maxBuffer: 1024 * 5000, ...args });
+        const res = await exec(cmd, { maxBuffer: 1024 * 5000, stdio: "inherit", ...args });
         logger.info(res.stdout);
         logger.info(res.stderr);
 

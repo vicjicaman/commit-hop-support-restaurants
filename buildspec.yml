@@ -26,8 +26,8 @@ phases:
     commands:
       - export SCOPE_VERSION=$CODEBUILD_RESOLVED_SOURCE_VERSION
       - echo Installing source NPM dependencies...
-      - yarn --cwd ./backend install
-      - yarn --cwd ./backend build 
+      #- yarn --cwd ./backend install
+      #- yarn --cwd ./backend build 
       - yarn --cwd ./deployment/publish install 
   build:
     commands:
