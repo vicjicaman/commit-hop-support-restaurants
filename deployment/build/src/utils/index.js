@@ -3,18 +3,24 @@ const util = require("util");
 const exec = util.promisify(require("child_process").exec);
 const fs = require('fs').promises;
 const ejs = require("ejs");
+const { exit } = require("process");
 
 const logger = { info: msg => console.log(msg), debug: msg => console.log(msg) }
 
 const command = async (cmd, args, handler) => {
 
-    logger.info(cmd);
-    const res = await exec(cmd, { maxBuffer: 1024 * 5000, ...args });
-    logger.info(res.stdout);
-    logger.info(res.stderr);
+    try {
+        logger.info(cmd);
+        const res = await exec(cmd, { maxBuffer: 1024 * 5000, ...args });
+        logger.info(res.stdout);
+        logger.info(res.stderr);
 
-    if (handler) {
-        await handler(res);
+        if (handler) {
+            await handler(res);
+        }
+    } catch (e) {
+        logger.info("E: " + e.toString());
+        exit(1);
     }
 }
 
