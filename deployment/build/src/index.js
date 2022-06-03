@@ -51,11 +51,12 @@ if(typeof String.prototype.replaceAll === "undefined") {
     await command(`mkdir -p ${outputPath}`);
 
     //await ProxyStep.step(cxt);
+    await BackendStep.step(cxt);
     await FormationStep.step(cxt);
     //await FrontendStep.step(cxt)
     await BackendStaticProxyStep.step(cxt);
     await BackendStaticStep.step(cxt);
-    await BackendStep.step(cxt);
+    
     //await OriginRequestStep.step(cxt);
     //await ComposeAppStep.step(cxt);
     //await ComposeDataStep.step(cxt);
