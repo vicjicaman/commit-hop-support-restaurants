@@ -6,7 +6,7 @@ All this project was working with the stack bellow at some point, but I will be 
 # Donate
 Please donate to WCK in this fundraising camping: <a href="https://donate.wck.org/give/f3789323/#!/donation/checkout" target="_blank" > donate </a>
 
-#Stack
+# Stack
 
 - **PostGIS and openstreetmaps**: Since I am planning to use Postgres as the database I will be using its spartial extension PostGIS, I will be trying OSM to render the maps (I am familiar with google maps, but you need to enable the billing even for the free tier now :( )
 - **Postgres in Node**: I have been working mostly with NoSQL databases recently, it is very nice to SELECT FROM again in node.
